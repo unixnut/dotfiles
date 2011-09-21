@@ -1,0 +1,67 @@
+# .muttrc (Mutt auto-parse file) -- commands that mutt runs at startup
+# see muttrc(5)
+
+source ~/.mutt/identity_settings
+source ~/.mutt/sig_settings
+source ~/.mutt/bindings
+
+
+set query_command = "/usr/local/bin/mutt_ldap.py '%s'"
+set print_cmd=/bin/false        # how to print things (I like to save trees)
+set timeout=3                   # timeout for mail check, in seconds.
+
+
+# == composing ==
+set abort_nosubject=no
+set copy=yes                     # always save a copy of outgoing messages
+set send_charset="us-ascii:iso-8859-1"
+set date_format="!%a, %d %B, %Y at %I:%M:%S%p %Z"
+set editor="mutt_compose_editor"        # editor to use when composing messages
+
+# -- forwarding --
+set mime_fwd                    # use message/rfc822 type to forward messages
+set forw_format = "[fwd: %s]"   # subject to use when forwarding messages
+
+
+# == folders ==
+set move=no                     # don't ask about moving messages to $mbox, just do nothing
+set confirmappend=no            # don't ask me if I want to append to mailboxes
+## set nosave_empty                # remove files when no messages are left
+set postponed=+postponed        # mailbox to store postponed messages in
+set record=+Sent/default        # default location to save outgoing mail
+
+
+# == appearance ==
+# -- index screen --
+## set hdr_format="%4C %Z %{%d/%m} %-20.20n  %s" # format of the index
+set nohelp                      # don't show the help lines
+set strict_threads              # only make use of the ``In-Reply-To'' and ``References'' fields 
+
+# -- pager --
+set pager_context=1             # no. of lines of context to give when scrolling
+## set pager_index_lines=6         # how many index lines to show in the pager
+unignore date
+ignore X-SA- X-Spam- Accept-Language acceptlanguage Delivery-date Envelope-to X-Cron-Env X-X- X-Virus- X-YMail- X-SpamTest- X-UWA- X-IronPort- X-OriginatingIP X-OriginalArrivalTime X-SEF- X-Yahoo X-Antivirus X-PMX- X-AntiAbuse X-RPD- X-Facebook X-VirusChecked X-Env-Sender X-Msg-Ref Sensitivity X-Originating-IP X-StarScan- X-MIMETrack X-Greylist X-Header- X-XPT- X-MaxCode- X-Mailman-Version List- x-cr- Disposition-Notification- X-Originating-Email X-TM-AS- X-OB- auth-sender X-No-Archive X-DSPAM X-Generated-By X-Launchpad-Bug-Private X-Launchpad-Hash X-Goomoji X-Danger- X-Google-Sender-Auth X-Provags X-Junkmail X-GuyNetAu X-Source X-MIME- X-Salsa X-TasWebHosting X-HM X-Hanmail X_email_KEY X-AOL X-MB- X_email_blast X-DKIM X-Campaignid X-DomainKeys X-Twitter Errors-To X-Disclaimed X-SIH- Bounces-To x-rpcampaign X-Authority-Analysis X-Cloudmark X-Sasl- X-Campaign X-Version X-BINDING X-Convio XData X-Gateway X-LinkedIn X-MessageID X-ListMember X-TM-IMSS X-imss X-pstn X-Instanthosting X-Sequence x-mid X-Barracuda X-ASG X-Apple X-Sendgrid X-GetUp X-AINS X-Scan X-VirtualServer X-SM X-MailingID X-Destination-ID X-AuditID X-Brightmail X-TMASE X-Enigmail X-UID
+unignore X-Spam-Level List-Id
+hdr_order date from subject to cc
+
+
+# == aliases ==
+set alias_file=~/.mail_aliases  # where I keep my aliases
+
+# People I know
+source $alias_file
+## # People I don't know, but who have a stupid From name
+## source ~/.mutt/name_subst_aliases
+
+# contact groups
+source ~/.mutt/list_aliases
+
+# *** site/platform-specific ***
+# counteract crappy /etc/Muttrc settings
+set use_from                    # always generate the `From:' header field
+set write_bcc                   # include Bcc header in the Fcc copy
+set use_domain                  # qualify local addresses with $hostname
+
+# -- config commands local to this site --
+source ~/.mutt/local_settings
