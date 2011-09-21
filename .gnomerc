@@ -1,0 +1,11 @@
+# .gnomerc (Bash include file) -- sourced by a Gnome desktop login script
+export X_LOGIN=y
+
+. .init/setup.sh
+
+
+# vim: set filetype=sh :
+### Local Variables:
+### mode: shell-script
+### sh-shell: bash
+### End:

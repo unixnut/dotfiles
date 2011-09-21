@@ -1,0 +1,9 @@
+# .bindings (C shell v2.0 auto-parse file) -- commands to set key bindings
+
+bind-to-key BackwardWord â 
+bind-to-key ForwardWord æ
+bind-to-key EraseLine "\^U"
+bind-to-key EraseWord "\^W"
+bind-to-key KillRegion "\^X\^W"
+bind-to-key FilenameExpansion "\^I"
+bind-to-key FilenameListOrEof "\^D"
