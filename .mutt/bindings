@@ -1,0 +1,61 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# Key bindings
+#
+#	maps:
+#		alias		alias menu
+#		attach		attachment menu
+#		browser		directory browser
+#		compose		compose menu
+#		editor		line editor
+#		index		message index
+#		pager		text viewer
+#		pgp		pgp menu
+#		postpone	postponed message recall menu
+#		url		url menu
+#		
+
+bind index "\e<" first-entry	# emacs-like bindings for moving to top/bottom
+bind index \e> last-entry
+bind index { top-page
+bind index } bottom-page
+bind index <Delete> last-entry
+bind index G last-entry
+bind index \Co next-unread
+bind index <backtab> previous-new-then-unread
+bind index \e[Z previous-new-then-unread   # needed because sequence is not in terminfo
+bind index <F5> previous-new
+bind index <F6> next-new
+bind index <F7> previous-unread
+bind index <F8> next-unread
+macro index <F9> "|lspam^M"
+## bind index \e<tab> previous-new   #standard
+bind index ? search-reverse
+bind index N search-opposite
+bind index <BackSpace> help
+
+#macro index \# /bug^M	# search for bugs
+#macro index "\""        ":set realname=\"real hairy macro\"^M:set ?realname^M" # and a comment to boot!
+#macro index f1 :woohoo!
+
+bind pager G bottom	# just like vi and less
+bind pager <Delete> previous-page          # the corollary to " " in emacs
+bind pager <right> next-undeleted      # a mutt default
+bind pager <left> previous-undeleted   # ditto
+bind pager <down> next-line
+bind pager <up> previous-line
+bind pager ] half-down
+bind pager [ half-up
+bind pager > next-line                 # like in the index
+bind pager < previous-line             # like in the index
+bind pager ? search-reverse
+bind pager N search-opposite
+bind pager <BackSpace> help
+
+#macro   pager   \Ck     "|pgp -kaf^M"   # a comment is valid here
+#macro pager X "|morepgp^M"	# pipe PGP message to a script
+
+#bind editor \cy eol	# make ^Y jump to the end of the line
+
+bind editor <Delete> backspace
+bind editor \e[3~ delete-char

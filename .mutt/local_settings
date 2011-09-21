@@ -1,0 +1,11 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# I use Mutt on several different machines, so I put local config commands
+# in a separate file so I can have the rest of the settings the same on all
+# machines.
+#
+
+# This is taken from the environment variable EMAIL if not set
+## set from=alastair@al.id.au
+
+## set hostname=al.id.au   # my DNS domain

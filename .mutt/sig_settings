@@ -1,0 +1,3 @@
+set signature="~/bin/dynamic_sig|"      # script that generates my signature
+set nosig_dashes                        # "-- " is in .sig, so don't prepend it
+
