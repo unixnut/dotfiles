@@ -1,0 +1,13 @@
+#! /bin/sh
+# my_lessopen (Bourne shell script) -- processes a file as root and then echoes the name
+
+fn=`sudo lessopen.sh "$@"`
+if [ $fn ] ; then
+  :
+else
+  fn=/tmp/my_lessopen$$
+  sudo cp -p "$@" $fn
+  sudo chmod go-rwx $fn
+fi
+sudo chown $LOGNAME $fn
+echo $fn

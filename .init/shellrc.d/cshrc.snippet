@@ -1,0 +1,16 @@
+
+#--MARKER:cshrc.snippet
+# run additional commands in include files in .csh
+if (-d ~/.csh || -l ~/.csh) then
+  if ("`find ~/.csh -follow -maxdepth 1 -name \*.csh`" != "") then
+    foreach inc_file (~/.csh/*.csh)
+      source $inc_file
+    end
+  endif
+  if ($?tcsh && "`find ~/.csh -follow -maxdepth 1 -name \*.tcsh`" != "") then
+    foreach inc_file (~/.csh/*.tcsh)
+      source $inc_file
+    end
+  endif
+endif
+#--END:cshrc.snippet
