@@ -16,6 +16,7 @@ else
         export DISTRO_RELEASE=`sed 's@/.*@@' /etc/debian_version`  # everything prior to a slash
         case $DISTRO_RELEASE in
           3.1) DISTRO_RELEASE=sarge ;;
+          4.0) DISTRO_RELEASE=sarge ;;
           5.0*) DISTRO_RELEASE=lenny ;;
         esac
       elif [ -f /etc/redhat-release ] ; then
