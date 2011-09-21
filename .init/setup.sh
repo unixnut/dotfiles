@@ -14,9 +14,10 @@ else
       if [ -f /etc/debian_version ] ; then
         export DISTRO=Debian
         export DISTRO_RELEASE=`sed 's@/.*@@' /etc/debian_version`  # everything prior to a slash
-        if [ $DISTRO_RELEASE = 3.1 ]; then
-          DISTRO_RELEASE=sarge
-        fi
+        case $DISTRO_RELEASE in
+          3.1) DISTRO_RELEASE=sarge ;;
+          5.0*) DISTRO_RELEASE=lenny ;;
+        esac
       elif [ -f /etc/redhat-release ] ; then
         export DISTRO=`awk 'NR==1 { print $1 }' /etc/redhat-release`
         export DISTRO_RELEASE=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print "RHEL"; else print $3; }' /etc/redhat-release`
