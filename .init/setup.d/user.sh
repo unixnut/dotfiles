@@ -1,5 +1,4 @@
 # -- general setup --
-export EMAIL=alastair@al.id.au
 export VISUAL=vim
 if [ -d ~/lisp/Zones/$ZONE ] ; then
   export EMACS_ZONEDIR=$HOME/lisp/Zones/$ZONE

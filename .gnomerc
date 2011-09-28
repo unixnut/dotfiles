@@ -1,5 +1,6 @@
 # .gnomerc (Bash include file) -- sourced by a Gnome desktop login script
 export X_LOGIN=y
+export LIBOVERLAY_SCROLLBAR=0
 
 . .init/setup.sh
 
