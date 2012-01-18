@@ -26,12 +26,31 @@ map <F2> :bnext
 map [b :bprevious
 map ]b :bnext
 
+" -- window switching --
 map! <F3> k
 map! <F4> j
 map <F3> k
 map <F4> j
 
-" file operations
+" -- window resizing --
+" <S-F3>
+map! O1;2R -
+map O1;2R -
+" <S-F4>
+map! O1;2S +
+map O1;2S +
+
+" -- window closing --
+" <C-F3>
+map! O1;5R o
+map O1;5R o
+" <C-F4>
+map! O1;5S c
+map O1;5S c
+
+"# cmap O1;2S <S-F4>
+
+" -- file operations --
 map ZE :edit
 map ZW :write
 map ZN :wnext
@@ -41,6 +60,10 @@ map ]e :cnext
 map ]E :cnfile
 map [e :cprevious
 map [E :cpfile
+
+" -- toggles --
+map! <F12> :set wrap!
+map <F12> :set wrap!
 
 " -- other --
 " normal-mode shortcuts for various build-related commands
