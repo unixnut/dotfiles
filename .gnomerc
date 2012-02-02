@@ -2,8 +2,12 @@
 export X_LOGIN=y
 export LIBOVERLAY_SCROLLBAR=0
 
-. .init/setup.sh
+## env > tmp/env_`date +%Y-%m-%d`
 
+# Skip initialisation if /etc/gdm/Xsession has already sourced ~/.profile
+if [ -z "$GDMSESSION" ] ; then
+  . .init/setup.sh
+fi
 
 # vim: set filetype=sh :
 ### Local Variables:

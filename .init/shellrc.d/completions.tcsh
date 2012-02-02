@@ -36,13 +36,45 @@ if ($?prompt) then
   ## # searched and then name-transformed to get the completion list:
   ## complete java 'p%1-%`egrep -l "^main[ 	]*\(|[^a-zA-Z_]main[ 	]*\(" *.java | sed "s/\.java//g"`%'
 
-  # == mutt ==
-  if ($?MAIL_ALIASES) then
-    set malias_list = ($MAIL_ALIASES)
-    complete mutt c@=@F:$HOME/Mail/@ n/-f/f/ 'n/-[afFHi]/f/' 'p/*/$malias_list/'
-    complete xcompose 'n/-[afFHi]/f/' 'p/*/$malias_list/'
-    complete xmuttf c@=@F:$HOME/Mail/@
-  endif
+  # override the one from /etc/complete.tcsh to add a completion for rdepends
+  complete apt-cache \
+              'c/--/(all-versions config-file generate full help important \
+              names-only option pkg-cache quiet recurse src-cache version )/' \
+              'c/-/(c= h i o= p= q s= v)/' \
+              'n/{search}/x:<regex>/' \
+              'n/{pkgnames,policy,show,showpkg,depends,dotty,rdepends}/`apt-cache pkgnames | sort`/' \
+              'C/*/(add gencaches showpkg stats dump dumpavail unmet show \
+              search depends pkgnames dotty policy rdepends)/'
+
+  ##   complete aptitude \
+  ## install|hold|markauto|unmarkauto|dist-upgrade|download|show|changelog)) COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
+  ## purge|remove|reinstall|forbid-version   installed
+  ## unhold) COMPREPLY=( $( _comp_dpkg_hold_packages $cur ) )
+  ## autoclean|clean|forget-new|search|upgrade|update
+
+  # -- from http://notes.depad.fr/2011/05/28/mon-tcshrc.html --
+  complete git p/1/"(add am apply archive bisect branch config checkout clone commit  \
+        count-objects describe diff fetch fsck gc grep init ls-files log merge mv pull push \
+        prune rebase repack reset revert rm remote show show-branch status tag version)"/
+  complete cvs 'c/--/(help help-commands help-synonyms)/' \
+        'p/1/(add admin annotate checkout commit diff \
+        edit editors export history import init log login \
+        logout rdiff release remove rtag status tag unedit \
+        update watch watchers)/' 'n/-a/(edit unedit commit \
+        all none)/' 'n/watch/(on off add remove)/'
+  complete svn 'C@file:///@`'"${HOME}/etc/tcsh/complete.d/svn"'`@@' \
+               'n@ls@(file:/// svn+ssh:// svn://)@@' \
+               'n@help@(add blame cat checkout \
+               cleanup commit copy delete diff export help \
+               import info list ls lock log merge mkdir \
+               move propdel propedit propget proplist \
+               propset resolved revert status switch unlock \
+               update)@' 'p@1@(add blame cat checkout \
+               cleanup commit copy delete diff export help \
+               import info list ls lock log merge mkdir \
+               move propdel propedit propget proplist \
+               propset resolved revert status switch unlock \
+               update)@'
 
   # == common Unix commands ==
   ## complete '[rs]sh' 'c/*@/$host_list/' 'p/1/$host_list/' 'n/-*/$host_list/' p/2/c/ 'N/-[obfiecmpLRD]/$host_list/' 'N/-*/c/' n/-l/u/ N/-l/c/

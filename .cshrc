@@ -10,7 +10,7 @@ if ($tty != "") then
   ## set savehist = (150 merge)
 
   # -- directory stack --
-  set savedirs
+  ## set savedirs
 
   # == terminal & interactive tests ==
   if ($?TERM) then

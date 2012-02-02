@@ -13,6 +13,15 @@ export HISTFILESIZE=2000
 export force_color_prompt=yes
 
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  # sets and exports LS_COLORS
+  # (Have to set TERM since dircolors will only generate sequences that are
+  # supported by the current terminal, i.e. for a given sequence, the
+  # most recent block of TERM keywords has one that matches the current
+  # terminal.)
+  if [ -r ~/.dircolors ] ; then
+    eval "$(TERM=gnome-256color dircolors -b ~/.dircolors)"
+  else
+    eval "$(TERM=gnome-256color dircolors -b)"
+  fi
   export USE_DIRCOLORS=y
 fi

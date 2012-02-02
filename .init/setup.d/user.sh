@@ -43,6 +43,17 @@ export COLORTERM=1
 
 export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
 
+# -- cool grep options --
+export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw?"
+# check version number (e.g. GNU grep 2.5.3)
+ver=`grep -V | sed -n '/^GNU/ s/GNU grep //p'`
+if [ $ver ] ; then
+  # if the version is >= 2.5.3, use dir exclusions
+  if echo $ver | grep -q -e '^2.5.[3-9]' -e '^2.[6-9]' -e '^[3-9]' ; then
+    GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
+  fi
+fi
+
 # -- X11 setup --
 if [ -d "$HOME/.app-defaults" ] ; then
   export XUSERFILESEARCHPATH="$HOME/.app-defaults/%N%C:$HOME/.app-defaults/%N"

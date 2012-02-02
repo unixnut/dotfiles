@@ -14,20 +14,21 @@
 
 . .init/setup.sh
 
-# source /etc/bash.bashrc if necessary (/etc/profile doesn't source it
-# in releases prior to wheezy)
-if [ -n "$BASH" -a $DISTRO = Debian -a \( $DISTRO_RELEASE = sarge -o $DISTRO_RELEASE = etch -o $DISTRO_RELEASE = lenny -o $DISTRO_RELEASE = squeeze \) ]; then
-  if [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
-  fi
-fi
-
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+# if running bash, source stuff that will be skipped by a login shell
+# (Skip this if being sourced by /etc/gdm/Xsession or /etc/X11/Xsession.)
+if [ -n "$BASH_VERSION" -a ! "$PROGNAME" = Xsession ]; then
+  # source /etc/bash.bashrc if necessary (/etc/profile doesn't source it
+  # in releases prior to wheezy)
+  if [ $DISTRO = Debian -a \( $DISTRO_RELEASE = sarge -o $DISTRO_RELEASE = etch -o $DISTRO_RELEASE = lenny -o $DISTRO_RELEASE = squeeze \) ]; then
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
     fi
+  fi
+
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+      . "$HOME/.bashrc"
+  fi
 fi
 
 # vim: set filetype=sh :
