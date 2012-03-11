@@ -133,6 +133,8 @@ set expandtab
 set shiftwidth=1
 
 set pastetoggle=<f11>
+map! <F12> :set expandtab!
+map <F12> :set expandtab!
 
 " -- contextual --
 set iskeyword=-,@,48-57,_,192-255

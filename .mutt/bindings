@@ -24,10 +24,9 @@ bind index G last-entry
 bind index \Co next-unread
 bind index <backtab> previous-new-then-unread
 bind index \e[Z previous-new-then-unread   # needed because sequence is not in terminfo
-bind index <F5> previous-new
-bind index <F6> next-new
-bind index <F7> previous-unread
-bind index <F8> next-unread
+bind index <F5> search
+bind index <F6> previous-unread
+bind index <F7> next-unread
 macro index <F9> "|lspam^M"
 ## bind index \e<tab> previous-new   #standard
 bind index ? search-reverse
