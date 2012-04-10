@@ -1,0 +1,29 @@
+# ganked from http://tldp.org/HOWTO/SSL-RedHat-HOWTO-3.html
+# modified to suit Debian
+
+<VirtualHost 1.2.3.4:443>
+  ServerName www.somewhere.com
+  ServerAdmin someone@somewhere.com
+  DocumentRoot /srv/web/somewhere
+
+  SSLEngine on
+  ##SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt
+  SSLCertificateFile /etc/apache2/ssl/certs/server.crt
+  ##SSLCertificateKeyFile /etc/httpd/conf/ssl.key/server.key
+  SSLCertificateKeyFile /etc/apache2/ssl/private/server.key
+  ##SSLCACertificateFile /etc/httpd/conf/ssl.crt/ca-bundle.crt
+  SSLCACertificateFile /etc/ssl/certs/ca-certificates.crt
+</VirtualHost>
+
+# 3.1 Create a Private Key
+#   openssl genrsa -out /etc/apache2/ssl/private/server.key 1024
+# 3.2 Create a Certificate Signing Request
+#   openssl req -new -key /etc/apache2/ssl/private/server.key -out /etc/apache2/ssl/certs/server.csr
+# 3.3 Creating a Self-Signed Certificate
+#   openssl req -new -x509 -key /etc/apache2/ssl/private/server.key -days 1827 -out /etc/apache2/ssl/certs/server.crt
+
+# Creating a CA key & cert
+#   openssl req -x509 -days 3652 -newkey rsa:1024 -out /usr/local/etc/my_ca/certs/ca.crt -keyout /usr/local/etc/my_ca/private/ca.key -extensions v3_ca
+#
+# Signing with the CA
+#   openssl x509 -req -CA /usr/local/etc/my_ca/certs/ca.crt -CAkey /usr/local/etc/my_ca/private/ca.key -CAcreateserial -in /etc/ssl/certs/blah.csr -out /etc/ssl/certs/blah.crt -days 365

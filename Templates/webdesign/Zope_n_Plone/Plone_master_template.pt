@@ -1,0 +1,23 @@
+  <metal:page define-macro="master">
+    <metal:block use-macro="root/main_template/macros/master">
+      <metal:block metal:fill-slot="top_slot">
+        <metal:block metal:define-slot="top_slot" />
+      </metal:block>
+      <div metal:fill-slot="css_slot">
+        <!--
+          <style type="text/css" media="screen"
+          tal:content="string: @import url($portal_url/[path_to_stylesheet];">
+          </style>
+        -->
+        <metal:block metal:define-slot="css_slot" />
+      </div>
+      <div metal:fill-slot="main">
+        [before content]
+        <metal:bodytext metal:define-slot="main" tal:content="nothing">
+          Page body text
+        </metal:bodytext>
+        [after content]
+      </div>
+    </metal:block>
+  </metal:page>
+

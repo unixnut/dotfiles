@@ -1,0 +1,18 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+  <body>
+
+    <!-- The static box -->
+    <div metal:define-macro="portlet" tal:omit-tag="">
+      <dl class="portlet" id="portlet-static">
+        <dt class="portletHeader">Title</dt>
+        <dd class="portletItem odd">Some content</dd>
+        <dd class="portletItem even">Some content</dd>
+        <dd class="portletItem odd">Last item</dd>
+        <!-- <dd class="portletFooter">more...</dd> -->
+      </dl>
+    </div>
+  </body>
+</html>

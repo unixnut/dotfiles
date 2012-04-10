@@ -1,0 +1,7 @@
+@	IN	SOA	ns1.msquared.net.au.  msq-hostmaster-015.msquared.com.au. (INSERTSERIALNUMBERHERE 10800 1800 3600000 7200)
+
+@		NS	ns1.msquared.net.au.
+		NS	ns2.msquared.net.au.
+
+@		A	203.56.168.20
+www		A	203.56.168.20
