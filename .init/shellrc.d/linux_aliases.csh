@@ -1,3 +1,6 @@
-alias ,t cat /proc/acpi/thermal_zone/C1B0/temperature
+alias ,t cat /proc/acpi/thermal_zone/\*/temperature
 alias ,f cat /proc/acpi/fan/\*/state
-alias . source
+alias ,i netstat --interfaces --extend
+alias ,r netstat --route --numeric
+alias ,s netstat -l --tcp
+## --numeric

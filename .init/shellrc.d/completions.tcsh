@@ -43,14 +43,17 @@ if ($?prompt) then
               'c/-/(c= h i o= p= q s= v)/' \
               'n/{search}/x:<regex>/' \
               'n/{pkgnames,policy,show,showpkg,depends,dotty,rdepends}/`apt-cache pkgnames | sort`/' \
-              'C/*/(add gencaches showpkg stats dump dumpavail unmet show \
+              'n/*/(add gencaches showpkg stats dump dumpavail unmet show \
               search depends pkgnames dotty policy rdepends)/'
 
-  ##   complete aptitude \
-  ## install|hold|markauto|unmarkauto|dist-upgrade|download|show|changelog)) COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
-  ## purge|remove|reinstall|forbid-version   installed
+  complete aptitude \
+              'n/*/(install hold markauto unmarkauto dist-upgrade safe-upgrade download show changelog purge remove reinstall forbid-version unhold autoclean clean forget-new search upgrade update)/' \
+              'n/{install,hold,markauto,unmarkauto,dist-upgrade,download,show,changelog}/`apt-cache pkgnames | sort`/'
+  ## purge|remove|reinstall|forbid-version|upgrade   installed
   ## unhold) COMPREPLY=( $( _comp_dpkg_hold_packages $cur ) )
-  ## autoclean|clean|forget-new|search|upgrade|update
+
+  complete phpunit \
+              'c/--/(log-junit log-tap log-json coverage-html coverage-clover coverage-source story-html story-text testdox-html testdox-text filter group exclude-group list-groups loader repeat story tap testdox colors stderr stop-on-failure verbose wait skeleton-class skeleton-test process-isolation no-globals-backup static-backup syntax-check bootstrap configuration no-configuration include-path help version)/'
 
   # -- from http://notes.depad.fr/2011/05/28/mon-tcshrc.html --
   complete git p/1/"(add am apply archive bisect branch config checkout clone commit  \
@@ -85,8 +88,10 @@ if ($?prompt) then
   complete su p/1/u/ 'n/-*/u/' 'n/-c/c/'
   complete sudo p/1/c/
   complete last 'p/1/u/'
-  # override the one from /etc/complete.tcsh as the p,n,N items are annoying
+  # override the one from /etc/complete.tcsh because the p,n,N items are annoying
   complete ln 'c/--/(backup directory force no-dereference interactive symbolic suffix verbose version-control help version)/' 'c/-/(b d F f i n S s V v -)/' 'n/{-S,--suffix}/x:<suffix>/' 'n/{-V,--version-control}/(t numbered nil existing never simple)/'
+  # override the one from /etc/complete.tcsh because the filenames exclude source file extentions
+  complete rm 'c/--/(directory force interactive verbose recursive help version)/' 'c/-/(d f i v r R -)/'
 
   # == X apps ==
   complete xterm 'n/-e/c/'

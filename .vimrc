@@ -19,12 +19,21 @@ map <F10> :
 map! <F10> :
 
 " == Command shortcut keys ==
-map! <F1> :bprevious
-map! <F2> :bnext
-map <F1> :bprevious
-map <F2> :bnext
+" (note: <C-F1> doesn't work in gnome-terminal!)
+" -- previous buffer --
 map [b :bprevious
+map! <F1> :bprevious
+map <F1> :bprevious
+" <S-F1> splits the window
+map! O1;2P :sbprevious
+map O1;2P :sbprevious
+" -- next buffer --
 map ]b :bnext
+map! <F2> :bnext
+map <F2> :bnext
+" <S-F2> splits the window
+map! O1;2Q :sbnext
+map O1;2Q :sbnext
 
 " -- window switching --
 map! <F3> k
@@ -62,8 +71,8 @@ map [e :cprevious
 map [E :cpfile
 
 " -- toggles --
-map! <F12> :set wrap!
-map <F12> :set wrap!
+map! <F8> :set wrap!
+map <F8> :set wrap!
 
 " -- other --
 " normal-mode shortcuts for various build-related commands

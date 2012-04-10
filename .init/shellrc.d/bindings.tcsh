@@ -19,6 +19,8 @@ if ($?prompt) then
   bindkey '\351' complete-word-fwd            # ...and M-I
   bindkey '^[I' complete-word-fwd
   bindkey '^[[Z' complete-word-back           # shift-Tab cycles backwards
+  bindkey '^[[18~' complete-word-fwd          # F7 cycles forwards
+  bindkey '^[[17~' complete-word-back         # F6 cycles backwards
 
   # -- region & line --
   bindkey '^W' backward-delete-word         # ^W acts like sh & csh,
@@ -27,4 +29,7 @@ if ($?prompt) then
 
   bindkey '^[^U' backward-kill-line   # like ^U in sh
   bindkey '\225' backward-kill-line
+
+  # -- strings --
+  bindkey -s '^[[E' ·                       # The 5 key with numlock off
 endif
