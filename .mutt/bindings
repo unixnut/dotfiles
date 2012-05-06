@@ -27,6 +27,8 @@ bind index \e[Z previous-new-then-unread   # needed because sequence is not in t
 bind index <F5> search
 bind index <F6> previous-unread
 bind index <F7> next-unread
+bind index <F11> previous-thread
+bind index <F12> next-thread
 macro index <F9> "|lspam^M"
 ## bind index \e<tab> previous-new   #standard
 bind index ? search-reverse

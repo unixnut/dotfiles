@@ -171,6 +171,8 @@ runtime ftplugin/changelog.vim
 "# set t_Sb=[4%dm
 set background=dark
 
+highlight Comment term=bold ctermfg=2 guifg=#00bb00
+
 " enable saving and restoring of the screen:
 "# set t_ti=7[r[?47h t_te=[?47l9
 
