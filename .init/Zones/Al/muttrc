@@ -9,3 +9,5 @@
 ## set from=alastair@al.id.au
 
 ## set hostname=al.id.au   # my DNS domain
+
+source ~/.mutt/identity_settings

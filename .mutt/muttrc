@@ -1,12 +1,11 @@
 # .muttrc (Mutt auto-parse file) -- commands that mutt runs at startup
 # see muttrc(5)
 
-source ~/.mutt/identity_settings
-source ~/.mutt/sig_settings
+## source ~/.mutt/sig_settings
 source ~/.mutt/bindings
 
 
-set query_command = "/usr/local/bin/mutt_ldap.py '%s'"
+## set query_command = "/usr/local/bin/mutt_ldap.py '%s'"
 set print_cmd=/bin/false        # how to print things (I like to save trees)
 set timeout=3                   # timeout for mail check, in seconds.
 
@@ -55,7 +54,7 @@ source $alias_file
 ## source ~/.mutt/name_subst_aliases
 
 # contact groups
-source ~/.mutt/list_aliases
+source `if [ -f ~/.mutt/list_aliases ] ; then echo ~/.mutt/list_aliases ; else echo /dev/null ; fi`
 
 # *** site/platform-specific ***
 # counteract crappy /etc/Muttrc settings
@@ -64,4 +63,6 @@ set write_bcc                   # include Bcc header in the Fcc copy
 set use_domain                  # qualify local addresses with $hostname
 
 # -- config commands local to this site --
-source ~/.mutt/local_settings
+source `if [ -f ~/.mutt/local_settings ] ; then echo ~/.mutt/local_settings ; else echo /dev/null ; fi`
+# This one comes from SVN and applies to all machines in the zone
+source `if [ -f .init/Zones/$ZONE/muttrc ] ; then echo .init/Zones/$ZONE/muttrc ; else echo /dev/null ; fi`
