@@ -22,7 +22,7 @@ if ($tty != "") then
 
     # test for an interactive session
     if ($?prompt) then
-      set fignore = ( \~ .o .class )
+      set fignore = ( \~ .o .class .pyc .bak )
     endif
   endif
 endif

@@ -1,13 +1,18 @@
 # don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
+## # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
+## HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 # ... or force ignoredups and ignorespace
-## HISTCONTROL=ignoredups:ignorespace
+HISTCONTROL=ignoredups:ignorespace
 export HISTCONTROL
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=1000
 export HISTFILESIZE=2000
+
+FIGNORE="~:.o:.class:.pyc:.bak"
+
+# to-do: update this file (see .init/shellrc.d/completions.tcsh)
+export HOSTFILE=~/tmp/hosts
 
 export INPUTRC=~/.init/bash/inputrc
 

@@ -46,7 +46,7 @@ export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
 # -- cool grep options --
 export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=.*.bak"
 # check version number (e.g. GNU grep 2.5.3)
-ver=`grep -V | sed -n '/^GNU/ s/GNU grep //p'`
+ver=`grep -V | sed -n '/GNU grep/ s/.* //p'`
 if [ $ver ] ; then
   # if the version is >= 2.5.3, use dir exclusions
   if echo $ver | grep -q -e '^2.5.[3-9]' -e '^2.[6-9]' -e '^[3-9]' ; then
