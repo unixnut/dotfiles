@@ -8,7 +8,7 @@ if ($?prompt) then
     # *** Fixes for variables used by completions ***
     # /etc/complete.tcsh sets $hosts from ~/.ssh/known_hosts but doesn't trim
     # entries with commas, so replace the contents
-    set hosts=(`sed -n 's/Host //p' ~/.ssh/config`)
+    set hosts=(`sed -n 's/^Host \([^*][^ \t#]*\).*/\1/p' ~/.ssh/config`)
   endif
 
 
@@ -45,10 +45,25 @@ if ($?prompt) then
               'n/{pkgnames,policy,show,showpkg,depends,dotty,rdepends}/`apt-cache pkgnames | sort`/' \
               'n/*/(add gencaches showpkg stats dump dumpavail unmet show \
               search depends pkgnames dotty policy rdepends)/'
+    # override the one from /etc/complete.tcsh to add --no-install-recommends, etc.
+    complete apt-get \
+	        'c/--/(build config-file diff-only download-only \
+		   fix-broken fix-missing force-yes help ignore-hold no-download \
+		   no-upgrade option print-uris purge reinstall quiet simulate \
+		   show-upgraded target-release tar-only version yes \
+                   no-install-recommends ignore-missing dry-run no-act \
+                   only-upgrade list-cleanup trivial-only no-remove auto-remove \
+                   only-source arch-only)/' \
+	    	'c/-/(b c= d f h m o= q qq s t x y )/' \
+ 		'n/{source,build-dep}/x:<pkgname>/' \
+ 		'n/{remove}/`dpkg -l|grep ^ii|awk \{print\ \$2\}`/' \
+ 		'n/{install}/`apt-cache pkgnames | sort`/' \
+ 		'C/*/(update upgrade dselect-upgrade source \
+		   build-dep check clean autoclean install remove)/'
 
   complete aptitude \
-              'n/*/(install hold markauto unmarkauto dist-upgrade safe-upgrade download show changelog purge remove reinstall forbid-version unhold autoclean clean forget-new search upgrade update)/' \
-              'n/{install,hold,markauto,unmarkauto,dist-upgrade,download,show,changelog}/`apt-cache pkgnames | sort`/'
+              'n/{install,hold,markauto,unmarkauto,dist-upgrade,safe-upgrade,full-upgrade,download,show,changelog,why,why-not,upgrade,build-dep}/`apt-cache pkgnames | sort`/' \
+              'n/*/(install hold markauto unmarkauto dist-upgrade safe-upgrade download show changelog purge remove reinstall forbid-version unhold autoclean clean forget-new search upgrade safe-upgrade full-upgrade update why why-not upgrade build-dep)/'
   ## purge|remove|reinstall|forbid-version|upgrade   installed
   ## unhold) COMPREPLY=( $( _comp_dpkg_hold_packages $cur ) )
 
@@ -92,6 +107,9 @@ if ($?prompt) then
   complete ln 'c/--/(backup directory force no-dereference interactive symbolic suffix verbose version-control help version)/' 'c/-/(b d F f i n S s V v -)/' 'n/{-S,--suffix}/x:<suffix>/' 'n/{-V,--version-control}/(t numbered nil existing never simple)/'
   # override the one from /etc/complete.tcsh because the filenames exclude source file extentions
   complete rm 'c/--/(directory force interactive verbose recursive help version)/' 'c/-/(d f i v r R -)/'
+  set services=`cat /var/tmp/services.list`  # see .init/setup.d/tcsh_completions_support.sh
+  complete getent n/passwd/u/ n/group/g/ "n/services/($services)/" 'n/*/(passwd group hosts services protocols networks ahosts ahostsv4 ahostsv6 aliases ethers netgroup rpc shadow)/'
+
 
   # == X apps ==
   complete xterm 'n/-e/c/'
