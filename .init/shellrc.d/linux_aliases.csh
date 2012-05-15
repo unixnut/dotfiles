@@ -5,4 +5,4 @@ alias ,r netstat --route --numeric
 alias ,s netstat -l --tcp
 alias ,u netstat -l --udp
 ## --numeric
-alias ,d free -m
+alias ,m free -m
