@@ -44,7 +44,7 @@ export COLORTERM=1
 export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
 
 # -- cool grep options --
-export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw?"
+export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=.*.bak"
 # check version number (e.g. GNU grep 2.5.3)
 ver=`grep -V | sed -n '/^GNU/ s/GNU grep //p'`
 if [ $ver ] ; then

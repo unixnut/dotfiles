@@ -2,15 +2,10 @@ export ZONE=`~/bin/zone`
 
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE
 export OS=`uname`
-if [ -x /usr/bin/lsb_release -o -x /bin/lsb_release -a -r /etc/lsb-release ] ; then
+if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a -r /etc/lsb-release ] ; then
   export DISTRO=`lsb_release --id --short | sed 's/ LINUX//'`
-  export DISTRO_RELEASE=`lsb_release --codename --short`
-  if [ $DISTRO_RELEASE = n/a ] ; then
-    export DISTRO_RELEASE=`lsb_release --release --short`
-  fi
-  if [ $DISTRO = Ubuntu ] ; then
-    export DISTRO_BASE=Debian
-  fi
+  export DISTRO_CODENAME=`lsb_release --codename --short`
+  export DISTRO_RELEASE=`lsb_release --release --short`
 else
   case $OS in
     Linux)
@@ -18,18 +13,15 @@ else
         export DISTRO=Debian
         export DISTRO_RELEASE=`sed 's@/.*@@' /etc/debian_version`  # everything prior to a slash
         case $DISTRO_RELEASE in
-          3.1) DISTRO_RELEASE=sarge ;;
-          4.0) DISTRO_RELEASE=etch ;;
-          5.0*) DISTRO_RELEASE=lenny ;;
-          6.0*) DISTRO_RELEASE=squeeze ;;
-          7.0*) DISTRO_RELEASE=wheezy ;;
+          3.1) export DISTRO_CODENAME=sarge ;;
+          4.0) export DISTRO_CODENAME=etch ;;
+          5.0*) export DISTRO_CODENAME=lenny ;;
+          6.0*) export DISTRO_CODENAME=squeeze ;;
+          7.0*) export DISTRO_CODENAME=wheezy ;;
         esac
       elif [ -f /etc/redhat-release ] ; then
         export DISTRO=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print "RHEL"; else print $1 }' /etc/redhat-release`
         export DISTRO_RELEASE=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print $7; else print $3; }' /etc/redhat-release`
-        if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora ] ; then
-          export DISTRO_BASE=RedHat
-        fi
       else
         export DISTRO=unknown DISTRO_RELEASE=unknown
       fi
@@ -40,7 +32,11 @@ else
   esac
 fi
 
-if [ -z $DISTRO_BASE ] ; then
+if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora ] ; then
+  export DISTRO_BASE=RedHat
+elif [ $DISTRO = Ubuntu ] ; then
+  export DISTRO_BASE=Debian
+else
   export DISTRO_BASE=$DISTRO
 fi
 
