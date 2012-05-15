@@ -1,0 +1,54 @@
+$include /etc/inputrc
+
+# makes escape sequences fail sensibly if they don't have a mapping
+"\e":      skip-csi-sequence
+
+# == completion ==
+"\C-x\C-i": menu-complete
+"\ei":      menu-complete
+"\e[Z":     menu-complete-backward            # shift-Tab cycles backwards
+"\e[18~":   menu-complete                     # F7 cycles forwards
+"\e[17~":   menu-complete-backward            # F6 cycles backwards
+
+# == region & line ==
+"\C-x\C-w": unix-filename-rubout
+"\e\C-w":   kill-region
+
+# -- tcsh compatibility --
+"\ew":      copy-region-as-kill
+
+# == strings ==
+# to insert Unicode characters, just insert the corresponding bytes
+"\e[E": "\xc2\xb7"               # The 5 key with numlock off inserts ·
+
+# -- jobs --
+"\eOP": " fg\n"                   # F1 goes to the current buffer
+"\eO1;2P": " %-\n"                # S-F1 goes to the previous buffer
+"\eOQ": " jobs\n"                 # F2 shows the jobs list
+
+# -- dirs --
+"\e[20~": "popd\n"     # F9
+"\e[20;5~": "pushd "   # C-F9
+
+# == history ==
+# -- search based on starting contents of line --
+"\eOR": history-search-backward        # F3 searches backwards
+"\eOS": history-search-forward         # F4 searches forwards
+
+# Ctrl-up/down bindings (for gterm)
+"\e[5A":    history-search-backward
+"\e[1;5A":  history-search-backward
+"\e[5B":    history-search-forward
+"\e[1;5B":  history-search-forward
+
+# -- non-incremental search --
+"\e[15~":   non-incremental-reverse-search-history     # F5 searches backwards
+"\e[15;2~": non-incremental-forward-search-history     # S-F5 searches forwards
+"\e[15;5~": non-incremental-reverse-search-history-again   # C-F5 searches backwards again
+"\e[15;6~": non-incremental-forward-search-history-again   # C-S-F5 searches forwards again
+
+# == miscellaneous tcsh compatibility ==
+# note: both of these replace existing (crappy) bindings
+"\e[2~":    overwrite-mode
+"\e/":      dabbrev-expand
+

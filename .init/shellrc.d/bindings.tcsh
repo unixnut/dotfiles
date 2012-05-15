@@ -6,7 +6,7 @@ if ($?prompt) then
 
   bindkey '^[^M' prefix-meta
 
-  # -- completion --
+  # == completion ==
   # don't change the normal binding like I used to
   ## bindkey ^I complete-word-fwd             # cycles through file list
   ## bindkey '^[^I' complete-word-back        # while ^[^I and ...
@@ -22,7 +22,7 @@ if ($?prompt) then
   bindkey '^[[18~' complete-word-fwd          # F7 cycles forwards
   bindkey '^[[17~' complete-word-back         # F6 cycles backwards
 
-  # -- region & line --
+  # == region & line ==
   bindkey '^W' backward-delete-word         # ^W acts like sh & csh,
   bindkey '^[^W' kill-region                # while ^[^W and ...
   bindkey '\227' kill-region                # ... M-C-w kill the region
@@ -30,6 +30,15 @@ if ($?prompt) then
   bindkey '^[^U' backward-kill-line   # like ^U in sh
   bindkey '\225' backward-kill-line
 
-  # -- strings --
+  # == strings ==
   bindkey -s '^[[E' ·                       # The 5 key with numlock off
+
+  # -- jobs --
+  bindkey -s "\eOP" "fg\n"                   # F1 goes to the current buffer
+  bindkey -s "\eO1;2P" "%-\n"                # S-F1 goes to the previous buffer
+  bindkey -s "\eOQ" "jobs\n"                 # F2 shows the jobs list
+
+  # -- dirs --
+  bindkey -s "\e[20~" "popd\n"       # F9
+  bindkey -s "\e[20;5~" "pushd "     # C-F9
 endif

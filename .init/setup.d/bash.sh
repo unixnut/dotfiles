@@ -9,6 +9,8 @@ export HISTCONTROL
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
+export INPUTRC=~/.init/bash/inputrc
+
 # == tweaks for .bashrc ==
 export force_color_prompt=yes
 
