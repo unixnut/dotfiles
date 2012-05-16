@@ -107,7 +107,7 @@ if ($?prompt) then
   complete ln 'c/--/(backup directory force no-dereference interactive symbolic suffix verbose version-control help version)/' 'c/-/(b d F f i n S s V v -)/' 'n/{-S,--suffix}/x:<suffix>/' 'n/{-V,--version-control}/(t numbered nil existing never simple)/'
   # override the one from /etc/complete.tcsh because the filenames exclude source file extentions
   complete rm 'c/--/(directory force interactive verbose recursive help version)/' 'c/-/(d f i v r R -)/'
-  set services=`cat /var/tmp/services.list`  # see .init/setup.d/tcsh_completions_support.sh
+  set services=`cat ~/tmp/services.list`  # see .init/setup.d/tcsh_completions_support.sh
   complete getent n/passwd/u/ n/group/g/ "n/services/($services)/" 'n/*/(passwd group hosts services protocols networks ahosts ahostsv4 ahostsv6 aliases ethers netgroup rpc shadow)/'
 
 
