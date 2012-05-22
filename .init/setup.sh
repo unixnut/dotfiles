@@ -40,6 +40,19 @@ else
   export DISTRO_BASE=$DISTRO
 fi
 
+export DISTRO_RELEASE_MAJOR=${DISTRO_RELEASE%%.*}
+# minor version and patchlevel
+spl=${DISTRO_RELEASE#*.}
+export DISTRO_RELEASE_MINOR=${spl%%.*}
+# If there's no patch level, the remaining string will be the same as the
+# extracted minor version only. 
+if [ $spl = $DISTRO_RELEASE_MINOR ] ; then
+  export DISTRO_RELEASE_PL=0
+else
+  export DISTRO_RELEASE_PL=${spl#*.}
+fi
+unset spl
+
 # == other useful stuff ==
 if [ -z "$EUID" -a -x /usr/bin/id ]; then
   export EUID=`id -u`

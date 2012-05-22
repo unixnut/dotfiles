@@ -41,7 +41,7 @@ if ($?prompt) then
               'c/--/(all-versions config-file generate full help important \
               names-only option pkg-cache quiet recurse src-cache version )/' \
               'c/-/(c= h i o= p= q s= v)/' \
-              'n/{search}/x:<regex>/' \
+              'n/search/x:<regex>/' \
               'n/{pkgnames,policy,show,showpkg,depends,dotty,rdepends}/`apt-cache pkgnames | sort`/' \
               'n/*/(add gencaches showpkg stats dump dumpavail unmet show \
               search depends pkgnames dotty policy rdepends)/'
@@ -57,7 +57,7 @@ if ($?prompt) then
 	    	'c/-/(b c= d f h m o= q qq s t x y )/' \
  		'n/{source,build-dep}/x:<pkgname>/' \
  		'n/{remove}/`dpkg -l|grep ^ii|awk \{print\ \$2\}`/' \
- 		'n/{install}/`apt-cache pkgnames | sort`/' \
+ 		'n/install/`apt-cache pkgnames | sort`/' \
  		'C/*/(update upgrade dselect-upgrade source \
 		   build-dep check clean autoclean install remove)/'
 
@@ -94,6 +94,21 @@ if ($?prompt) then
                propset resolved revert status switch unlock \
                update)@'
 
+  complete pandoc 'c/--{from,read}=/(native markdown rst html latex)/' 'n/-[fr]/(native markdown rst html latex)/' \
+               'c/--{to,write}=/(native html s5 docbook opendocument odt latex context texinfo man markdown plain rst mediawiki rtf)/' 'n/-[tw]/(native html s5 docbook opendocument odt latex context texinfo markdown man plain rst mediawiki rtf)/' \
+               'c/--output=/f/' 'n/-o/f/' \
+               'c/--template=/f/' 'n/-o/f/' \
+               'c/--print-default-template=/(native html s5 docbook opendocument odt latex context texinfo man markdown plain rst mediawiki rtf)/' 'n/-D/(native html s5 docbook opendocument odt latex context texinfo man markdown plain rst mediawiki rtf)/' \
+               'c/--email-obfuscation=/(none javascript references)/' \
+               'c/--include-in-header=/f/' 'n/-H/f/' \
+               'c/--include-before-body=/f/' 'n/-B/f/' \
+               'c/--include-after-body=/f/' 'n/-A/f/' \
+               'c/--custom-header=/f/' 'n/-C/f/' \
+               'c/--reference-odt=/f/' \
+               'c/--data-dir=/d/' \
+               'c/--/(help from= read= to= write= standalone output= preserve-tabs tab-stop= strict reference-links parse-raw smart latexmathml= asciimathml= mathml= mimetex= jsmath= gladtex incremental xetex number-sections no-wrap sanitize-html email-obfuscation= id-prefix= indented-code-classes= toc table-of-contents base-header-level= template= variable= css= include-in-header= include-before-body= include-after-body= custom-header= title-prefix= reference-odt= print-default-template= data-dir= dump-args ignore-args version)/'
+
+
   # == common Unix commands ==
   ## complete '[rs]sh' 'c/*@/$host_list/' 'p/1/$host_list/' 'n/-*/$host_list/' p/2/c/ 'N/-[obfiecmpLRD]/$host_list/' 'N/-*/c/' n/-l/u/ N/-l/c/
   ## complete '*ftp' 'p/1/$host_list/' 'n/-*/$host_list/'
@@ -104,7 +119,7 @@ if ($?prompt) then
   complete sudo p/1/c/
   complete last 'p/1/u/'
   # override the one from /etc/complete.tcsh because the p,n,N items are annoying
-  complete ln 'c/--/(backup directory force no-dereference interactive symbolic suffix verbose version-control help version)/' 'c/-/(b d F f i n S s V v -)/' 'n/{-S,--suffix}/x:<suffix>/' 'n/{-V,--version-control}/(t numbered nil existing never simple)/'
+  complete ln 'c/--/(backup directory force no-dereference interactive symbolic suffix verbose version-control help version)/' 'c/-/(b d F f i n S s V v -)/' 'n/-S/x:<suffix>/' 'c/--suffix=/x:<suffix>/' 'n/-V/(t numbered nil existing never simple)/' 'c/--version-control=/(t numbered nil existing never simple)/'
   # override the one from /etc/complete.tcsh because the filenames exclude source file extentions
   complete rm 'c/--/(directory force interactive verbose recursive help version)/' 'c/-/(d f i v r R -)/'
   set services=`cat ~/tmp/services.list`  # see .init/setup.d/tcsh_completions_support.sh

@@ -3,6 +3,10 @@ $include /etc/inputrc
 # makes escape sequences fail sensibly if they don't have a mapping
 "\e":      skip-csi-sequence
 
+# == movement ==
+"\eB":      shell-backward-word
+"\eF":      shell-forward-word
+
 # == completion ==
 "\C-x\C-i": menu-complete
 "\ei":      menu-complete
@@ -13,6 +17,7 @@ $include /etc/inputrc
 # == region & line ==
 "\C-x\C-w": unix-filename-rubout
 "\e\C-w":   kill-region
+"\eD":      shell-kill-word
 
 # -- tcsh compatibility --
 "\ew":      copy-region-as-kill
