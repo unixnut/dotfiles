@@ -26,7 +26,6 @@ set move=no                     # don't ask about moving messages to $mbox, just
 set confirmappend=no            # don't ask me if I want to append to mailboxes
 ## set nosave_empty                # remove files when no messages are left
 set postponed=+postponed        # mailbox to store postponed messages in
-set record=+Sent/default        # default location to save outgoing mail
 
 
 # == appearance ==
