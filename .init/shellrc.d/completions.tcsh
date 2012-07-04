@@ -124,6 +124,46 @@ if ($?prompt) then
                 'n/-[bc]/x:<addr>/' \
                 'p/*/x:<addr>/'
 
+  # override 'gcc' from /etc/complete.tcsh to fix extensions and quoting
+  # (does 'g++' too)
+  complete '{gcc,g++}' 	'c/-[IL]/d/' \
+                      c/-f/"(caller-saves cse-follow-jumps delayed-branch \
+                             elide-constructors expensive-optimizations \
+                             float-store force-addr force-mem inline \
+                             inline-functions keep-inline-functions \
+                             memoize-lookups no-default-inline \
+                             no-defer-pop no-function-cse omit-frame-pointer \
+                             rerun-cse-after-loop schedule-insns \
+                             schedule-insns2 strength-reduce \
+                             thread-jumps unroll-all-loops \
+                             unroll-loops syntax-only all-virtual \
+                             cond-mismatch dollars-in-identifiers \
+                             enum-int-equiv no-asm no-builtin \
+                             no-strict-prototype signed-bitfields \
+                             signed-char this-is-variable unsigned-bitfields \
+                             unsigned-char writable-strings call-saved-reg \
+                             call-used-reg fixed-reg no-common \
+                             no-gnu-binutils nonnull-objects \
+                             pcc-struct-return pic PIC shared-data \
+                             short-enums short-double volatile)"/ \
+                      c/-W/"(all aggregate-return cast-align cast-qual \
+                             comment conversion enum-clash error format \
+                             id-clash-len implicit missing-prototypes \
+                             no-parentheses pointer-arith return-type shadow \
+                             strict-prototypes switch uninitialized unused \
+                             write-strings)"/ \
+                      c/-m/"(68000 68020 68881 bitfield fpa nobitfield rtd \
+                             short c68000 c68020 soft-float g gnu unix fpu \
+                             no-epilogue)"/ \
+                      c/-d/"(D M N)"/ \
+                      c/-/"(f W vspec v vpath ansi traditional \
+                            traditional-cpp trigraphs pedantic x o l c g L \
+                            I D U O O2 C E H B b V M MD MM i dynamic \
+                            nodtdlib static nostdinc undef)"/ \
+                      'c/-l/f:*.a/' \
+                      'n/*/f:*.{c,C,cc,o,a,s,i,c++,cxx,cpp}/'
+
+
   # == common Unix commands ==
   ## complete '[rs]sh' 'c/*@/$host_list/' 'p/1/$host_list/' 'n/-*/$host_list/' p/2/c/ 'N/-[obfiecmpLRD]/$host_list/' 'N/-*/c/' n/-l/u/ N/-l/c/
   ## complete '*ftp' 'p/1/$host_list/' 'n/-*/$host_list/'

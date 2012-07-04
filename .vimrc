@@ -212,8 +212,10 @@ if has("digraphs")
 endif
 
 " *** Extensibility ***
-" source the zone-specific rc file, if it exists
-let s:zone_rc_file = $HOME . "/.init/Zones/" . $ZONE . "/vimrc"
-if filereadable(s:zone_rc_file)
-  execute "source" s:zone_rc_file
+if exists("*filereadable") && exists("$ZONE")
+  " source the zone-specific rc file, if it exists
+  let s:zone_rc_file = $HOME . "/.init/Zones/" . $ZONE . "/vimrc"
+  if filereadable(s:zone_rc_file)
+    execute "source" s:zone_rc_file
+  endif
 endif
