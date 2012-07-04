@@ -8,8 +8,10 @@ export HISTCONTROL
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=1000
 export HISTFILESIZE=2000
+export HISTTIMEFORMAT='%r   '
+# ... %H:%M:%S
 
-FIGNORE="~:.o:.class:.pyc:.bak"
+export FIGNORE="~:.o:.class:.pyc:.bak"
 
 # to-do: update this file (see .init/shellrc.d/completions.tcsh)
 export HOSTFILE=~/tmp/hosts

@@ -30,6 +30,16 @@ $include /etc/inputrc
 "\eOP": " fg\n"                   # F1 goes to the current buffer
 "\eO1;2P": " %-\n"                # S-F1 goes to the previous buffer
 "\eOQ": " jobs\n"                 # F2 shows the jobs list
+"\C-x1": " %1\n"
+"\C-x2": " %2\n"
+"\C-x3": " %3\n"
+"\C-x4": " %4\n"
+"\C-x5": " %5\n"
+"\C-x6": " %6\n"
+"\C-x7": " %7\n"
+"\C-x8": " %8\n"
+"\C-x9": " %9\n"
+"\C-x0": " %10\n"
 
 # -- dirs --
 "\e[20~": "popd\n"     # F9

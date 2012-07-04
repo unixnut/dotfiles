@@ -15,7 +15,6 @@ set abort_nosubject=no
 set copy=yes                     # always save a copy of outgoing messages
 set send_charset="us-ascii:iso-8859-1"
 set date_format="!%a, %d %B, %Y at %I:%M:%S%p %Z"
-set editor="mutt_compose_editor"        # editor to use when composing messages
 
 # -- forwarding --
 set mime_fwd                    # use message/rfc822 type to forward messages

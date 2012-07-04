@@ -18,11 +18,18 @@ nmap g/ :nohlsearch<CR>
 nmap <F10> :
 imap <F10> <C-O>:
 
+nmap <Esc><C-Z> <C-Z>
+
 " == Command shortcut keys ==
 " (note: <C-F1> doesn't work in gnome-terminal!)
 " <C-F1> through to <C-F4> (and <S-F1> through to <S-F4>)
 " don't work in vim.  This was tried but doesn't work:
 "# cmap <Esc>O1;2S <S-F4>
+
+" -- list all buffers --
+" <C-F2>
+imap <Esc>O1;5Q <C-O>:ls<CR>
+nmap <Esc>O1;5Q :ls<CR>
 
 " -- previous buffer --
 nmap [b :bprevious<CR>
@@ -204,3 +211,9 @@ if has("digraphs")
   digraphs a` 224
 endif
 
+" *** Extensibility ***
+" source the zone-specific rc file, if it exists
+let s:zone_rc_file = $HOME . "/.init/Zones/" . $ZONE . "/vimrc"
+if filereadable(s:zone_rc_file)
+  execute "source" s:zone_rc_file
+endif

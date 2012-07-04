@@ -36,6 +36,7 @@ if ($?prompt) then
   ## # searched and then name-transformed to get the completion list:
   ## complete java 'p%1-%`egrep -l "^main[ 	]*\(|[^a-zA-Z_]main[ 	]*\(" *.java | sed "s/\.java//g"`%'
 
+  # == Debian tools ==
   # override the one from /etc/complete.tcsh to add a completion for rdepends
   complete apt-cache \
               'c/--/(all-versions config-file generate full help important \
@@ -45,28 +46,29 @@ if ($?prompt) then
               'n/{pkgnames,policy,show,showpkg,depends,dotty,rdepends}/`apt-cache pkgnames | sort`/' \
               'n/*/(add gencaches showpkg stats dump dumpavail unmet show \
               search depends pkgnames dotty policy rdepends)/'
-    # override the one from /etc/complete.tcsh to add --no-install-recommends, etc.
-    complete apt-get \
-	        'c/--/(build config-file diff-only download-only \
-		   fix-broken fix-missing force-yes help ignore-hold no-download \
-		   no-upgrade option print-uris purge reinstall quiet simulate \
-		   show-upgraded target-release tar-only version yes \
-                   no-install-recommends ignore-missing dry-run no-act \
-                   only-upgrade list-cleanup trivial-only no-remove auto-remove \
-                   only-source arch-only)/' \
-	    	'c/-/(b c= d f h m o= q qq s t x y )/' \
- 		'n/{source,build-dep}/x:<pkgname>/' \
- 		'n/{remove}/`dpkg -l|grep ^ii|awk \{print\ \$2\}`/' \
- 		'n/install/`apt-cache pkgnames | sort`/' \
- 		'C/*/(update upgrade dselect-upgrade source \
-		   build-dep check clean autoclean install remove)/'
+  # override the one from /etc/complete.tcsh to add --no-install-recommends, etc.
+  complete apt-get \
+              'c/--/(build config-file diff-only download-only \
+                 fix-broken fix-missing force-yes help ignore-hold no-download \
+                 no-upgrade option print-uris purge reinstall quiet simulate \
+                 show-upgraded target-release tar-only version yes \
+                 no-install-recommends ignore-missing dry-run no-act \
+                 only-upgrade list-cleanup trivial-only no-remove auto-remove \
+                 only-source arch-only)/' \
+              'c/-/(b c= d f h m o= q qq s t x y )/' \
+              'n/{source,build-dep}/x:<pkgname>/' \
+              'n/{remove}/`dpkg -l|grep ^ii|awk \{print\ \$2\}`/' \
+              'n/install/`apt-cache pkgnames | sort`/' \
+              'n/*/(update upgrade dselect-upgrade dist-upgrade source \
+                 build-dep check clean autoclean install remove autoremove purge markauto unmarkauto)/'
 
   complete aptitude \
               'n/{install,hold,markauto,unmarkauto,dist-upgrade,safe-upgrade,full-upgrade,download,show,changelog,why,why-not,upgrade,build-dep}/`apt-cache pkgnames | sort`/' \
-              'n/*/(install hold markauto unmarkauto dist-upgrade safe-upgrade download show changelog purge remove reinstall forbid-version unhold autoclean clean forget-new search upgrade safe-upgrade full-upgrade update why why-not upgrade build-dep)/'
+              'n/*/(install hold markauto unmarkauto dist-upgrade safe-upgrade full-upgrade download show changelog purge remove reinstall forbid-version unhold autoclean clean forget-new search upgrade update why why-not upgrade build-dep)/'
   ## purge|remove|reinstall|forbid-version|upgrade   installed
   ## unhold) COMPREPLY=( $( _comp_dpkg_hold_packages $cur ) )
 
+  # == other ==
   complete phpunit \
               'c/--/(log-junit log-tap log-json coverage-html coverage-clover coverage-source story-html story-text testdox-html testdox-text filter group exclude-group list-groups loader repeat story tap testdox colors stderr stop-on-failure verbose wait skeleton-class skeleton-test process-isolation no-globals-backup static-backup syntax-check bootstrap configuration no-configuration include-path help version)/'
 
@@ -108,6 +110,19 @@ if ($?prompt) then
                'c/--data-dir=/d/' \
                'c/--/(help from= read= to= write= standalone output= preserve-tabs tab-stop= strict reference-links parse-raw smart latexmathml= asciimathml= mathml= mimetex= jsmath= gladtex incremental xetex number-sections no-wrap sanitize-html email-obfuscation= id-prefix= indented-code-classes= toc table-of-contents base-header-level= template= variable= css= include-in-header= include-before-body= include-after-body= custom-header= title-prefix= reference-odt= print-default-template= data-dir= dump-args ignore-args version)/'
 
+  # override the one from /etc/complete.tcsh to remove .muttrc-alias stuff and fix -f
+  complete mutt	"c@=@F:${HOME}/Mail/@" \
+                n/-f/f/ \
+                n/-a/f/ \
+                n/-F/f/ n/-H/f/ \
+                n/-i/f/ \
+                'n/-m/(mbox maildir)/' \
+                'n/-d/(1 2 3 4 5)/' \
+                'n/-s/x:<subject line>/' \
+                'n/-A/x:<alias to expand>/' \
+                'n/-e/x:<command>/' \
+                'n/-[bc]/x:<addr>/' \
+                'p/*/x:<addr>/'
 
   # == common Unix commands ==
   ## complete '[rs]sh' 'c/*@/$host_list/' 'p/1/$host_list/' 'n/-*/$host_list/' p/2/c/ 'N/-[obfiecmpLRD]/$host_list/' 'N/-*/c/' n/-l/u/ N/-l/c/
@@ -130,8 +145,6 @@ if ($?prompt) then
   complete xterm 'n/-e/c/'
   # fix existing one
   complete {gv,ghostview}	'n/*/f:*.{ps,eps,epsi,pdf}/'
-
-  # == Debian-specific commands ==
 
   # == my commands ==
   complete rcon 'p/1/c/'  'n/-h/$host_list/' 'n/-*/c/'  'N/-h/c/'  # first n overrides second

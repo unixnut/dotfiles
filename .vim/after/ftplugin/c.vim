@@ -7,6 +7,7 @@ setlocal comments+=m:\
 setlocal iskeyword=@,48-57,_
 
 " normal-mode shortcuts for various build-related commands
-nmap <buffer> ZC :setlocal makeprg=cc\ -o\ /tmp/moo\ '%'
+"# nmap <buffer> ZC :setlocal makeprg=cc\ -o\ /tmp/moo\ '%'
+nmap <buffer> ZC :setlocal makeprg=gcc\ -pedantic\ -o\ /tmp/moo\ '%'
 
 source ~/.vim/include/c_abbrev.vim

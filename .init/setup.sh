@@ -1,6 +1,7 @@
 export ZONE=`~/bin/zone`
 
-# set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE
+# set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
+# also set DISTRO_CODENAME (only useful for Debian/Ubuntu)
 export OS=`uname`
 if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a -r /etc/lsb-release ] ; then
   export DISTRO=`lsb_release --id --short | sed 's/ LINUX//'`
@@ -13,11 +14,16 @@ else
         export DISTRO=Debian
         export DISTRO_RELEASE=`sed 's@/.*@@' /etc/debian_version`  # everything prior to a slash
         case $DISTRO_RELEASE in
-          3.1) export DISTRO_CODENAME=sarge ;;
-          4.0) export DISTRO_CODENAME=etch ;;
+          3.1)  export DISTRO_CODENAME=sarge ;;
+          4.0)  export DISTRO_CODENAME=etch ;;
           5.0*) export DISTRO_CODENAME=lenny ;;
           6.0*) export DISTRO_CODENAME=squeeze ;;
           7.0*) export DISTRO_CODENAME=wheezy ;;
+          *)  # anything else is assumed to be a codename
+              # (e.g. /etc/debian_version contents is "blah/sid")
+              export DISTRO_CODENAME=$DISTRO_RELEASE
+              export DISTRO_RELEASE=8.0.beta 
+              ;;
         esac
       elif [ -f /etc/redhat-release ] ; then
         export DISTRO=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print "RHEL"; else print $1 }' /etc/redhat-release`
@@ -32,14 +38,21 @@ else
   esac
 fi
 
+# -- DISTRO_BASE --
 if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora ] ; then
   export DISTRO_BASE=RedHat
+  export DISTRO_CODENAME=unknown
 elif [ $DISTRO = Ubuntu ] ; then
   export DISTRO_BASE=Debian
 else
   export DISTRO_BASE=$DISTRO
 fi
 
+if [ -z "$DISTRO_CODENAME" ] ; then
+  export DISTRO_CODENAME=unknown
+fi
+
+# -- DISTRO_RELEASE_{MAJOR,MINOR,PL} --
 export DISTRO_RELEASE_MAJOR=${DISTRO_RELEASE%%.*}
 # minor version and patchlevel
 spl=${DISTRO_RELEASE#*.}

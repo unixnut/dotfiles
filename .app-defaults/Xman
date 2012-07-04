@@ -1,0 +1,8 @@
+! Xman (auto-load resource file) -- xman generic resources for Debian
+
+Xman*topBox: False
+Xman*bothShown: True
+
+*manualFontBold:                -adobe-new century schoolbook-bold-r-*-*-13-*-*-*-*-*-*-*
+*manualFontItalic:              -adobe-new century schoolbook-medium-o-*-*-13-*-*-*-*-*-*-*
+*manualFontNormal:              -adobe-new century schoolbook-medium-r-*-*-13-*-*-*-*-*-*-*

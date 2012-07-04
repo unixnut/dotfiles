@@ -1,0 +1,27 @@
+! Emacs (auto-load resource file)
+
+!# Emacs*shell.widthCells: 90
+!# Emacs*shell.heightCells: 32
+
+! Fonts
+! this is set here (as well as in custom.el) so that it is used when calculating the intitial window size
+Emacs.default.attributeFont: -*-Fixed-medium-r-*-*-*-130-*-*-*-*-iso8859-*
+
+! (the Motif widget font is determined from resources of class FontSet when configured --with-xfs)
+!# Emacs*menubar.Font: -*-utopia-regular-r-*-*-*-100-*-*-*-*-*-*
+!# Emacs*menubar.FontSet: -*-utopia-regular-r-*-*-*-100-*-*-*-*-*-*
+!# 
+!# Emacs*popup.Font: -*-utopia-regular-r-*-*-*-100-*-*-*-*-*-*
+!# Emacs*popup.FontSet: -*-utopia-regular-r-*-*-*-100-*-*-*-*-*-*
+Emacs*menubar.Font: -*-times-bold-r-*-*-*-100-*-*-*-*-*-*
+Emacs*menubar.FontSet: -*-times-bold-r-*-*-*-100-*-*-*-*-*-*
+
+Emacs*popup.Font: -*-times-bold-r-*-*-*-100-*-*-*-*-*-*
+Emacs*popup.FontSet: -*-times-bold-r-*-*-*-100-*-*-*-*-*-*
+
+Emacs*Dialog*Font: -*-helvetica-medium-r-*-*-*-120-*-*-*-*-iso8859-*
+
+
+!!! Local variables:
+!!! mode: xrdb
+!!! End:
