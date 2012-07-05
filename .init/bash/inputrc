@@ -46,6 +46,11 @@ $include /etc/inputrc
 "\e[20;5~": "pushd "   # C-F9
 
 # == history ==
+# mappings for "page up" and "page down" to step to the beginning/end
+# of the history
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
+
 # -- search based on starting contents of line --
 "\eOR": history-search-backward        # F3 searches backwards
 "\eOS": history-search-forward         # F4 searches forwards
