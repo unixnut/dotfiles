@@ -16,7 +16,15 @@ export FIGNORE="~:.o:.class:.pyc:.bak"
 # to-do: update this file (see .init/shellrc.d/completions.tcsh)
 export HOSTFILE=~/tmp/hosts
 
-export INPUTRC=~/.init/bash/inputrc
+#
+# Many programs using readline library for line editing
+# should know about this (e.g. bash)
+#
+if [ -s $HOME/.inputrc ]; then
+  export INPUTRC=$HOME/.inputrc
+else
+  export INPUTRC=~/.init/bash/inputrc
+fi
 
 # == tweaks for .bashrc ==
 export force_color_prompt=yes
