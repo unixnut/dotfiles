@@ -33,6 +33,11 @@ else
       fi
       ;;
 
+    *BSD)
+      # remove the suffix, e.g. -STABLE
+      export DISTRO=non-linux DISTRO_RELEASE=$(uname -r | sed -e s/-.*//)
+      ;;
+
     *)
       export DISTRO=non-linux DISTRO_RELEASE=unknown
   esac
