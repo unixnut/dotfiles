@@ -1,11 +1,17 @@
 $include /etc/inputrc
 
+set expand-tilde on
+
 # makes escape sequences fail sensibly if they don't have a mapping
 "\e":      skip-csi-sequence
 
 # == movement ==
 "\eB":      shell-backward-word
 "\eF":      shell-forward-word
+$if term=putty
+"\eOD":     shell-backward-word
+"\eOC":     shell-forward-word
+$endif
 
 # == completion ==
 "\C-x\C-i": menu-complete
@@ -27,9 +33,15 @@ $include /etc/inputrc
 "\e[E": "\xc2\xb7"               # The 5 key with numlock off inserts ·
 
 # -- jobs --
+$if term=putty
+"\e[11~": " fg\n"                 # F1 goes to the current buffer
+"\e[23~": " %-\n"                 # S-F1 (or F11!) goes to the previous buffer
+"\e[24~": " jobs\n"               # F2 (or F12!) shows the jobs list
+$else
 "\eOP": " fg\n"                   # F1 goes to the current buffer
 "\eO1;2P": " %-\n"                # S-F1 goes to the previous buffer
 "\eOQ": " jobs\n"                 # F2 shows the jobs list
+$endif
 "\C-x1": " %1\n"
 "\C-x2": " %2\n"
 "\C-x3": " %3\n"
@@ -55,11 +67,17 @@ $include /etc/inputrc
 "\eOR": history-search-backward        # F3 searches backwards
 "\eOS": history-search-forward         # F4 searches forwards
 
-# Ctrl-up/down bindings (for gterm)
+# Ctrl-up/down bindings
+$if term=putty
+"\eOA":     history-search-backward
+"\eOB":     history-search-forward
+$else
+# (for gterm)
 "\e[5A":    history-search-backward
 "\e[1;5A":  history-search-backward
 "\e[5B":    history-search-forward
 "\e[1;5B":  history-search-forward
+$endif
 
 # -- non-incremental search --
 "\e[15~":   non-incremental-reverse-search-history     # F5 searches backwards
