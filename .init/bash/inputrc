@@ -33,14 +33,20 @@ $endif
 "\e[E": "\xc2\xb7"               # The 5 key with numlock off inserts ·
 
 # -- jobs --
+$if term=linux
+"\e[[A": " fg\n"                  # F1 goes to the current buffer
+"\e[25~": " %-\n"                 # S-F1 goes to the previous buffer
+"\e[[B": " jobs\n"                # F2 shows the jobs list
+$else
 $if term=putty
 "\e[11~": " fg\n"                 # F1 goes to the current buffer
 "\e[23~": " %-\n"                 # S-F1 (or F11!) goes to the previous buffer
-"\e[24~": " jobs\n"               # F2 (or F12!) shows the jobs list
+"\e[12~": " jobs\n"               # F2 shows the jobs list
 $else
-"\eOP": " fg\n"                   # F1 goes to the current buffer
+"\eOP":   " fg\n"                 # F1 goes to the current buffer
 "\eO1;2P": " %-\n"                # S-F1 goes to the previous buffer
-"\eOQ": " jobs\n"                 # F2 shows the jobs list
+"\eOQ":   " jobs\n"               # F2 shows the jobs list
+$endif
 $endif
 "\C-x1": " %1\n"
 "\C-x2": " %2\n"
@@ -64,8 +70,21 @@ $endif
 "\e[6~": end-of-history
 
 # -- search based on starting contents of line --
-"\eOR": history-search-backward        # F3 searches backwards
-"\eOS": history-search-forward         # F4 searches forwards
+# F3 searches backwards
+# F4 searches forwards
+$if term=linux
+"\e[[C":   history-search-backward
+"\e[[D":   history-search-forward
+$else
+$if term=putty
+"\e[14~":  history-search-backward
+"\e[15~":  history-search-forward
+$else
+# (for gterm)
+"\eOR":    history-search-backward
+"\eOS":    history-search-forward
+$endif
+$endif
 
 # Ctrl-up/down bindings
 $if term=putty
@@ -80,10 +99,15 @@ $else
 $endif
 
 # -- non-incremental search --
+$if term=linux
+"\e[[E":    non-incremental-reverse-search-history     # F5 searches backwards
+"\e[31~":   non-incremental-forward-search-history     # S-F5 searches forwards
+$else
 "\e[15~":   non-incremental-reverse-search-history     # F5 searches backwards
 "\e[15;2~": non-incremental-forward-search-history     # S-F5 searches forwards
 "\e[15;5~": non-incremental-reverse-search-history-again   # C-F5 searches backwards again
 "\e[15;6~": non-incremental-forward-search-history-again   # C-S-F5 searches forwards again
+$endif
 
 # == miscellaneous tcsh compatibility ==
 # note: both of these replace existing (crappy) bindings

@@ -41,19 +41,24 @@ export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
 
 # -- cool grep options --
 # check version number (e.g. GNU grep 2.5.3)
-ver=`grep -V | sed -n '/GNU grep/ s/.* //p'`
-case $ver in
-  2.5.[3-9])
-  2.[6-9].*)
-  [3-9].*)
+set_grep_vars()
+{
+  # v2.5+
+  if [ $1 -gt 2 -o $1 = 2 -a $2 -ge 5 ] ; then
     # if the version is >= 2.5.3, use dir exclusions
-    export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
-    # FALLSTHROUGH
+    if [ $1 -gt 2 -o $1 = 2 -a $2 -gt 5 -o $1 = 2 -a $2 = 5 -a $3 -ge 3 ] ; then
+      export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
+    fi
 
-  2.5.*)
     export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=.*.bak $GREP_OPTIONS"
-    ;;
-esac
+  fi
+}
+ver=`grep -V | sed -n '/GNU grep/ s/.* //p'`
+if [ -n "$ver" ] ; then
+  set_grep_vars $(ver_split $ver)
+fi
+unset ver
+unset -f set_grep_vars
 
 # -- X11 setup --
 if [ -d "$HOME/.app-defaults" ] ; then

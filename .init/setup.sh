@@ -1,3 +1,5 @@
+. .init/lib/functions.sh
+
 export ZONE=`~/bin/zone`
 
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
@@ -58,18 +60,14 @@ if [ -z "$DISTRO_CODENAME" ] ; then
 fi
 
 # -- DISTRO_RELEASE_{MAJOR,MINOR,PL} --
-export DISTRO_RELEASE_MAJOR=${DISTRO_RELEASE%%.*}
-# minor version and patchlevel
-spl=${DISTRO_RELEASE#*.}
-export DISTRO_RELEASE_MINOR=${spl%%.*}
-# If there's no patch level, the remaining string will be the same as the
-# extracted minor version only. 
-if [ $spl = $DISTRO_RELEASE_MINOR ] ; then
-  export DISTRO_RELEASE_PL=0
-else
-  export DISTRO_RELEASE_PL=${spl#*.}
-fi
-unset spl
+set_distro_ver_vars()
+{
+  export DISTRO_RELEASE_MAJOR=$1
+  export DISTRO_RELEASE_MINOR=$2
+  export DISTRO_RELEASE_PL=$3
+}
+set_distro_ver_vars $(ver_split $DISTRO_RELEASE)
+unset -f set_distro_ver_vars
 
 # == other useful stuff ==
 if [ -z "$EUID" -a -x /usr/bin/id ]; then
@@ -86,6 +84,8 @@ case $DISTRO_BASE in
 esac
 
 # == other ==
+PATH="$HOME/.init/lib:$PATH"
+
 for file in .init/setup.d/*.sh ; do
   . $file
 done
