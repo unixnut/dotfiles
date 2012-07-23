@@ -56,6 +56,8 @@ bind pager <BackSpace> help
 #macro   pager   \Ck     "|pgp -kaf^M"   # a comment is valid here
 #macro pager X "|morepgp^M"	# pipe PGP message to a script
 
+macro attach w "^E^Utext/plain; charset=cp1251^M"
+
 #bind editor \cy eol	# make ^Y jump to the end of the line
 
 bind editor <Delete> backspace
