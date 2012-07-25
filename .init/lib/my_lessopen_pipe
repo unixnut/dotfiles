@@ -5,5 +5,13 @@
 fn=/tmp/my_lessopen_pipe$$
 umask 077
 /usr/bin/lesspipe.sh "$@" < "$@" > $fn
-# tell my_lessopen which file to open
-echo $fn
+# lesspipe.sh won't produce any output if the file required no special processing
+if [ -s $fn ] ; then
+  # tell my_lessopen which file to open
+  echo $fn
+else
+  # my_lessopen will copy and chown the original file in this case (nothing is echoed)
+
+  # remove the empty file
+  rm $fn
+fi
