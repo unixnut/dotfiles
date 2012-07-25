@@ -1,0 +1,4 @@
+#! /bin/sh
+# my_lessopen_rm (Bourne shell script) -- deletes the second argument
+
+rm "$2"

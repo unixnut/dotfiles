@@ -8,3 +8,4 @@ alias ,s netstat -l --tcp --numeric-hosts
 alias ,u netstat -l --udp --numeric-hosts
 ## --numeric
 alias ,m free -m
+alias ,p cat /proc/partitions

@@ -1,1 +1,1 @@
-alias sless='LESSOPEN="my_lessopen %s" LESSCLOSE="lessclose.sh %s %s" less'
+alias sless="LESSOPEN='my_lessopen \"%s\"' LESSCLOSE='$LESSCLOSE_PROG \"%s\" \"%s\"' less"

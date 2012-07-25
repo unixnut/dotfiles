@@ -1,13 +1,18 @@
 #! /bin/sh
 # my_lessopen (Bourne shell script) -- processes a file as root and then echoes the name
 
-fn=`sudo lessopen.sh "$@"`
-if [ $fn ] ; then
-  :
-else
+# Try to process the file as root in case it need special processing
+if [ -n "$LESSOPEN_PROG" ] ; then
+  fn=`sudo $LESSOPEN_PROG "$@"`
+fi
+if [ -z "$fn" ] ; then
+  # if lessfile doesn't output anything then no special processing is required
+  # (i.e. less would normally open the file directly), so this script needs to
+  # copy the file and tell less to open the copy
   fn=/tmp/my_lessopen$$
   sudo cp -p "$@" $fn
   sudo chmod go-rwx $fn
 fi
 sudo chown $LOGNAME $fn
+# tell less which file to open
 echo $fn

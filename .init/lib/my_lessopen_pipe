@@ -1,0 +1,9 @@
+#! /bin/sh
+# my_lessopen_pipe (Bourne shell script) -- redirects output of lesspipe.sh to a file
+# This script must be run by root
+
+fn=/tmp/my_lessopen_pipe$$
+umask 077
+/usr/bin/lesspipe.sh "$@" < "$@" > $fn
+# tell my_lessopen which file to open
+echo $fn

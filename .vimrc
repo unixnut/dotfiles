@@ -120,6 +120,10 @@ nmap gz v/^-- <CR>dzbO<CR><CR><Up>
 " Useful searching commands:
 nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
 
+" -- GUI commands --
+" open a new tab
+nmap g<C-T> :tabe<CR>
+
 
 " *** Features ***
 "# let mysyntaxfile = "~/.vim/mysyntax.vim"   " my customised syntax highlights
@@ -210,6 +214,7 @@ highlight Comment term=bold ctermfg=2 guifg=#00bb00
 if has("digraphs")
   digraphs a` 224
 endif
+
 
 " *** Extensibility ***
 if exists("*filereadable") && exists("$ZONE")
