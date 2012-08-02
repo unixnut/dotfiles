@@ -1,6 +1,10 @@
 #! /bin/sh
 # my_lessopen (Bourne shell script) -- processes a file as root and then echoes the name
 
+if [ ! -e "$@" ] ; then
+  echo sless: "$@" does not exist >&2
+  exit 2
+fi
 # Try to process the file as root in case it need special processing
 if [ -n "$LESSOPEN_PROG" ] ; then
   fn=`sudo $LESSOPEN_PROG "$@"`

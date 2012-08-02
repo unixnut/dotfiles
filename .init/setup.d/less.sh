@@ -6,9 +6,9 @@ if [ $DISTRO_BASE = Debian ] ; then
 else
   if [ -f /usr/bin/lesspipe.sh ]; then
     export LESSOPEN="|/usr/bin/lesspipe.sh '%s'"
-    # unfortunately, no lessfile equivalent exists
-    export LESSOPEN_PROG=my_lessopen_pipe
-    export LESSCLOSE_PROG=my_lessopen_rm
+    # unfortunately, no lessfile equivalent exists so use a homebrew one
+    export LESSOPEN_PROG=$HOME/.init/lib/my_lessopen_pipe
+    export LESSCLOSE_PROG=$HOME/.init/lib/my_lessopen_rm
   else
     export LESSOPEN="lessopen.sh '%s'"
     export LESSCLOSE="lessclose.sh '%s' '%s'"
