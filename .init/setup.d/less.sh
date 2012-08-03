@@ -9,7 +9,8 @@ else
     # unfortunately, no lessfile equivalent exists so use a homebrew one
     export LESSOPEN_PROG=$HOME/.init/lib/my_lessopen_pipe
     export LESSCLOSE_PROG=$HOME/.init/lib/my_lessopen_rm
-  else
+  elif type -p lessopen.sh > /dev/null
+  then
     export LESSOPEN="lessopen.sh '%s'"
     export LESSCLOSE="lessclose.sh '%s' '%s'"
     # for sless
