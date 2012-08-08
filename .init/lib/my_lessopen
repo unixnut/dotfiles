@@ -7,6 +7,11 @@
 ##   exit 2
 ## fi
 
+if [ -r "$@" ] ; then
+  echo "sless: you don't need root access to view \"$@\"" >&2
+  exit 3
+fi
+
 # Try to process the file as root in case it need special processing
 if [ -n "$LESSOPEN_PROG" ] ; then
   set -e
