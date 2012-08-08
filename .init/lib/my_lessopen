@@ -1,20 +1,26 @@
 #! /bin/sh
 # my_lessopen (Bourne shell script) -- processes a file as root and then echoes the name
 
-if [ ! -e "$@" ] ; then
-  echo sless: "$@" does not exist >&2
-  exit 2
-fi
+# This won't work, because this script doesn't run as root
+## if [ ! -e "$@" ] ; then
+##   echo sless: "$@" does not exist >&2
+##   exit 2
+## fi
+
 # Try to process the file as root in case it need special processing
 if [ -n "$LESSOPEN_PROG" ] ; then
+  set -e
   fn=`sudo $LESSOPEN_PROG "$@"`
+  set +e
 fi
 if [ -z "$fn" ] ; then
-  # if lessfile doesn't output anything then no special processing is required
+  # if lessfile doesn't output a file name then no special processing is required
   # (i.e. less would normally open the file directly), so this script needs to
   # copy the file and tell less to open the copy
   fn=/tmp/my_lessopen$$
+  set -e
   sudo cp -p "$@" $fn
+  set +e
   sudo chmod go-rwx $fn
 fi
 sudo chown $LOGNAME $fn
