@@ -155,6 +155,8 @@ set shortmess="il"
 
 set selection=exclusive   " unknown in Vim 5.0; used to work in ???; back in 6.x
 
+set nohlsearch
+
 "# set mouse=a
 set mouse=""
 set mousetime=180
