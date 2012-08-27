@@ -60,5 +60,14 @@ macro attach w "^E^Utext/plain; charset=cp1251^M"
 
 #bind editor \cy eol	# make ^Y jump to the end of the line
 
-bind editor <Delete> backspace
-bind editor \e[3~ delete-char
+# these appear to be unnecessary with normal stty settings
+## bind editor <Delete> backspace
+## bind editor \e[3~ delete-char
+
+#
+bind editor \e[1\;5C forward-word
+bind editor \e[1\;5D backward-word
+bind editor \e[5C forward-word
+bind editor \e[5D backward-word
+bind editor \e\e[C forward-word
+bind editor \e\e[D backward-word
