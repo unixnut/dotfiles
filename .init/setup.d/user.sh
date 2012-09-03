@@ -50,10 +50,10 @@ set_grep_vars()
       export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
     fi
 
-    export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=.*.bak $GREP_OPTIONS"
+    export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=*.bak $GREP_OPTIONS"
   fi
 }
-ver=`grep -V | sed -n -e 's/[a-z]$//' -e '/GNU grep/ s/.* //p'`
+ver=`grep -V | sed -n -e 's/[-A-Za-z]*$//' -e '/GNU grep/ s/.* //p'`
 if [ -n "$ver" ] ; then
   set_grep_vars $(ver_split $ver)
 fi

@@ -63,6 +63,9 @@ $endif
 "\e[20~": "popd\n"     # F9
 "\e[20;5~": "pushd "   # C-F9
 
+# -- other --
+"\e[19~": "locate "    # F8
+
 # == history ==
 # mappings for "page up" and "page down" to step to the beginning/end
 # of the history
@@ -114,3 +117,6 @@ $endif
 "\e[2~":    overwrite-mode
 "\e/":      dabbrev-expand
 
+
+# *** TO-DO ***
+## : redraw-current-line
