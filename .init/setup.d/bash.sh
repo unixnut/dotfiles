@@ -35,10 +35,10 @@ if [ -x /usr/bin/dircolors ]; then
   # supported by the current terminal, i.e. for a given sequence, the
   # most recent block of TERM keywords has one that matches the current
   # terminal.)
-  if [ -r ~/.dircolors ] ; then
-    eval "$(TERM=gnome-256color dircolors -b ~/.dircolors)"
+  if [ -r ~/.dir_colors ] ; then
+    eval "$(TERM=xterm-color dircolors -b ~/.dir_colors)"
   else
-    eval "$(TERM=gnome-256color dircolors -b)"
+    eval "$(TERM=xterm-color dircolors -b)"
   fi
   export USE_DIRCOLORS=y
 fi
