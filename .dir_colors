@@ -137,7 +137,7 @@ EXEC 01;32
 # garbage files (brown)
 .bak 00;33
 .old 00;33
-~ 00;33
+## ~ 00;33
 
 # archives or compressed (bright red)
 .tar 01;31
@@ -254,8 +254,8 @@ EXEC 01;32
 .xspf 01;36
 
 # e-mails (dark green)
-:2   00;32
-:2,S  00;32
+## :2   00;32
+## :2,S  00;32
 .eml  00;32
 .msg  00;32
 
