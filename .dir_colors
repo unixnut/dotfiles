@@ -175,12 +175,13 @@ EXEC 01;32
 .sit 01;31
 .sitx 01;31
 
-# x509 (yellow)
+# x509 and PKCS #12 (yellow)
 .pem 01;33
 .crt 01;33
 .csr 01;33
 .crl 01;33
 .key 01;33
+.p12 01;33
 
 # image formats (magenta)
 .jpg 01;35
@@ -304,3 +305,9 @@ EXEC 01;32
 # .sql
 # .db
 # .sqlite
+# .gpg
+
+# *** other colours ***
+# bright white is possibly ok, with its opposite (on a white background)
+# being bright black.
+# ## .??? 01;30
