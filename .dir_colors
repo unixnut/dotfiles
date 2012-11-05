@@ -134,9 +134,12 @@ EXEC 01;32
 .cpp 00;33
 .dll 00;33
 
-# garbage files (brown)
-.bak 00;33
-.old 00;33
+# garbage files (dark grey; note the interesting Vim syntax highlighting!)
+.bak 01;30
+.old 01;30
+.tmp 01;30
+.swp 01;30
+.swo 01;30
 ## ~ 00;33
 
 # archives or compressed (bright red)
@@ -306,6 +309,8 @@ EXEC 01;32
 # .db
 # .sqlite
 # .gpg
+# .git
+# .svn
 
 # *** other colours ***
 # bright white is possibly ok, with its opposite (on a white background)

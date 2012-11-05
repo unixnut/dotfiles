@@ -181,6 +181,8 @@ imap <F12> <C-O>:set expandtab!<CR>
 nmap <F12> :set expandtab!<CR>
 imap <C-F12> <C-O>:set autoindent!<CR>
 nmap <C-F12> :set autoindent!<CR>
+imap <S-F12> <C-O>:set readonly!<CR>
+nmap <S-F12> :set readonly!<CR>
 
 " -- contextual --
 set iskeyword=-,@,48-57,_,192-255
