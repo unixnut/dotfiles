@@ -3,7 +3,6 @@ function time_t
   date --rfc-2822 --date=@$1
 }
 alias hexdump='od -tx1 '
-alias ls-F='ls -F'
 
 # changes the name of a file without moving it to a different directory
 function ren
@@ -16,3 +15,7 @@ function ovpn
 {
   sudo openvpn --cd /etc/openvpn --config $1 --verb 5
 }
+alias .v="vim -i .viminfo"
+
+# tcsh equivalents
+alias ls-F='ls -F'

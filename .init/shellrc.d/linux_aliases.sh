@@ -9,3 +9,4 @@ alias ,u='netstat -l --udp --numeric-hosts'
 ## --numeric
 alias ,m='free -m'
 alias ,p='cat /proc/partitions'
+alias ,d='df -hT -x tmpfs -x devtmpfs'

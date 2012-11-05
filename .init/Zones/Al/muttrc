@@ -12,4 +12,3 @@
 
 source ~/.mutt/identity_settings
 
-set editor="mutt_compose_editor"        # editor to use when composing messages
