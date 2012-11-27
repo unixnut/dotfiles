@@ -118,6 +118,14 @@ nmap gR }c?^>\ -- $?<CR><C-U><C-U><CR>
 nmap gz v/^-- <CR>dzbO<CR><CR><Up>
 
 " Useful searching commands:
+nmap <F5> /
+imap <F5> <C-O>/
+nmap <S-F5> ?
+imap <S-F5> <C-O>?
+nmap <C-F5> n
+imap <C-F5> <C-O>n
+nmap <C-S-F5> N
+imap <C-S-F5> <C-O>N
 nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
 
 " -- GUI commands --

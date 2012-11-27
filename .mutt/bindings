@@ -71,3 +71,7 @@ bind editor \e[5C forward-word
 bind editor \e[5D backward-word
 bind editor \e\e[C forward-word
 bind editor \e\e[D backward-word
+# PuTTY
+bind editor \eOC forward-word
+bind editor \eOD backward-word
+bind editor \e[5~ eol	# make End jump to the end of the line
