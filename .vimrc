@@ -1,5 +1,5 @@
 " .vimrc (vim auto-parse file) -- commands that vim runs at startup
-" v1.0
+" v2.0
 
 "# version 4.0          " avoid warning for wrong version
 
@@ -56,17 +56,31 @@ nmap <F4> <C-W>j
 " <S-F3>
 imap <Esc>O1;2R <C-O><C-W>-
 nmap <Esc>O1;2R <C-W>-
+" (PuTTY)
+imap <Esc>[25~ <C-O><C-W>-
+imap <Esc>[25~ <C-W>-
+
 " <S-F4>
 imap <Esc>O1;2S <C-O><C-W>+
 nmap <Esc>O1;2S <C-W>+
+" (PuTTY)
+imap <Esc>[26~ <C-O><C-W>+
+imap <Esc>[26~ <C-W>+
 
 " -- window closing --
 " <C-F3>
 imap <Esc>O1;5R <C-O><C-W>o
 nmap <Esc>O1;5R <C-W>o
+" (PuTTY)
+imap <Esc>[13~ <C-O><C-W>o
+nmap <Esc>[13~ <C-W>o
+
 " <C-F4>
 imap <Esc>O1;5S <C-O><C-W>c
 nmap <Esc>O1;5S <C-W>c
+" (PuTTY)
+imap <Esc>[14~ <C-O><C-W>c
+nmap <Esc>[14~ <C-W>c
 
 " -- file operations --
 nmap ZE :edit<CR>
@@ -87,6 +101,12 @@ nmap <S-F6> :cpfile<CR>
 " -- toggles --
 imap <F8> <C-O>:set wrap!<CR>
 nmap <F8> :set wrap!<CR>
+imap <S-F8> <C-O>:setlocal spell!<CR>
+nmap <S-F8> :setlocal spell!<CR>
+"# imap <C-F8> <C-O>:setlocal spell spelllang=en_au<CR>
+"# nmap <C-F8> :setlocal spell spelllang=en_au<CR>
+"# imap <C-S-F8> <C-O>:setlocal nospell<CR>
+"# nmap <C-S-F8> :setlocal nospell<CR>
 
 " -- other --
 " normal-mode shortcuts for various build-related commands
@@ -143,6 +163,10 @@ if has("syntax")
     let g:filetype_i = "c"
     let g:filetype_inc = "php"
   endif
+endif
+
+if has("spell")
+  set spelllang=en_au
 endif
 
 " == diff ==
@@ -219,6 +243,7 @@ set background=dark
 highlight Comment term=bold ctermfg=2 guifg=#00bb00
 
 " -- other --
+set titleold=Terminal
 
 
 " *** Misc ***

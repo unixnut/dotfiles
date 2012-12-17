@@ -4,6 +4,9 @@ setlocal comments+=m:\
 "# setlocal comments-=s1:/*
 "# setlocal comments+=s2:/*
 
+setlocal shiftwidth=2
+setlocal tabstop=2
+
 setlocal iskeyword=@,48-57,_
 
 " normal-mode shortcuts for various build-related commands

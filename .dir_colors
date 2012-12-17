@@ -311,8 +311,11 @@ EXEC 01;32
 # .gpg
 # .git
 # .svn
+#
+# # documents (???)
+#
 
 # *** other colours ***
-# bright white is possibly ok, with its opposite (on a white background)
-# being bright black.
+# bright white is possibly ok, but its opposite (on a white background)
+# being bright black is the same as dark grey, which has already been used.
 # ## .??? 01;30
