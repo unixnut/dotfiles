@@ -8,6 +8,7 @@ source ~/.mutt/bindings
 ## set query_command = "/usr/local/bin/mutt_ldap.py '%s'"
 set print_cmd=/bin/false        # how to print things (I like to save trees)
 set timeout=3                   # timeout for mail check, in seconds.
+set ignore_list_reply_to=yes
 
 
 # == composing ==
@@ -31,7 +32,7 @@ set record=+sent-mail           # default location to save outgoing mail
 
 # == appearance ==
 # -- index screen --
-## set hdr_format="%4C %Z %{%d/%m} %-20.20n  %s" # format of the index
+set index_format="%4C %Z %{%d/%m} %-18.18F  %s" # format of the index
 set nohelp                      # don't show the help lines
 set strict_threads              # only make use of the ``In-Reply-To'' and ``References'' fields 
 

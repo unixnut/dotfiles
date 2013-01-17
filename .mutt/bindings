@@ -3,6 +3,7 @@
 # Key bindings
 #
 #	maps:
+#		generic
 #		alias		alias menu
 #		attach		attachment menu
 #		browser		directory browser
@@ -15,6 +16,9 @@
 #		url		url menu
 #		
 
+bind generic <F8> tag-entry
+bind generic <F12> what-key
+
 bind index "\e<" first-entry	# emacs-like bindings for moving to top/bottom
 bind index \e> last-entry
 bind index { top-page
@@ -24,36 +28,45 @@ bind index G last-entry
 bind index \Co next-unread
 bind index <backtab> previous-new-then-unread
 bind index \e[Z previous-new-then-unread   # needed because sequence is not in terminfo
+bind index <F3> previous-thread
+bind index <F4> next-thread
 bind index <F5> search
+bind index <F17> search-reverse # S-F5
+bind index ? search-reverse
+bind index <BackSpace> help  # bind C-H since "?" was just re-bound
+bind index <F29> search-next # C-F5
+bind index <F41> search-opposite # C-S-F5
+bind index N search-opposite
 bind index <F6> previous-unread
 bind index <F7> next-unread
-bind index <F11> previous-thread
-bind index <F12> next-thread
+# see "generic"
+## bind index <F8> tag-entry
+bind index <F32> tag-thread     # C-F8 (not orthoganal with C-T)
+bind index <F44> tag-subthread  # C-S-F8
+bind index <F20> tag-pattern    # S-F8
 macro index <F9> "|lspam^M"
 ## bind index \e<tab> previous-new   #standard
-bind index ? search-reverse
-bind index N search-opposite
-bind index <BackSpace> help
 
 #macro index \# /bug^M	# search for bugs
-#macro index "\""        ":set realname=\"real hairy macro\"^M:set ?realname^M" # and a comment to boot!
+#macro index "\""	 ":set realname=\"real hairy macro\"^M:set ?realname^M" # and a comment to boot!
 #macro index f1 :woohoo!
 
 bind pager G bottom	# just like vi and less
-bind pager <Delete> previous-page          # the corollary to " " in emacs
+bind pager <Delete> previous-page	   # the corollary to " " in emacs
 bind pager <right> next-undeleted      # a mutt default
 bind pager <left> previous-undeleted   # ditto
 bind pager <down> next-line
 bind pager <up> previous-line
 bind pager ] half-down
 bind pager [ half-up
-bind pager > next-line                 # like in the index
-bind pager < previous-line             # like in the index
+bind pager > next-line		       # like in the index
+bind pager < previous-line	       # like in the index
 bind pager ? search-reverse
 bind pager N search-opposite
 bind pager <BackSpace> help
+bind pager <F8> tag-message
 
-#macro   pager   \Ck     "|pgp -kaf^M"   # a comment is valid here
+#macro	 pager	 \Ck	 "|pgp -kaf^M"	 # a comment is valid here
 #macro pager X "|morepgp^M"	# pipe PGP message to a script
 
 macro attach w "^E^Utext/plain; charset=cp1251^M"
@@ -71,7 +84,7 @@ bind editor \e[5C forward-word
 bind editor \e[5D backward-word
 bind editor \e\e[C forward-word
 bind editor \e\e[D backward-word
-# PuTTY
+# -- PuTTY --
 bind editor \eOC forward-word
 bind editor \eOD backward-word
 bind editor \e[5~ eol	# make End jump to the end of the line
