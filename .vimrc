@@ -9,13 +9,13 @@
 nmap ZQ \
 
 " == Random ==
-nmap Q gq
+map Q gq
 imap <C-Z> <C-O><C-Z>
 imap <C-L> <C-O><C-L>
 nmap g/ :nohlsearch<CR>
 
 " Make the Do key bring up the ex command prompt:
-nmap <F10> :
+map <F10> :
 imap <F10> <C-O>:
 
 nmap <Esc><C-Z> <C-Z>
@@ -36,51 +36,77 @@ nmap [b :bprevious<CR>
 imap <F1> <C-O>:bprevious<CR>
 nmap <F1> :bprevious<CR>
 " <S-F1> splits the window
-imap <Esc>O1;2P <C-O>:sbprevious<CR>
-nmap <Esc>O1;2P :sbprevious<CR>
+if $TERM == 'linux'
+  imap <Esc>[25~ <C-O>:sbprevious<CR>
+  nmap <Esc>[25~ :sbprevious<CR>
+else
+  imap <Esc>O1;2P <C-O>:sbprevious<CR>
+  nmap <Esc>O1;2P :sbprevious<CR>
+  " (PuTTY)
+  imap <Esc>[23~ <C-O>:sbprevious<CR>
+  map <Esc>[23~ :sbprevious<CR>
+endif
 " -- next buffer --
 nmap ]b :bnext<CR>
 imap <F2> <C-O>:bnext<CR>
 nmap <F2> :bnext<CR>
 " <S-F2> splits the window
-imap <Esc>O1;2Q <C-O>:sbnext<CR>
-nmap <Esc>O1;2Q :sbnext<CR>
+if $TERM == 'linux'
+  imap <Esc>[26~ <C-O>:sbnext<CR>
+  nmap <Esc>[26~ :sbnext<CR>
+else
+  imap <Esc>O1;2Q <C-O>:sbnext<CR>
+  nmap <Esc>O1;2Q :sbnext<CR>
+  " (PuTTY)
+  imap <Esc>[24~ <C-O>:sbnext<CR>
+  map <Esc>[24~ :sbnext<CR>
+endif
 
 " -- window switching --
 imap <F3> <C-O><C-W>k
 imap <F4> <C-O><C-W>j
-nmap <F3> <C-W>k
-nmap <F4> <C-W>j
+map <F3> <C-W>k
+map <F4> <C-W>j
 
 " -- window resizing --
 " <S-F3>
-imap <Esc>O1;2R <C-O><C-W>-
-nmap <Esc>O1;2R <C-W>-
-" (PuTTY)
-imap <Esc>[25~ <C-O><C-W>-
-imap <Esc>[25~ <C-W>-
+if $TERM == 'linux'
+  imap <Esc>[28~ <C-O><C-W>-
+  map <Esc>[28~ <C-W>-
+else
+  imap <Esc>O1;2R <C-O><C-W>-
+  map <Esc>O1;2R <C-W>-
+  " (PuTTY)
+  imap <Esc>[25~ <C-O><C-W>-
+  map <Esc>[25~ <C-W>-
+endif
 
 " <S-F4>
-imap <Esc>O1;2S <C-O><C-W>+
-nmap <Esc>O1;2S <C-W>+
-" (PuTTY)
-imap <Esc>[26~ <C-O><C-W>+
-imap <Esc>[26~ <C-W>+
+if $TERM == 'linux'
+  imap <Esc>[29~ <C-O><C-W>+
+  map <Esc>[29~ <C-W>+
+else
+  imap <Esc>O1;2S <C-O><C-W>+
+  map <Esc>O1;2S <C-W>+
+  " (PuTTY)
+  imap <Esc>[26~ <C-O><C-W>+
+  map <Esc>[26~ <C-W>+
+endif
 
 " -- window closing --
 " <C-F3>
 imap <Esc>O1;5R <C-O><C-W>o
-nmap <Esc>O1;5R <C-W>o
+map <Esc>O1;5R <C-W>o
 " (PuTTY)
 imap <Esc>[13~ <C-O><C-W>o
-nmap <Esc>[13~ <C-W>o
+map <Esc>[13~ <C-W>o
 
 " <C-F4>
 imap <Esc>O1;5S <C-O><C-W>c
-nmap <Esc>O1;5S <C-W>c
+map <Esc>O1;5S <C-W>c
 " (PuTTY)
 imap <Esc>[14~ <C-O><C-W>c
-nmap <Esc>[14~ <C-W>c
+map <Esc>[14~ <C-W>c
 
 " -- file operations --
 nmap ZE :edit<CR>
@@ -91,7 +117,11 @@ nmap ZN :wnext<CR>
 nmap ]e :cnext<CR>
 nmap <F7> :cnext<CR>
 nmap ]E :cnfile<CR>
-nmap map <S-F7> :cnfile<CR>
+if $TERM == 'linux'
+  nmap map <Esc>[33~ :cnfile<CR>
+else
+  nmap map <S-F7> :cnfile<CR>
+endif
 
 nmap [e :cprevious<CR>
 nmap <F6> :cprevious<CR>
@@ -100,9 +130,14 @@ nmap <S-F6> :cpfile<CR>
 
 " -- toggles --
 imap <F8> <C-O>:set wrap!<CR>
-nmap <F8> :set wrap!<CR>
-imap <S-F8> <C-O>:setlocal spell!<CR>
-nmap <S-F8> :setlocal spell!<CR>
+map <F8> :set wrap!<CR>
+if $TERM == 'linux'
+  imap <Esc>[34~ <C-O>:setlocal spell!<CR>
+  map <Esc>[34~ :setlocal spell!<CR>
+else
+  imap <S-F8> <C-O>:setlocal spell!<CR>
+  map <S-F8> :setlocal spell!<CR>
+endif
 imap <C-F8> <C-O>:set ignorecase!<CR>
 map <C-F8> :set ignorecase!<CR>
 imap <C-S-F8> <C-O>:set hlsearch!<CR>
@@ -126,10 +161,10 @@ imap <M-b> <S-Left>
 imap <M-f> <S-Right>
 cmap <M-b> <S-Left>
 cmap <M-f> <S-Right>
-nmap <M-b> B
-nmap <M-f> W
+map <M-b> B
+map <M-f> W
 
-nmap <Space> <PageDown>
+map <Space> <PageDown>
 
 " == other ==
 " Commands to delete a quoted message's signature and go into insert mode:
@@ -138,19 +173,24 @@ nmap gR }c?^>\ -- $?<CR><C-U><C-U><CR>
 nmap gz v/^-- <CR>dzbO<CR><CR><Up>
 
 " Useful searching commands:
-nmap <F5> /
+map <F5> /
 imap <F5> <C-O>/
-nmap <S-F5> ?
-imap <S-F5> <C-O>?
-nmap <C-F5> n
+if $TERM == 'linux'
+  map <Esc>[31~ ?
+  imap <Esc>[31~ <C-O>?
+else
+  map <S-F5> ?
+  imap <S-F5> <C-O>?
+endif
+map <C-F5> n
 imap <C-F5> <C-O>n
-nmap <C-S-F5> N
+map <C-S-F5> N
 imap <C-S-F5> <C-O>N
-nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
+map  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
 
 " -- GUI commands --
 " open a new tab
-nmap g<C-T> :tabe<CR>
+map g<C-T> :tabe<CR>
 
 
 " *** Features ***
@@ -170,8 +210,8 @@ if has("spell")
 endif
 
 " == diff ==
-nmap <C-F7> ]c
-nmap <C-F6> [c
+map <C-F7> ]c
+map <C-F6> [c
 
 
 " *** Settings ***
@@ -205,16 +245,17 @@ set shiftwidth=1
 
 set pastetoggle=<F11>
 " <C-F11> doesn't exist due to the above
-nmap <S-F11> :set textwidth=
+" <S-F9> and above don't exist when $TERM == 'linux'
+map <S-F11> :set textwidth=
 imap <S-F11> <C-O>:set textwidth=
-nmap <C-S-F11> :set textwidth=0<CR>
+map <C-S-F11> :set textwidth=0<CR>
 imap <C-S-F11> <C-O>:set textwidth=0<CR>
 imap <F12> <C-O>:set expandtab!<CR>
-nmap <F12> :set expandtab!<CR>
+map <F12> :set expandtab!<CR>
 imap <C-F12> <C-O>:set autoindent!<CR>
-nmap <C-F12> :set autoindent!<CR>
+map <C-F12> :set autoindent!<CR>
 imap <S-F12> <C-O>:set readonly!<CR>
-nmap <S-F12> :set readonly!<CR>
+map <S-F12> :set readonly!<CR>
 
 " -- contextual --
 set iskeyword=-,@,48-57,_,192-255

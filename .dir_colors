@@ -186,7 +186,7 @@ EXEC 01;32
 .key 01;33
 .p12 01;33
 
-# image formats (magenta)
+# image & video formats (magenta)
 .jpg 01;35
 .jpeg 01;35
 .gif 01;35
@@ -231,6 +231,7 @@ EXEC 01;32
 .yuv 01;35
 .cgm 01;35
 .emf 01;35
+.ico 01;35
 
 # http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 .axv 01;35
