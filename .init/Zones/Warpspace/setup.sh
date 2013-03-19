@@ -1,2 +1,2 @@
 export MOZ_PRINTER_NAME=hp
-export PYTHONPATH=${PYTHONPATH}:OtherWork/tools/misc
+export PYTHONPATH=$HOME/lib:${PYTHONPATH}:OtherWork/tools/misc
