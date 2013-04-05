@@ -88,6 +88,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # *** My stuff ***
+for file in ~/.init/shellrc.${OS_BASE-$OS}.d/*.sh ; do
+  . $file
+done
+
 for file in ~/.init/shellrc.d/*.sh ; do
   . $file
 done

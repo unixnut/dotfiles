@@ -28,6 +28,11 @@ if ($tty != "") then
 endif
 
 # -- run additional commands in include files --
+if (! $?OS_BASE) setenv OS_BASE $OS
+foreach inc_file (~/.init/shellrc.$OS_BASE.d/*.csh)
+  source $inc_file
+end
+
 foreach inc_file (~/.init/shellrc.d/*.csh)
   source $inc_file
 end

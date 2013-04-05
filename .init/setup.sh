@@ -80,12 +80,7 @@ if [ -z "$EUID" -a -x /usr/bin/id ]; then
 fi
 
 # == platform-specific ==
-## . .init/$OS.sh
-case $DISTRO_BASE in
-  Debian) . .init/debian.sh 
-          # might need to handle Ubuntu stuff as well
-          ;;
-esac
+. .init/$OS.sh
 
 # == other ==
 PATH="$HOME/.init/lib:$PATH"
