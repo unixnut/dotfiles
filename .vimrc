@@ -39,12 +39,12 @@ nmap <F1> :bprevious<CR>
 if $TERM == 'linux'
   imap <Esc>[25~ <C-O>:sbprevious<CR>
   nmap <Esc>[25~ :sbprevious<CR>
+elseif $TERM == 'putty'
+  imap <Esc>[23~ <C-O>:sbprevious<CR>
+  map <Esc>[23~ :sbprevious<CR>
 else
   imap <Esc>O1;2P <C-O>:sbprevious<CR>
   nmap <Esc>O1;2P :sbprevious<CR>
-  " (PuTTY)
-  imap <Esc>[23~ <C-O>:sbprevious<CR>
-  map <Esc>[23~ :sbprevious<CR>
 endif
 " -- next buffer --
 nmap ]b :bnext<CR>
@@ -54,12 +54,12 @@ nmap <F2> :bnext<CR>
 if $TERM == 'linux'
   imap <Esc>[26~ <C-O>:sbnext<CR>
   nmap <Esc>[26~ :sbnext<CR>
+elseif $TERM == 'putty'
+  imap <Esc>[24~ <C-O>:sbnext<CR>
+  map <Esc>[24~ :sbnext<CR>
 else
   imap <Esc>O1;2Q <C-O>:sbnext<CR>
   nmap <Esc>O1;2Q :sbnext<CR>
-  " (PuTTY)
-  imap <Esc>[24~ <C-O>:sbnext<CR>
-  map <Esc>[24~ :sbnext<CR>
 endif
 
 " -- window switching --
@@ -73,24 +73,24 @@ map <F4> <C-W>j
 if $TERM == 'linux'
   imap <Esc>[28~ <C-O><C-W>-
   map <Esc>[28~ <C-W>-
+elseif $TERM == 'putty'
+  imap <Esc>[25~ <C-O><C-W>-
+  map <Esc>[25~ <C-W>-
 else
   imap <Esc>O1;2R <C-O><C-W>-
   map <Esc>O1;2R <C-W>-
-  " (PuTTY)
-  imap <Esc>[25~ <C-O><C-W>-
-  map <Esc>[25~ <C-W>-
 endif
 
 " <S-F4>
 if $TERM == 'linux'
   imap <Esc>[29~ <C-O><C-W>+
   map <Esc>[29~ <C-W>+
+elseif $TERM == 'putty'
+  imap <Esc>[26~ <C-O><C-W>+
+  map <Esc>[26~ <C-W>+
 else
   imap <Esc>O1;2S <C-O><C-W>+
   map <Esc>O1;2S <C-W>+
-  " (PuTTY)
-  imap <Esc>[26~ <C-O><C-W>+
-  map <Esc>[26~ <C-W>+
 endif
 
 " -- window closing --
@@ -217,20 +217,22 @@ map <C-F6> [c
 " *** Settings ***
 set formatprg=
 set nobackup         " don't keep a backup file
-"# set viminfo=""
+"# set viminfo=
 
 set nowrap sidescroll=1
 set ruler hidden laststatus=2 showcmd
 "# set confirm   " unknown in Vim 5.0
 
-set shortmess="il"
+set shortmess=filtoOrmw
 
 set selection=exclusive   " unknown in Vim 5.0; used to work in ???; back in 6.x
 
 set nohlsearch
+set smartcase    " Override the 'ignorecase' option if the search pattern contains upper case characters
 
 "# set mouse=a
-set mouse=""
+set mouse=
+set mousemodel=popup_setpos
 set mousetime=180
 
 " -- editing --
@@ -242,6 +244,7 @@ set textwidth=0
 set expandtab
 "# set tabstop=2
 set shiftwidth=1
+set showfulltag smartindent
 
 set pastetoggle=<F11>
 " <C-F11> doesn't exist due to the above
@@ -256,6 +259,15 @@ imap <C-F12> <C-O>:set autoindent!<CR>
 map <C-F12> :set autoindent!<CR>
 imap <S-F12> <C-O>:set readonly!<CR>
 map <S-F12> :set readonly!<CR>
+map <C-S-F12> :call Mousetoggle()<CR>
+imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
+function Mousetoggle()
+  if &mouse == ""
+    set mouse=a
+  else
+    set mouse=
+  endif
+endfunction
 
 " -- contextual --
 set iskeyword=-,@,48-57,_,192-255
