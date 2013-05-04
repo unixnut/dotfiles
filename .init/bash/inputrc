@@ -64,7 +64,11 @@ $endif
 "\e[20;5~": "pushd "   # C-F9
 
 # -- other --
-"\e[19~": "locate "    # F8
+"\e[19~":   "locate "    # F8
+"\e[23~":   "find . \( -name YYYYY -o -name ZZZZZ \) -prune -o -type f -print0 | xargs -0 "    # F11
+"\e[23;5~": "find . -type f -print0 | xargs -0 -I '{}' mkdir -p '{}/YYYYY'"    # C-F11
+## "\e": ""    # F
+"\e[24~":   "sudo -v\n"  # F12
 
 # == history ==
 # mappings for "page up" and "page down" to step to the beginning/end
@@ -100,6 +104,10 @@ $else
 "\e[5B":    history-search-forward
 "\e[1;5B":  history-search-forward
 $endif
+
+# M-P and M-N (same as tcsh)
+"\eP":     history-search-backward
+"\eN":     history-search-forward
 
 # -- non-incremental search --
 $if term=linux

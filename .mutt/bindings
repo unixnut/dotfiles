@@ -36,7 +36,7 @@ bind index <Delete> last-entry
 bind index G last-entry
 bind index \Co next-unread
 bind index <backtab> previous-new-then-unread
-bind index \e[Z previous-new-then-unread   # needed because sequence is not in terminfo
+bind index \e[Z previous-new-then-unread   # Shift-Tab (needed because sequence is not in terminfo)
 bind index <F3> previous-thread
 bind index <F4> next-thread
 bind index <F6> previous-unread
@@ -69,7 +69,13 @@ bind pager ] half-down
 bind pager [ half-up
 bind pager > next-line		       # like in the index
 bind pager < previous-line	       # like in the index
-bind pager <F5> search
+bind pager \Co next-unread
+bind pager <backtab> previous-new-then-unread
+bind pager \e[Z previous-new-then-unread   # Shift-Tab (needed because sequence is not in terminfo)
+bind pager <F3> previous-thread
+bind pager <F4> next-thread
+bind pager <F6> previous-unread
+bind pager <F7> next-unread
 bind pager <F17> search-reverse # S-F5
 bind pager ? search-reverse
 bind pager <BackSpace> help  # bind C-H since "?" was just re-bound
@@ -81,6 +87,7 @@ bind pager <F12> flag-message
 bind pager <F36> mark-as-new # C-F12
 ## bind pager <F24> mark-as-unread # S-F12
 
+macro pager <F9> "|lspam^M"
 #macro	 pager	 \Ck	 "|pgp -kaf^M"	 # a comment is valid here
 #macro pager X "|morepgp^M"	# pipe PGP message to a script
 
