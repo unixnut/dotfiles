@@ -1,0 +1,7 @@
+alias ,i='netstat -in'
+alias ,r='netstat -rn'
+alias ,s='netstat -a -f tcp -S'
+alias ,u='netstat -a -f udp -S'
+alias ,m='freecolor -m -o'
+## alias ,p='cat /proc/partitions'
+alias ,d='df -h -t noprocfs,nullfs'
