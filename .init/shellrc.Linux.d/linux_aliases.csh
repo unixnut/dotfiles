@@ -1,5 +1,6 @@
 alias ,t cat /proc/acpi/thermal_zone/\*/temperature
 alias ,f cat /proc/acpi/fan/\*/state
+alias ,b cat /sys/class/power_supply/BAT\*/uevent
 alias ,i netstat --interfaces --extend
 alias ,r netstat --route --numeric
 # use --numeric-hosts to avoid using libnss_mdns4 to reduntantly
