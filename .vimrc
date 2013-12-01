@@ -213,6 +213,12 @@ endif
 map <C-F7> ]c
 map <C-F6> [c
 
+" == spell ==
+imap <C-S-F6> <C-O>[s
+map <C-S-F6> [s
+imap <C-S-F7> ]s
+map <C-S-F7> ]s
+
 
 " *** Settings ***
 set formatprg=

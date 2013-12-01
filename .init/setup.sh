@@ -2,6 +2,8 @@
 
 export ZONE=`~/bin/zone`
 
+export HOST=`uname -n`
+
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
 # also set DISTRO_CODENAME (only useful for Debian/Ubuntu)
 export OS=`uname`
@@ -91,4 +93,7 @@ done
 
 if [ -r .init/Zones/$ZONE/setup.sh ]; then
   . .init/Zones/$ZONE/setup.sh
+fi
+if [ -r .init/Zones/$ZONE/${HOST}_setup.sh ]; then
+  . .init/Zones/$ZONE/${HOST}_setup.sh
 fi

@@ -96,6 +96,15 @@ for file in ~/.init/shellrc.d/*.sh ; do
   . $file
 done
 
+# Zone- and machine-specific stuff
+if [ -r .init/Zones/$ZONE/rc.sh ]; then
+  . .init/Zones/$ZONE/rc.sh
+fi
+if [ -r .init/Zones/$ZONE/${HOST}.sh ]; then
+  . .init/Zones/$ZONE/${HOST}.sh
+fi
+
+
 
 # vim: set filetype=sh :
 ### Local Variables:
