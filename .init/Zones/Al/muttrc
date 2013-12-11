@@ -12,3 +12,4 @@
 
 source ~/.mutt/identity_settings
 
+set quit=ask-no
