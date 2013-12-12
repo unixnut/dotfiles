@@ -12,4 +12,4 @@
 
 source ~/.mutt/identity_settings
 
-set quit=ask-no
+set quit=ask-yes
