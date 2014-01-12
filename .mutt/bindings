@@ -25,6 +25,7 @@ bind generic <F29> search-next # C-F5
 bind generic <F41> search-opposite # C-S-F5
 bind generic N search-opposite
 bind generic <F8> tag-entry
+bind generic <Insert> tag-entry
 bind generic <F12> what-key
 
 # == Index screen ==
@@ -52,7 +53,9 @@ macro index <F9> "|lspam^M"
 bind index <F36> toggle-new # C-F12
 ## bind index <F24> toggle-unread # S-F12
 bind index N search-opposite
-macro index \eL "l~A^M"
+bind index <Delete> delete-message
+## bind index <Insert> tag-message
+macro index \eL "l~A^M"         # remove limit
 
 #macro index \# /bug^M	# search for bugs
 #macro index "\""	 ":set realname=\"real hairy macro\"^M:set ?realname^M" # and a comment to boot!
@@ -86,12 +89,15 @@ bind pager <F8> tag-message
 bind pager <F12> flag-message
 bind pager <F36> mark-as-new # C-F12
 ## bind pager <F24> mark-as-unread # S-F12
+bind pager <Delete> delete-message
+bind pager <Insert> tag-message
 
 macro pager <F9> "|lspam^M"
 #macro	 pager	 \Ck	 "|pgp -kaf^M"	 # a comment is valid here
 #macro pager X "|morepgp^M"	# pipe PGP message to a script
 
 # == Attachments screen ==
+bind attach <Delete> delete-entry
 macro attach w "^E^Utext/plain; charset=cp1251^M"
 
 # == Built-in editor ==
