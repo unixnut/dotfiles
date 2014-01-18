@@ -22,7 +22,7 @@ else
           4.0)  export DISTRO_CODENAME=etch ;;
           5.0*) export DISTRO_CODENAME=lenny ;;
           6.0*) export DISTRO_CODENAME=squeeze ;;
-          7.0*) export DISTRO_CODENAME=wheezy ;;
+          7.*) export DISTRO_CODENAME=wheezy ;;
           *)  # anything else is assumed to be a codename
               # (e.g. /etc/debian_version contents is "blah/sid")
               export DISTRO_CODENAME=$DISTRO_RELEASE
