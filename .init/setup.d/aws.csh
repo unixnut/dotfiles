@@ -1,1 +1,1 @@
-if (-f ~/.aws/config) setenv AWS_CONFIG_FILE ~/.aws/config
+## setenv AWS_DEFAULT_OUTPUT text

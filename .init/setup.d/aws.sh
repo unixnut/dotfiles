@@ -1,3 +1,1 @@
-if [ -f ~/.aws/config ] ; then
-  export AWS_CONFIG_FILE=~/.aws/config
-fi
+## export AWS_DEFAULT_OUTPUT=text
