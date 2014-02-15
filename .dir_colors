@@ -111,7 +111,7 @@ EXEC 01;32
 # executables (bright green)
 .cmd 01;32
 .exe 01;32
-.com 01;32
+## .com 01;32
 .btm 01;32
 .bat 01;32
 .sh  01;32
@@ -241,7 +241,7 @@ EXEC 01;32
 
 # audio formats (cyan)
 .aac 01;36
-.au 01;36
+## .au 01;36
 .flac 01;36
 .mid 01;36
 .midi 01;36
