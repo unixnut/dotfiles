@@ -36,8 +36,15 @@ else
         #   Red Hat Enterprise Linux Server release 5 (Final)
         export DISTRO=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print "RHEL"; else print $1 }' /etc/redhat-release`
         export DISTRO_RELEASE=`awk 'NR==1 { if ($(NF) ~ /^\(/) print $(NF-1) ; else print "b0rk"; }' /etc/redhat-release`
+      elif [ -f /etc/system-release ] ; then
+        # this file contains a string like one of the following:
+        #   CentOS Linux release 6.0 (Final)
+        #   CentOS release 5.8 (Final)
+        #   Red Hat Enterprise Linux Server release 5 (Final)
+        export DISTRO=`awk 'NR==1 { if (/^Amazon Linux AMI/) print "Amazon"; else print $1; }' /etc/system-release`
+        export DISTRO_RELEASE=`awk 'NR==1 { print $(NF); }' /etc/system-release`
       else
-        export DISTRO=unknown DISTRO_RELEASE=unknown
+        export DISTRO=unknown DISTRO_RELEASE=0
       fi
       ;;
 
@@ -47,12 +54,12 @@ else
       ;;
 
     *)
-      export DISTRO=non-linux DISTRO_RELEASE=unknown
+      export DISTRO=non-linux DISTRO_RELEASE=0
   esac
 fi
 
 # -- DISTRO_BASE --
-if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora ] ; then
+if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora -o $DISTRO = Amazon ] ; then
   export DISTRO_BASE=RedHat
   export DISTRO_CODENAME=unknown
 elif [ $DISTRO = Ubuntu ] ; then

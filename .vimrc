@@ -108,6 +108,10 @@ map <Esc>O1;5S <C-W>c
 imap <Esc>[14~ <C-O><C-W>c
 map <Esc>[14~ <C-W>c
 
+" <C-S-F4>
+imap <Esc>O1;6S <C-O>:bunload<CR>
+map <Esc>O1;6S :bunload<CR>
+
 " -- file operations --
 nmap ZE :edit<CR>
 nmap ZW :write<CR>
