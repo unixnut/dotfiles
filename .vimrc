@@ -118,19 +118,17 @@ nmap ZW :write<CR>
 nmap ZN :wnext<CR>
 
 " QuickFix commands (mostly error-jumps)
-nmap ]e :cnext<CR>
-nmap <F7> :cnext<CR>
-nmap ]E :cnfile<CR>
-if $TERM == 'linux'
-  nmap map <Esc>[33~ :cnfile<CR>
-else
-  nmap map <S-F7> :cnfile<CR>
-endif
-
-nmap [e :cprevious<CR>
-nmap <F6> :cprevious<CR>
+map  [e :cprevious<CR>
+map  <F6> :cprevious<CR>
+imap <F6> <C-O>:cprevious<CR>
 nmap [E :cpfile<CR>
-nmap <S-F6> :cpfile<CR>
+nmap <C-S-F6> :cpfile<CR>
+
+map  ]e :cnext<CR>
+map  <F7> :cnext<CR>
+imap <F7> <C-O>:cnext<CR>
+nmap ]E :cnfile<CR>
+nmap map <C-S-F7> :cnfile<CR>
 
 " -- toggles --
 imap <F8> <C-O>:set wrap!<CR>
@@ -214,14 +212,23 @@ if has("spell")
 endif
 
 " == diff ==
-map <C-F7> ]c
-map <C-F6> [c
+map  <C-F6> [c
+imap <C-F6> <C-O>[c
+map  <C-F7> ]c
+imap <C-F7> <C-O>]c
 
 " == spell ==
-imap <C-S-F6> <C-O>[s
-map <C-S-F6> [s
-imap <C-S-F7> ]s
-map <C-S-F7> ]s
+if $TERM == 'linux'
+  map <Esc>[32~ <C-O>[s
+  map <Esc>[32~ [s
+  map <Esc>[33~ <C-O>]s
+  map <Esc>[33~ ]s
+else
+  imap <S-F6> <C-O>[s
+  map  <S-F6> [s
+  imap <S-F7> <C-O>]s
+  map  <S-F7> ]s
+fi
 
 
 " *** Settings ***
