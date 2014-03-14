@@ -228,7 +228,7 @@ else
   map  <S-F6> [s
   imap <S-F7> <C-O>]s
   map  <S-F7> ]s
-fi
+endif
 
 
 " *** Settings ***
