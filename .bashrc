@@ -91,6 +91,11 @@ if [ -t 0 ] ; then
 fi
 
 # *** My stuff ***
+if [ -z "$HOST" ] ; then
+  # Assume there is an SSH connection, therefore not a login shell
+  . .init/setup.sh
+fi
+
 for file in ~/.init/shellrc.${OS_BASE-$OS}.d/*.sh ; do
   . $file
 done
