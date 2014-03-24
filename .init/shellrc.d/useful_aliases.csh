@@ -4,4 +4,4 @@ alias ren mv \!:1 \!:1:h/\!:2
 alias ovpn sudo openvpn --cd /etc/openvpn --config \!:1 --verb 5
 alias .v vim -i .viminfo
 # Note that environment variables make grep use colour by default for a terminal
-alias cgrep grep --color=yes \!:\*:q | less -R
+alias cgrep grep --color=yes \!:\*:q \| less -R
