@@ -32,7 +32,7 @@ if [ -n "$PS1" ] ; then
       Debian)
         PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
         ;;
-      RHEL)
+      RedHat)
         # like the default one ('[\u@\h \W]\$ ') but with Debian-style colour
         PS1='[\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\W\[\e[00m\]]\$ '
         ;;
