@@ -19,7 +19,7 @@
 if [ -n "$BASH_VERSION" -a ! "$PROGNAME" = Xsession ]; then
   # source /etc/bash.bashrc if necessary (/etc/profile doesn't source it
   # in releases prior to wheezy)
-  if [ $DISTRO = Debian -a $DISTRO_RELEASE_MAJOR -le 7 ]; then
+  if [ $DISTRO = Debian -a $DISTRO_RELEASE_MAJOR -le 6 ]; then
     if [ -f /etc/bash.bashrc ]; then
       . /etc/bash.bashrc
     fi
