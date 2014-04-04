@@ -34,7 +34,8 @@ if [ -n "$PS1" ] ; then
         ;;
       RedHat)
         # like the default one ('[\u@\h \W]\$ ') but with Debian-style colour
-        PS1='[\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\W\[\e[00m\]]\$ '
+        # and uses PROMPT_DIRTRIM
+        PS1='[\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\]]\$ '
         ;;
       *)
         PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\] \$ '

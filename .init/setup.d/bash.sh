@@ -10,11 +10,14 @@ export HISTSIZE=1000
 export HISTFILESIZE=2000
 export HISTTIMEFORMAT='%r   '
 # ... %H:%M:%S
+## export FCEDIT vim
 
 export FIGNORE="~:.o:.class:.pyc:.bak"
 
 # to-do: update this file (see .init/shellrc.d/completions.tcsh)
 export HOSTFILE=~/tmp/hosts
+
+export PROMPT_DIRTRIM=5
 
 #
 # Many programs using readline library for line editing
