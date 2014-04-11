@@ -50,7 +50,10 @@ if [ $# -eq 1 ] ; then
 	if [ $BASENAME = $LESSFILE ]; then
 		TMPFILE=`tempfile -d $TMPDIR -p lessf`
 		if [ -z "$TMPFILE" ]; then
-			echo >&2 "Could not find essential program 'tempfile'. Exiting"
+			TMPFILE=`mktemp -t lessfXXXXXX`
+		fi
+		if [ -z "$TMPFILE" ]; then
+			echo >&2 "Could not find essential program 'tempfile' or fallback 'mktemp'. Exiting"
       exit 1
 		fi
 	fi
