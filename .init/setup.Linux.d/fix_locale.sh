@@ -8,6 +8,7 @@ elif [ -r /etc/sysconfig/i18n ]; then
 fi
 
 # now hack it to remove the UTF-8 suffix if on a Linux console
-if [[ "`tty`" = /dev/tty[0-9]* ]] ; then
+if echo tty | grep -q '/dev/tty[0-9]'
+then
   export LANG=${LANG%.UTF-8}
 fi
