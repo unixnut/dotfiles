@@ -11,3 +11,5 @@ alias ,u netstat -l --udp --numeric-hosts
 alias ,m free -m
 alias ,p cat /proc/partitions
 alias ,d df -hT -x tmpfs -x devtmpfs
+
+alias plast last -f /var/log/wtmp.1
