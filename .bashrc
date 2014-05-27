@@ -46,16 +46,15 @@ if [ -n "$PS1" ] ; then
   # If this is an xterm, etc. set the title to user@host:dir
   # (by adding prefixing the prompt with a string surrounded by terminal-specific
   # escape sequences, unlike older configs which set PROMPT_COMMAND)
+  # TO-DO: use tput
   case "$TERM" in
     xterm*|rxvt*)
       PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
       ;;
     screen)
-      # STY=4122.pts-0.sirius
-      screenid=${STY%.*}
       # use octal 134 for backslash otherwise bash gets confused and conflates
       # \\ with the following backslash somehow
-      PS1="\[\e_${debian_chroot:+($debian_chroot)}\u@\h: \w\a\e\134\]{$screenid}$PS1"
+      PS1="\[\e_${debian_chroot:+($debian_chroot)}\u@\h: \w\e\134\]$PS1"
       ;;
     *)
       ;;
