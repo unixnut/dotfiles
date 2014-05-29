@@ -198,13 +198,12 @@ map g<C-T> :tabe<CR>
 " *** Features ***
 "# let mysyntaxfile = "~/.vim/mysyntax.vim"   " my customised syntax highlights
 if has("syntax")
-  syntax enable
   if exists(":filetype")
-    filetype plugin on
-    filetype indent on
+    filetype plugin indent on
     let g:filetype_i = "c"
     let g:filetype_inc = "php"
   endif
+  syntax enable
 endif
 
 if has("spell")
