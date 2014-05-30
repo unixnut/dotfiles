@@ -260,7 +260,8 @@ set textwidth=0
 set expandtab
 "# set tabstop=2
 set shiftwidth=1
-set showfulltag smartindent
+set showfulltag
+"# set smartindent
 
 set pastetoggle=<F11>
 " <C-F11> doesn't exist due to the above
