@@ -3,7 +3,7 @@
 if [ -n "$DISPLAY" -o -t 0 ] ; then
   # use a replacement lesspipe (and lessfile) if I can supply a newer one
   lessver=$(less -V | awk '{ print $2 ; exit }')
-  my_lesspipe_dir=$(ls -d .init/contrib/less_*)
+  my_lesspipe_dir=$(ls -d ~/.init/contrib/less_*)
   my_lesspipe_ver=${my_lesspipe_dir##*_}
 
   less_setup()

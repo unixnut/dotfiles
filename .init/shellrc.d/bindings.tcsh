@@ -67,6 +67,7 @@ if ($?prompt) then
   # -- dirs --
   bindkey -s "\e[20~" "popd\n"       # F9
   bindkey -s "\e[20;5~" "pushd "     # C-F9
+  bindkey -s "\e[20;2~" "dirs\n"     # S-F9
 
   # -- other --
   bindkey -s "\e[19~" "locate "     # F8

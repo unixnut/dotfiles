@@ -62,13 +62,14 @@ $endif
 # -- dirs --
 "\e[20~": "popd\n"     # F9
 "\e[20;5~": "pushd "   # C-F9
+"\e[20;2~": " dirs\n"  # S-F9
 
 # -- other --
 "\e[19~":   "locate "    # F8
 "\e[23~":   "find . \( -name YYYYY -o -name ZZZZZ \) -prune -o -type f -print0 | xargs -0 "    # F11
 "\e[23;5~": "find . -type f -print0 | xargs -0 -I '{}' mkdir -p '{}/YYYYY'"    # C-F11
 ## "\e": ""    # F
-"\e[24~":   "sudo -v\n"  # F12
+"\e[24~":   " sudo -v\n"  # F12
 
 # == history ==
 # mappings for "page up" and "page down" to step to the beginning/end
