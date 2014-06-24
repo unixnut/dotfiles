@@ -23,5 +23,10 @@ function cgrep
   grep --color=yes "$@" | less -R
 }
 
+# parallel compression tar aliases
+alias pgtar='tar --use-compress-program=pigz'
+alias pbtar='tar --use-compress-program=pbzip2'
+alias pxtar='tar --use-compress-program=pixz'
+
 # == tcsh equivalents ==
 alias ls-F='ls -F'

@@ -6,7 +6,8 @@ if ($tty != "") then
 
   # -- command history --
   # avoid re-entering the previous command to the history
-  set histdup = prev
+  set histdup=prev
+  set history=1500
   ## set savehist = (150 merge)
 
   # -- directory stack --
