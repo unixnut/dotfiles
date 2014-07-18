@@ -2,7 +2,7 @@
 
 export ZONE=`~/bin/zone`
 
-export HOST=`uname -n`
+export HOST=`hostname --short`
 
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
 # also set DISTRO_CODENAME (only useful for Debian/Ubuntu)
