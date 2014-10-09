@@ -4,7 +4,8 @@ alias ren mv \!:1 \!:1:h/\!:2
 alias ovpn sudo openvpn --cd /etc/openvpn --config \!:1 --verb 5
 alias .v vim -i .viminfo
 # Note that environment variables make grep use colour by default for a terminal
-alias cgrep grep --color=yes \!:\*:q \| less -R
+# Note: :q substitution in alias history references doesn't work
+alias cgrep grep --color=yes '\!:*' \| less -R
 
 # parallel compression tar aliases
 alias pgtar tar --use-compress-program=pigz
