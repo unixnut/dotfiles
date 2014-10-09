@@ -1,0 +1,81 @@
+# .lesskey (lesskey source file) -- processed to produce macros for less
+
+#command
+^X^F        examine
+
+# F1
+\eOP        prev-file
+\e[[A       prev-file
+
+# F2
+\eOQ        next-file
+\e[[B       next-file
+
+## index-file
+# <C-F4>
+\eO1;5S     remove-file
+
+# F5
+\e[15~      forw-search
+# S-F5
+\e[15;2~    back-search
+# C-F5
+\e[15;5~    repeat-search
+# C-S-F5
+\e[15;6~    reverse-search
+^_          forw-search [\136][{};:'",.<>/?a-zA-Z!@\#$%\136&*()_+|0-9\\=`~\040\011-]\n
+
+# F6
+\e[17~      prev-tag
+# F7
+\e[18~      next-tag
+
+# F8: wrap toggle
+\e[19~      toggle-option S
+# C-F8: search case-sensitivity toggle
+\e[19;5~    toggle-option i
+# C-S-F8: search highlight toggle
+\e[19;6~    toggle-option G
+
+# F9
+\e[20~      shell make\n
+
+# F10
+\e[21~      undo-hilite
+
+# <S-F10>: show line numbers
+\e[21;2~    toggle-option N
+
+## # F11: printable toggle
+## \e[23~      toggle-option r
+
+# F11: ANSI toggle
+\e[23~      toggle-option R
+
+
+#line-edit
+^A          home
+^E          end
+
+# F6
+\e[17~      back-complete
+# F7
+\e[18~      forw-complete
+
+\e[1;5D     word-left
+\e[1;5C     word-right
+
+^D          delete
+\ed         word-delete
+^W          word-backspace
+
+
+#env
+
+
+
+
+# vim: set tabstop=4 :
+# Local Variables:
+# tab-width: 4
+# end:

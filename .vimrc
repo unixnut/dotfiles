@@ -144,6 +144,8 @@ imap <C-F8> <C-O>:set ignorecase!<CR>
 map <C-F8> :set ignorecase!<CR>
 imap <C-S-F8> <C-O>:set hlsearch!<CR>
 map <C-S-F8> :set hlsearch!<CR>
+imap <S-F10> <C-O>:set number!<CR>
+map <S-F10> :set number!<CR>
 
 " -- other --
 " normal-mode shortcuts for various build-related commands
