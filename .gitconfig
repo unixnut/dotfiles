@@ -1,0 +1,9 @@
+[user]
+	name = Alastair Irvine
+	email = alastair@plug.org.au
+[core]
+        pager = less -R
+[color]
+	diff = auto
+	status = auto
+	branch = auto

@@ -1,6 +1,6 @@
 . .init/lib/functions.sh
 
-export ZONE=`~/bin/zone`
+export ZONE=`. ~/bin/zone`
 
 export HOST=`hostname --short`
 
