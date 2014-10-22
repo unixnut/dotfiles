@@ -94,7 +94,7 @@ fi
 # *** My stuff ***
 if [ -z "$HOST" ] ; then
   # Assume there is an SSH connection, therefore not a login shell
-  . .init/setup.sh
+  . ~/.init/setup.sh
 fi
 
 for file in ~/.init/shellrc.${OS_BASE-$OS}.d/*.sh ; do
@@ -106,11 +106,11 @@ for file in ~/.init/shellrc.d/*.sh ; do
 done
 
 # Zone- and machine-specific stuff
-if [ -r .init/Zones/$ZONE/rc.sh ]; then
-  . .init/Zones/$ZONE/rc.sh
+if [ -r ~/.init/Zones/$ZONE/rc.sh ]; then
+  . ~/.init/Zones/$ZONE/rc.sh
 fi
-if [ -r .init/Zones/$ZONE/${HOST}.sh ]; then
-  . .init/Zones/$ZONE/${HOST}.sh
+if [ -r ~/.init/Zones/$ZONE/${HOST}.sh ]; then
+  . ~/.init/Zones/$ZONE/${HOST}.sh
 fi
 
 
