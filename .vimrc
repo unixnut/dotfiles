@@ -12,7 +12,7 @@ nmap ZQ \
 map Q gq
 imap <C-Z> <C-O><C-Z>
 imap <C-L> <C-O><C-L>
-nmap g/ :nohlsearch<CR>
+nmap <silent> g/ :nohlsearch<CR>
 
 " Make the Do key bring up the ex command prompt:
 map  <F10> :
@@ -32,34 +32,34 @@ imap <Esc>O1;5Q <C-O>:ls<CR>
 nmap <Esc>O1;5Q :ls<CR>
 
 " -- previous buffer --
-nmap [b :bprevious<CR>
-imap <F1> <C-O>:bprevious<CR>
-nmap <F1> :bprevious<CR>
+nmap <silent> [b :bprevious<CR>
+imap <silent> <F1> <C-O>:bprevious<CR>
+nmap <silent> <F1> :bprevious<CR>
 " <S-F1> splits the window
 if $TERM == 'linux'
-  imap <Esc>[25~ <C-O>:sbprevious<CR>
-  nmap <Esc>[25~ :sbprevious<CR>
+  imap <silent> <Esc>[25~ <C-O>:sbprevious<CR>
+  nmap <silent> <Esc>[25~ :sbprevious<CR>
 elseif $TERM == 'putty'
-  imap <Esc>[23~ <C-O>:sbprevious<CR>
-  map  <Esc>[23~ :sbprevious<CR>
+  imap <silent> <Esc>[23~ <C-O>:sbprevious<CR>
+  map <silent>  <Esc>[23~ :sbprevious<CR>
 else
-  imap <Esc>O1;2P <C-O>:sbprevious<CR>
-  nmap <Esc>O1;2P :sbprevious<CR>
+  imap <silent> <Esc>O1;2P <C-O>:sbprevious<CR>
+  nmap <silent> <Esc>O1;2P :sbprevious<CR>
 endif
 " -- next buffer --
-nmap ]b :bnext<CR>
-imap <F2> <C-O>:bnext<CR>
-nmap <F2> :bnext<CR>
+nmap <silent> ]b :bnext<CR>
+imap <silent> <F2> <C-O>:bnext<CR>
+nmap <silent> <F2> :bnext<CR>
 " <S-F2> splits the window
 if $TERM == 'linux'
-  imap <Esc>[26~ <C-O>:sbnext<CR>
-  nmap <Esc>[26~ :sbnext<CR>
+  imap <silent> <Esc>[26~ <C-O>:sbnext<CR>
+  nmap <silent> <Esc>[26~ :sbnext<CR>
 elseif $TERM == 'putty'
-  imap <Esc>[24~ <C-O>:sbnext<CR>
-  map  <Esc>[24~ :sbnext<CR>
+  imap <silent> <Esc>[24~ <C-O>:sbnext<CR>
+  map <silent>  <Esc>[24~ :sbnext<CR>
 else
-  imap <Esc>O1;2Q <C-O>:sbnext<CR>
-  nmap <Esc>O1;2Q :sbnext<CR>
+  imap <silent> <Esc>O1;2Q <C-O>:sbnext<CR>
+  nmap <silent> <Esc>O1;2Q :sbnext<CR>
 endif
 
 " -- window switching --
@@ -113,8 +113,8 @@ imap <Esc>O1;6S <C-O>:bunload<CR>
 nmap <Esc>O1;6S :bunload<CR>
 
 " -- file operations --
-nmap ZE :edit<CR>
-nmap ZW :write<CR>
+nmap <silent> ZE :edit<CR>
+nmap <silent> ZW :write<CR>
 nmap ZN :wnext<CR>
 
 " QuickFix commands (mostly error-jumps)
@@ -131,8 +131,8 @@ nmap ]E :cnfile<CR>
 nmap <C-S-F7> :cnfile<CR>
 
 " -- toggles --
-imap <F8> <C-O>:set wrap!<CR>
-nmap <F8> :set wrap!<CR>
+imap <silent> <F8> <C-O>:set wrap!<CR>
+nmap <silent> <F8> :set wrap!<CR>
 
 if $TERM == 'linux'
   imap <Esc>[34~ <C-O>:setlocal spell!<CR>
@@ -147,8 +147,8 @@ nmap <C-F8> :set ignorecase!<CR>
 imap <C-S-F8> <C-O>:set hlsearch!<CR>
 nmap <C-S-F8> :set hlsearch!<CR>
 
-imap <S-F10> <C-O>:set number!<CR>
-nmap <S-F10> :set number!<CR>
+imap <silent> <S-F10> <C-O>:set number!<CR>
+nmap <silent> <S-F10> :set number!<CR>
 
 imap <silent> <C-F10> <C-O>:if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
 nmap <silent> <C-F10> :if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
@@ -282,8 +282,8 @@ imap <F12> <C-O>:set expandtab!<CR>
 nmap <F12> :set expandtab!<CR>
 imap <C-F12> <C-O>:set autoindent!<CR>
 nmap <C-F12> :set autoindent!<CR>
-imap <S-F12> <C-O>:set readonly!<CR>
-nmap <S-F12> :set readonly!<CR>
+imap <silent> <S-F12> <C-O>:set readonly!<CR>
+nmap <silent> <S-F12> :set readonly!<CR>
 nmap <C-S-F12> :call Mousetoggle()<CR>
 imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
 function Mousetoggle()
