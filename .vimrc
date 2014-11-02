@@ -284,15 +284,17 @@ imap <C-F12> <C-O>:set autoindent!<CR>
 nmap <C-F12> :set autoindent!<CR>
 imap <silent> <S-F12> <C-O>:set readonly!<CR>
 nmap <silent> <S-F12> :set readonly!<CR>
-nmap <C-S-F12> :call Mousetoggle()<CR>
-imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
-function Mousetoggle()
-  if &mouse == ""
-    set mouse=a
-  else
-    set mouse=
-  endif
-endfunction
+if exists("*function")
+  nmap <C-S-F12> :call Mousetoggle()<CR>
+  imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
+  function Mousetoggle()
+    if &mouse == ""
+      set mouse=a
+    else
+      set mouse=
+    endif
+  endfunction
+endif
 
 " -- contextual --
 set iskeyword=-,@,48-57,_,192-255
