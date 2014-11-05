@@ -2,6 +2,12 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# *** My preparation ***
+if [ -z "$HOST" ] ; then
+  # Assume there is an SSH connection, therefore not a login shell
+  . ~/.init/setup.sh
+fi
+
 # *** (modified) stuff from /etc/skel/.bashrc ***
 
 # == prompt ==
@@ -9,7 +15,7 @@
 if [ -n "$PS1" ] ; then
   # set a fancy prompt (non-color, unless we know we "want" color)
   case "$TERM" in
-      xterm-color) color_prompt=yes;;
+      xterm-*color) color_prompt=yes;;
   esac
 
   if [ -n "$force_color_prompt" ]; then
@@ -92,11 +98,6 @@ if [ -n "$PS1" ] ; then
 fi
 
 # *** My stuff ***
-if [ -z "$HOST" ] ; then
-  # Assume there is an SSH connection, therefore not a login shell
-  . ~/.init/setup.sh
-fi
-
 for file in ~/.init/shellrc.${OS_BASE-$OS}.d/*.sh ; do
   . $file
 done

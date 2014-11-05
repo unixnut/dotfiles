@@ -34,14 +34,10 @@ export force_color_prompt=yes
 
 if [ -x /usr/bin/dircolors ]; then
   # sets and exports LS_COLORS
-  # (Have to set TERM since dircolors will only generate sequences that are
-  # supported by the current terminal, i.e. for a given sequence, the
-  # most recent block of TERM keywords has one that matches the current
-  # terminal.)
   if [ -r ~/.dir_colors ] ; then
-    eval "$(TERM=xterm-color dircolors -b ~/.dir_colors)"
+    eval "$(dircolors -b ~/.dir_colors)"
   else
-    eval "$(TERM=xterm-color dircolors -b)"
+    eval "$(dircolors -b)"
   fi
   export USE_DIRCOLORS=y
 fi
