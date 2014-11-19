@@ -20,7 +20,12 @@ alias .v="vim -i .viminfo"
 # Note that environment variables make grep use colour by default for a terminal
 function cgrep
 {
-  grep --color=yes "$@" | less -R
+  grep -Rn --color=yes "$@" | less -R
+}
+
+function cls
+{
+  ls -lF --color=always "$@" | less -R
 }
 
 # parallel compression tar aliases

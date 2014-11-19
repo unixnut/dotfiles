@@ -17,7 +17,7 @@ export FIGNORE="~:.o:.class:.pyc:.bak"
 # to-do: update this file (see .init/shellrc.d/completions.tcsh)
 export HOSTFILE=~/tmp/hosts
 
-export PROMPT_DIRTRIM=5
+export PROMPT_DIRTRIM=4
 
 #
 # Many programs using readline library for line editing

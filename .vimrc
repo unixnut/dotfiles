@@ -320,6 +320,7 @@ runtime ftplugin/changelog.vim
 "# set t_Sb=<Esc>[4%dm
 set background=dark
 
+" change comments to dark green
 highlight Comment term=bold ctermfg=2 guifg=#00bb00
 
 " -- other --
