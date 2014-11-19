@@ -212,7 +212,14 @@ if has("syntax")
     let g:filetype_inc = "php"
   endif
   syntax enable
+
+  " See .vim/colors/mine.vim
+  colorscheme mine
 endif
+
+" when called explicitly, changelog.vim sets \o as a mapping to open a
+" pre-existing ChangeLog file in the current directory
+runtime ftplugin/changelog.vim
 
 if has("spell")
   set spelllang=en_au
@@ -307,21 +314,8 @@ set modeline
 
 set fileformats=unix,dos,mac
 
-
-" when called explicitly, changelog.vim sets \o as a mapping to open a
-" pre-existing ChangeLog file in the current directory
-runtime ftplugin/changelog.vim
-
 " -- screen --
-" change the terminfo settings vim uses for the number of colours and setting
-" the foreground/background
-"# set t_Co=8
-"# set t_Sf=<Esc>[3%dm
-"# set t_Sb=<Esc>[4%dm
 set background=dark
-
-" change comments to dark green
-highlight Comment term=bold ctermfg=2 guifg=#00bb00
 
 " -- other --
 set titleold=Terminal
