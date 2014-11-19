@@ -204,15 +204,21 @@ nmap g<C-T> :tabe<CR>
 
 
 " *** Features ***
-"# let mysyntaxfile = "~/.vim/mysyntax.vim"   " my customised syntax highlights
 if has("syntax")
+  " -- settings --
+  set background=dark
+
   if exists(":filetype")
     filetype plugin indent on
     let g:filetype_i = "c"
     let g:filetype_inc = "php"
   endif
+
+  " -- activation --
   syntax enable
 
+  " -- customisation --
+  "# let mysyntaxfile = "~/.vim/mysyntax.vim"   " my customised syntax highlights
   " See .vim/colors/mine.vim
   colorscheme mine
 endif
@@ -313,9 +319,6 @@ set isfname-==
 set modeline
 
 set fileformats=unix,dos,mac
-
-" -- screen --
-set background=dark
 
 " -- other --
 set titleold=Terminal
