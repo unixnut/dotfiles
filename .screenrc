@@ -5,7 +5,7 @@ altscreen on
 startup_message off
 nethack on
 
-deflogin off
+deflogin on
 
 vbell off
 msgwait 2
