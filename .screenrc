@@ -127,13 +127,14 @@ termcapinfo xterm* OL=100
 # nx    terminal uses xon/xoff
 
 # emulate part of the 'K' charset
-termcapinfo   xterm 'XC=K%,%\E(B,[\304,\\\\\326,]\334,{\344,|\366,}\374,~\337'
+termcapinfo xterm* 'XC=K%,%\E(B,[\304,\\\\\326,]\334,{\344,|\366,}\374,~\337'
 
-# xterm-52 tweaks:
-# - uses background color for delete operations
-termcapinfo xterm* be
+## # xterm-52 tweaks:
+## # - uses background color for delete operations
+## termcapinfo xterm* be
 
-termcapinfo facit|vt100|xterm G0
+# terminal emulation of screen supports multiple character sets
+termcapinfo facit|vt100|xterm* G0
 
 # the vt100 description does not mention "dl". *sigh*
 termcapinfo vt100 dl=5\E[M
@@ -160,13 +161,13 @@ termcapinfo xterm*|linux*|rxvt*|Eterm* OP
 # (This fixes the "Aborted because of window size change" konsole symptoms found
 #  in bug #134198)
 # we do not want the width to change to 80 characters on startup
-termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
 # To get screen to add lines to xterm's scrollback buffer, uncomment the
 # following termcapinfo line which tells xterm to use the normal screen buffer
 # (which has scrollback), not the alternate screen buffer.
 #
-## termcapinfo xterm|xterms|xs|rxvt ti@:te@
+## termcapinfo xterm*|xterms|xs|rxvt ti@:te@
 
 # Enable non-blocking mode to better cope with flaky ssh connections.
 defnonblock 5
@@ -178,7 +179,11 @@ defnonblock 5
 attrcolor b ".I"
 
 # tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# (This is unnecessary if $TERM is set properly)
+
+# Pass codes into the window.
+# (This won't work because things don't use $TERMCAP any more)
+## termcapinfo xterm-256color "" 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # erase background with current bg color
 # Warning: causes TERM=screen-bce
