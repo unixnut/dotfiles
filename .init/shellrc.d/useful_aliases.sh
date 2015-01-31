@@ -25,7 +25,7 @@ function cgrep
 
 function cls
 {
-  ls -lF --color=always "$@" | less -R
+  ls -lF --color=always "$@" | less -RS
 }
 
 # parallel compression tar aliases

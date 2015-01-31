@@ -36,14 +36,17 @@
 \e[19;5~    toggle-option i
 # C-S-F8: search highlight toggle
 \e[19;6~    toggle-option G
-
+# S-F8: skip visible searches toggle
+\e[19;2~    toggle-option a
 # F9
 \e[20~      shell make\n
 
 # F10
 \e[21~      undo-hilite
 
-# <S-F10>: show line numbers
+# <C-F10>: show line numbers
+\e[21;5~    toggle-option n
+# <S-F10>: show line numbers inline
 \e[21;2~    toggle-option N
 
 ## # F11: printable toggle

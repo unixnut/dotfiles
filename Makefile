@@ -2,4 +2,4 @@
 all: .less
 
 .less: .lesskey
-	lesskey
+	lesskey --output=$@ $^

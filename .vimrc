@@ -176,6 +176,10 @@ map  <M-f> W
 
 map  <Space> <PageDown>
 
+" == Strings ==
+" Note that this makes a delay before the regular Ctrl-X options show up
+imap <C-X>% <C-R>=expand("%:t")<CR>
+
 " == other ==
 " Commands to delete a quoted message's signature and go into insert mode:
 nmap gr }?^>\ *.<CR>?^>\ *$<CR>?^>\ *.<CR>jc}<CR>

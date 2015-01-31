@@ -38,9 +38,7 @@ else
         export DISTRO_RELEASE=`awk 'NR==1 { if ($(NF) ~ /^\(/) print $(NF-1) ; else print "b0rk"; }' /etc/redhat-release`
       elif [ -f /etc/system-release ] ; then
         # this file contains a string like one of the following:
-        #   CentOS Linux release 6.0 (Final)
-        #   CentOS release 5.8 (Final)
-        #   Red Hat Enterprise Linux Server release 5 (Final)
+        #   Amazon Linux AMI release 2014.09
         export DISTRO=`awk 'NR==1 { if (/^Amazon Linux AMI/) print "Amazon"; else print $1; }' /etc/system-release`
         export DISTRO_RELEASE=`awk 'NR==1 { print $(NF); }' /etc/system-release`
       else
