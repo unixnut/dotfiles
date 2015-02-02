@@ -94,14 +94,14 @@ else
 endif
 
 " -- window closing --
-" <C-F3>
+" <C-F3> -- close all other windows
 imap <Esc>O1;5R <C-O><C-W>o
 map  <Esc>O1;5R <C-W>o
 " (PuTTY)
 imap <Esc>[13~ <C-O><C-W>o
 map  <Esc>[13~ <C-W>o
 
-" <C-F4>
+" <C-F4> -- close this window
 imap <Esc>O1;5S <C-O><C-W>c
 map  <Esc>O1;5S <C-W>c
 " (PuTTY)
@@ -130,16 +130,22 @@ imap <F7> <C-O>:cnext<CR>
 nmap ]E :cnfile<CR>
 nmap <C-S-F7> :cnfile<CR>
 
+" -- tab switching --
+nmap <M-PageUp>   gT
+nmap <M-PageDown> gt
+imap <M-PageDown> <C-O>gt
+imap <M-PageUp>   <C-O>gT
+
 " -- toggles --
 imap <silent> <F8> <C-O>:set wrap!<CR>
 nmap <silent> <F8> :set wrap!<CR>
 
 if $TERM == 'linux'
   imap <Esc>[34~ <C-O>:setlocal spell!<CR>
-  map  <Esc>[34~ :setlocal spell!<CR>
+  nmap <Esc>[34~ :setlocal spell!<CR>
 else
   imap <S-F8> <C-O>:setlocal spell!<CR>
-  map  <S-F8> :setlocal spell!<CR>
+  nmap <S-F8> :setlocal spell!<CR>
 endif
 
 imap <C-F8> <C-O>:set ignorecase!<CR>
@@ -238,7 +244,7 @@ endif
 " == diff ==
 map  <C-F6> [c
 imap <C-F6> <C-O>[c
-nmap <C-F7> ]c
+map  <C-F7> ]c
 imap <C-F7> <C-O>]c
 
 " == spell ==
