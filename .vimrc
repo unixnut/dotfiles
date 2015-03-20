@@ -13,6 +13,8 @@ map Q gq
 imap <C-Z> <C-O><C-Z>
 imap <C-L> <C-O><C-L>
 nmap <silent> g/ :nohlsearch<CR>
+" not useful
+"# nmap <silent> g<C-L> :redrawstatus<CR>
 
 " Make the Do key bring up the ex command prompt:
 map  <F10> :

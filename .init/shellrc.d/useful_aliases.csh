@@ -7,6 +7,7 @@ alias ,v vim -i .viminfo
 # Note: :q substitution in alias history references doesn't work
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
 alias cls ls -lF --color=always '\!:*' \| less -RS
+alias plast last -f /var/log/wtmp.1
 
 # parallel compression tar aliases
 alias pgtar tar --use-compress-program=pigz

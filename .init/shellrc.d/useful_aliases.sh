@@ -28,6 +28,19 @@ function cls
   ls -lF --color=always "$@" | less -RS
 }
 
+# Shows sar output for a given day; default yesterday
+function psar
+{
+  local day=${1-$(date +%d -d yesterday)}
+  if [ $DISTRO_BASE = RedHat ] ; then
+    sar -f /var/log/sa/sa$day | less
+  else
+    sar -f /var/log/sysstat/sa$day | less
+  fi
+}
+
+alias plast='last -f /var/log/wtmp.1'
+
 # parallel compression tar aliases
 alias pgtar='tar --use-compress-program=pigz'
 alias pbtar='tar --use-compress-program=pbzip2'
