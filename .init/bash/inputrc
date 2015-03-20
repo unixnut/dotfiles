@@ -86,8 +86,8 @@ $if term=linux
 "\e[[D":   history-search-forward
 $else
 $if term=putty
-"\e[14~":  history-search-backward
-"\e[15~":  history-search-forward
+"\e[13~":  history-search-backward
+"\e[14~":  history-search-forward
 $else
 # (for gterm)
 "\eOR":    history-search-backward
