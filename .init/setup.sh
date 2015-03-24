@@ -1,5 +1,8 @@
+# == preparation ==
 . .init/lib/functions.sh
 
+
+# == standard variables ==
 export ZONE=`. ~/bin/zone`
 
 export HOST=`hostname --short`
@@ -81,14 +84,26 @@ set_distro_ver_vars()
 set_distro_ver_vars $(ver_split $DISTRO_RELEASE)
 unset -f set_distro_ver_vars
 
+
 # == other useful stuff ==
 if [ -z "$EUID" -a -x /usr/bin/id ]; then
   export EUID=`id -u`
   export UID=`id -ru`
 fi
 
+# -- compatibility --
+# as per csh
+export MACHTYPE=`uname -m`
+
+# -- stuff from UCC dotfiles --
+## export BINARY_TYPE=$HOSTTYPE-$OS
+# This was used under Linux & FreeBSD
+export BINARY_TYPE=$MACHTYPE-$OS
+
+
 # == platform-specific ==
 . .init/$OS.sh
+
 
 # == other ==
 PATH="$HOME/.init/lib:$PATH"
