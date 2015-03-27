@@ -208,7 +208,10 @@ nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
 
 " -- GUI commands --
 " open a new tab
-nmap g<C-T> :tabe<CR>
+nmap g<C-T> :tabedit<CR>
+" C-S-F2: list tabs & buffers
+nmap <Esc>O1;6Q :tabs<CR>
+nmap <C-S-F2> :tabs<CR>
 
 
 " *** Features ***

@@ -1,6 +1,6 @@
 " Run ":runtime syntax/hitest.vim" to see all current groups
 " Run ":runtime syntax/colortest.vim" to see examples of 16 colours
-" Visit http://pln.jonas.me/xterm-colors for all 256 colour and similar X ones
+" Visit http://pln.jonas.me/xterm-colors for all 256 colours and similar X ones
 
 highlight Comment term=bold ctermfg=DarkGreen guifg=#00bb00
 
@@ -11,3 +11,7 @@ highlight helpExample term=reverse ctermfg=111 guifg=SkyBlue2
 highlight Ignore ctermfg=238 guifg=Grey27
 
 "# :highlight link cComment Question
+
+" Break the link to Identifier
+highlight Function term=underline cterm=bold ctermfg=14
+highlight Identifier term=bold ctermfg=150 guifg=DarkSeaGreen3

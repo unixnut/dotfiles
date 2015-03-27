@@ -5,6 +5,7 @@ set expand-tilde on
 # makes escape sequences fail sensibly if they don't have a mapping
 "\e":      skip-csi-sequence
 
+
 # == movement ==
 "\eB":      shell-backward-word
 "\eF":      shell-forward-word
@@ -13,12 +14,14 @@ $if term=putty
 "\eOC":     shell-forward-word
 $endif
 
+
 # == completion ==
 "\C-x\C-i": menu-complete
 "\ei":      menu-complete
 "\e[Z":     menu-complete-backward            # shift-Tab cycles backwards
 "\e[18~":   menu-complete                     # F7 cycles forwards
 "\e[17~":   menu-complete-backward            # F6 cycles backwards
+
 
 # == region & line ==
 "\C-x\C-w": unix-filename-rubout
@@ -27,6 +30,7 @@ $endif
 
 # -- tcsh compatibility --
 "\ew":      copy-region-as-kill
+
 
 # == strings ==
 # to insert Unicode characters, just insert the corresponding bytes
@@ -61,16 +65,26 @@ $endif
 
 # -- dirs --
 "\e[20~":   "popd\n"     # F9
-"\e[20;5~": "pushd "     # C-F9
+$if term=putty
+"\e[33~": " dirs\n"    # S-F9
+$else
 "\e[20;2~": " dirs\n"    # S-F9
+"\e[20;5~": "pushd "     # C-F9
 "\e[20;6~": "pushd ~\n"  # C-S-F9
+$endif
 
 # -- other --
 "\e[19~":   "locate "    # F8
+$if term=putty
+# need to protect S-F1
+$else
 "\e[23~":   'find . \( -name YYYYY -o -name ZZZZZ \) -prune -o -type f -print0 | xargs -0 '    # F11
 "\e[23;5~": "find . -type f -print0 | xargs -0 -I '{}' mkdir -p '{}/YYYYY'"    # C-F11
-## "\e": ""    # F
+$endif
 "\e[24~":   " sudo -v\n"  # F12
+
+## "\e": ""    # F
+
 
 # == history ==
 # mappings for "page up" and "page down" to step to the beginning/end
@@ -121,6 +135,7 @@ $else
 "\e[15;5~": non-incremental-reverse-search-history-again   # C-F5 searches backwards again
 "\e[15;6~": non-incremental-forward-search-history-again   # C-S-F5 searches forwards again
 $endif
+
 
 # == miscellaneous tcsh compatibility ==
 # note: both of these replace existing (crappy) bindings
