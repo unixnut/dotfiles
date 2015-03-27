@@ -99,16 +99,12 @@ endif
 " <C-F3> -- close all other windows
 imap <Esc>O1;5R <C-O><C-W>o
 map  <Esc>O1;5R <C-W>o
-" (PuTTY)
-imap <Esc>[13~ <C-O><C-W>o
-map  <Esc>[13~ <C-W>o
+" (PuTTY has no key code)
 
 " <C-F4> -- close this window
 imap <Esc>O1;5S <C-O><C-W>c
 map  <Esc>O1;5S <C-W>c
-" (PuTTY)
-imap <Esc>[14~ <C-O><C-W>c
-map  <Esc>[14~ <C-W>c
+" (PuTTY has no key code)
 
 " <C-S-F4>
 imap <Esc>O1;6S <C-O>:bunload<CR>
