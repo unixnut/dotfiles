@@ -46,5 +46,13 @@ alias pgtar='tar --use-compress-program=pigz'
 alias pbtar='tar --use-compress-program=pbzip2'
 alias pxtar='tar --use-compress-program=pixz'
 
+# Use the whole command line as a date description
+# (For %d/%m/%y run "date +%x")
+shortdate()
+{
+  date -d "$*" +%d/%m/%Y
+}
+
+
 # == tcsh equivalents ==
 alias ls-F='ls -F'
