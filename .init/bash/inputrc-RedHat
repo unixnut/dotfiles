@@ -1,3 +1,4 @@
+$include ~/.init/bash/inputrc
 $if Bash
 "\ei":  "sudo yum install "
 "\ex":  "sudo yum erase "
