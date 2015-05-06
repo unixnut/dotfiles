@@ -1,0 +1,14 @@
+$if Bash
+"\ei":  "sudo aptitude install "
+"\eI":  "sudo aptitude install --without-recommends "
+"\ex":  "sudo aptitude remove "
+"\eX":  "sudo aptitude purge "
+"\es":  "apt-cache search "
+"\eS":  "apt-cache search -n "
+"\eq":  "apt-cache show "
+"\eQ":  "aptitude show "
+"\eR":  "sudo apt-get update"
+"\eU":  "sudo aptitude safe-upgrade"
+## "\e":  ""
+$endif
+# vim: set filetype=readline :

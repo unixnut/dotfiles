@@ -26,7 +26,11 @@ export PROMPT_DIRTRIM=4
 if [ -s $HOME/.inputrc ]; then
   export INPUTRC=$HOME/.inputrc
 else
-  export INPUTRC=~/.init/bash/inputrc
+  if [ -s ~/.init/bash/inputrc-$DISTRO_BASE ]; then
+    export INPUTRC=~/.init/bash/inputrc-$DISTRO_BASE
+  else
+    export INPUTRC=~/.init/bash/inputrc
+  fi
 fi
 
 # == tweaks for .bashrc ==

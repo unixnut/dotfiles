@@ -1,0 +1,10 @@
+$if Bash
+"\ei":  "sudo yum install "
+"\ex":  "sudo yum erase "
+"\es":  "yum search "
+## "\eS":  "apt-cache search -n "
+"\eq":  "yum info "
+"\eU":  "sudo yum update"
+## "\e":  ""
+$endif
+# vim: set filetype=readline :
