@@ -98,7 +98,8 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]2;:fs=\007:ds=\E]2;\007
 # (See RedHat's /etc/screenrc on line 80.)
 #
 # with:
-#   + Soft terminal reset (DECSTR) [default]
+#   + Set Scrolling Region (DECSTBM) [jw]
+#   + default colours [jw] [jw]
 #   + DEC Private Mode Set (DECSET):
 #     - Wraparound Mode (DECAWM) [jw]
 #   + DEC Private Mode Reset (DECRST):
@@ -108,17 +109,19 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]2;:fs=\007:ds=\E]2;\007
 #   + Reset Mode (RM):
 #     - Replace Mode (IRM)
 # without:
-#   + Set Scrolling Region (DECSTBM) [jw]
-#   + default colours [jw] [jw]
+#   + Soft terminal reset (DECSTR) [default] -- screws up altscreen on screen v4.0.3-14
 #   + Erase in Display (ED): Erase All [jw]
 #   + Cursor Position [1,1] (CUP) [jw]
 #   + DEC Private Mode Reset (DECRST):
 #     - 80 Column Mode (DECCOLM) [default]
-#     - Normal Cursor Mode (DECOM) -- this causes cursor reposition to [1,1]
+#     - Normal Cursor Mode (DECOM) -- this causes cursor reposition to [1,1] on screen v4.1
 #   + Normal Keypad (DECPNM) [default]
-termcapinfo xterm* is=\E[!p\E[?7h\E[?1;4;66l\E[4l\E>
+termcapinfo xterm* is=\E[r\E[m\E[?7h\E[?1;4;66l\E[4l
 # terminfo default:
 ## termcapinfo xterm* is=\E[!p\E[?3;4l\E[4l\E>
+# jw, i.e. Debian:
+## termcapinfo xterm* is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
+
 
 # -- from RedHat --
 # Make the output buffer large for (fast) xterms.
