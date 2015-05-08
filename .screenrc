@@ -25,16 +25,19 @@ defscrollback 3000
 #
 ## bind ^B eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
 
+
 # == Keybindings ==
 # shifted left-arrow key
 bindkey -k \#4 prev
 # shifted right-arrow key
 bindkey -k %i  next
 
+
 # == backticks ==
 # Generates equivalent of $STY followed by "on $HOST" if $STY is non-standard.
 # (Checks only the first word of $HOST, in case it's a FQDN.)
 backtick 10 60 60 sh -c 'sty=$(screen -ls | grep --color=no -o "$PPID[^[:space:]]*") ; if [ ${sty##*.} = ${HOST%%.*} ] ; then echo $sty ; else echo "$sty on ${HOST%%.*}" ; fi'
+
 
 # == hardstatus ==
 hardstatus on
@@ -87,27 +90,40 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]2;:fs=\007:ds=\E]2;\007
 # screen -t 40 2 rlogin server
 
 
-# == Other Stuff ==
-# -- from RedHat --
-# emulate .logout message
-pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
+# == Terminfo ==
+# -- Change the xterm initialization string --
+# The one on line 80 of Debian's /etc/screenrc is broken;
+# see [default] in without section below.
+# Not Debian's fault: this was taken from upstream, credited to "jw"
+# (See RedHat's /etc/screenrc on line 80.)
+#
+# with:
+#   + Soft terminal reset (DECSTR) [default]
+#   + DEC Private Mode Set (DECSET):
+#     - Wraparound Mode (DECAWM) [jw]
+#   + DEC Private Mode Reset (DECRST):
+#     - Normal Cursor Keys (DECCKM)
+#     - Jump (Fast) Scroll (DECSCLM) [jw, default]
+#     - Numeric keypad (DECNKM)
+#   + Reset Mode (RM):
+#     - Replace Mode (IRM)
+# without:
+#   + Set Scrolling Region (DECSTBM) [jw]
+#   + default colours [jw] [jw]
+#   + Erase in Display (ED): Erase All [jw]
+#   + Cursor Position [1,1] (CUP) [jw]
+#   + DEC Private Mode Reset (DECRST):
+#     - 80 Column Mode (DECCOLM) [default]
+#     - Normal Cursor Mode (DECOM) -- this causes cursor reposition to [1,1]
+#   + Normal Keypad (DECPNM) [default]
+termcapinfo xterm* is=\E[!p\E[?7h\E[?1;4;66l\E[4l\E>
+# terminfo default:
+## termcapinfo xterm* is=\E[!p\E[?3;4l\E[4l\E>
 
+# -- from RedHat --
 # Make the output buffer large for (fast) xterms.
 #termcapinfo xterm* OL=10000
 termcapinfo xterm* OL=100
-
-# make the shell in every window a login shell
-## shell -$SHELL
-
-# This is how one can set a reattach password:
-## password ODSJQf.4IJN7E    # "1234"
-
-## blankerprg rain -d 100
-## idle 30 blanker
-
-## caption always "%3n %t%? @%u%?%? [%h]%?%=%c"
-# alternative caption, gives window list, LOGNAME and current date:
-## caption always "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %=%{mk}@%H %{yk}%D %{ck}%M%{wk} %{ck}%d %{gk}%c"
 
 # Capabilities:
 # G0 	we have a SEMI-GRAPHICS-CHARACTER-MODE
@@ -127,6 +143,8 @@ termcapinfo xterm* OL=100
 # nx    terminal uses xon/xoff
 
 # emulate part of the 'K' charset
+# (this aapears to be a non-standard termcap sequence; see
+# https://www.gnu.org/software/screen/manual/html_node/Termcap.html )
 termcapinfo xterm* 'XC=K%,%\E(B,[\304,\\\\\326,]\334,{\344,|\366,}\374,~\337'
 
 ## # xterm-52 tweaks:
@@ -150,19 +168,31 @@ termcapinfo linux|Eterm C8
 # This one would not add lines to the scrollback buffer.
 ## termcapinfo xterm|xterms|xs ti=\E7\E[?47l
 
-
-# == Stuff missing from RedHat's /etc/screenrc ==
 # -- from Debian --
-
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
 
-# Change the xterm initialization string from is2=\E[!p\E[?3;4l\E[4l\E>
-# (This fixes the "Aborted because of window size change" konsole symptoms found
-#  in bug #134198)
-# we do not want the width to change to 80 characters on startup
-termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 
+# == Other Stuff ==
+# -- from RedHat --
+# emulate .logout message
+pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
+
+# make the shell in every window a login shell
+## shell -$SHELL
+
+# This is how one can set a reattach password:
+## password ODSJQf.4IJN7E    # "1234"
+
+## blankerprg rain -d 100
+## idle 30 blanker
+
+## caption always "%3n %t%? @%u%?%? [%h]%?%=%c"
+# alternative caption, gives window list, LOGNAME and current date:
+## caption always "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %=%{mk}@%H %{yk}%D %{ck}%M%{wk} %{ck}%d %{gk}%c"
+
+
+# == Stuff missing from RedHat's /etc/screenrc ==
 # To get screen to add lines to xterm's scrollback buffer, uncomment the
 # following termcapinfo line which tells xterm to use the normal screen buffer
 # (which has scrollback), not the alternate screen buffer.
