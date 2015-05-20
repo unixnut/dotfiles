@@ -111,9 +111,15 @@ macro attach w "^E^Utext/plain; charset=cp1251^M"
 ## bind editor <Delete> backspace
 ## bind editor "\e[3~" delete-char
 
-# supported since v1.5.20 or earlier
-bind editor <C-Right> forward-word
-bind editor <C-Left> backward-word
+# Supported since v1.5.21 and later.
+# Breaks under earlier versions (treated as text)
+# TO-DO: put these in bindings-new and conditionally include that instead of bindings
+#        (don't forget to include the latter in the former)
+## bind editor <C-Right> forward-word
+## bind editor <C-Left>  backward-word
+
+# Escape sequences for C-Left/Right don't work under v1.5.20 or earlier, so
+# there's no point having them here
 
 # -- PuTTY --
 bind editor "\eOC" forward-word
