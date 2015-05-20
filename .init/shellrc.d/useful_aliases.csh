@@ -17,3 +17,6 @@ alias pxtar tar --use-compress-program=pixz
 # Use the whole command line as a date description
 # (For %d/%m/%y run "date +%x")
 alias shortdate "date -d '\!:*' +%d/%m/%Y"
+
+# avoid wrapping by removing text beyond the width of the screen
+alias chop 'cut -c1-$COLUMNS'

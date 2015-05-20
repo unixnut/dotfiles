@@ -1,0 +1,86 @@
+#! /bin/sh
+#  (BASH script) -- wrapper for useradd that manages SSH public key
+#
+# Version: 
+# Copyright: (c)2015 Alastair Irvine <alastair@plug.org.au>
+# Keywords: 
+# Notice: 
+# Licence: This file is released under the GNU General Public License
+#
+# Description:
+#   
+#
+# Usage: 
+# Options:
+#   
+#
+# Licence details:
+#     This program is free software; you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation; either version 2 of the License, or (at
+#     your option) any later version.
+#
+#     See http://www.gnu.org/licenses/gpl-2.0.html for more information.
+#
+#     You can find the complete text of the GPLv2 in the file
+#     /usr/share/common-licenses/GPL-2 on Debian systems.
+#     Or see the file COPYING in the same directory as this program.
+#
+#
+# TO-DO:
+
+
+self=`basename "$0"`
+allowed_options=vh
+allowed_long_options=help,verbose
+
+
+# *** FUNCTIONS ***
+show_help()
+{
+  cat << EOT_HELP
+EOT_HELP
+}
+
+
+# *** MAINLINE ***
+# == command-line parsing ==
+# -- defaults --
+debug=0
+verbose=0
+
+# -- option handling --
+set -e
+orthogonal_opts=$(getopt --shell=sh --name=$self \
+  --options=+$allowed_options --longoptions=$allowed_long_options -- "$@")
+eval set -- "$orthogonal_opts"
+set +e      # getopt would have already reported the error
+
+while [ x"$1" != x-- ] ; do
+  case "$1" in
+    -d) debug=$((debug + 1)) ;;
+    -v|--verbose) verbose=$((verbose + 1)) ;;
+    -h|--help) show_help ; exit ;;
+    -1) echo "${self}: Warning: Blah blah blah feature unsupported" >&2 ;;
+  esac
+  shift       # get rid of the option (or its arg if the inner shift already got rid it)
+done
+shift       # get rid of the "--"
+
+# -- argument checking --
+## if [ $# != 2 -a $# != 3 ] ; then
+##   ## echo "Usage: $self ..." >&2
+##   show_help >&2
+##   exit 1
+## fi
+
+# -- argument handling --
+
+
+# == sanity checking ==
+
+
+# == preparation ==
+
+
+# == processing ==

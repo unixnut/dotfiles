@@ -53,6 +53,9 @@ shortdate()
   date -d "$*" +%d/%m/%Y
 }
 
+# avoid wrapping by removing text beyond the width of the screen
+alias chop='cut -c1-$COLUMNS'
+
 
 # == tcsh equivalents ==
 alias ls-F='ls -F'
