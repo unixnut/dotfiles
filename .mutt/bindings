@@ -30,14 +30,14 @@ bind generic <F12> what-key
 
 # == Index screen ==
 bind index "\e<" first-entry	# emacs-like bindings for moving to top/bottom
-bind index \e> last-entry
+bind index "\e>" last-entry
 bind index { top-page
 bind index } bottom-page
 bind index <Delete> last-entry
 bind index G last-entry
-bind index \Co next-unread
+bind index "\Co" next-unread
 bind index <backtab> previous-new-then-unread
-bind index \e[Z previous-new-then-unread   # Shift-Tab (needed because sequence is not in terminfo)
+bind index "\e[Z" previous-new-then-unread   # Shift-Tab (needed if sequence is not in terminfo)
 bind index <F3> previous-thread
 bind index <F4> next-thread
 bind index <F6> previous-unread
@@ -56,7 +56,7 @@ bind index <F36> toggle-new # C-F12
 bind index N search-opposite
 bind index <Delete> delete-message
 ## bind index <Insert> tag-message
-macro index \eL "l~A^M"         # remove limit
+macro index "\eL" "l~A^M"         # remove limit
 
 #macro index \# /bug^M	# search for bugs
 #macro index "\""	 ":set realname=\"real hairy macro\"^M:set ?realname^M" # and a comment to boot!
@@ -75,7 +75,7 @@ bind pager > next-line		       # like in the index
 bind pager < previous-line	       # like in the index
 bind pager \Co next-unread
 bind pager <backtab> previous-new-then-unread
-bind pager \e[Z previous-new-then-unread   # Shift-Tab (needed because sequence is not in terminfo)
+bind pager "\e[Z" previous-new-then-unread   # Shift-Tab (needed because sequence is not in terminfo)
 bind pager <F3> previous-thread
 bind pager <F4> next-thread
 bind pager <F6> previous-unread
@@ -109,16 +109,13 @@ macro attach w "^E^Utext/plain; charset=cp1251^M"
 
 # these appear to be unnecessary with normal stty settings
 ## bind editor <Delete> backspace
-## bind editor \e[3~ delete-char
+## bind editor "\e[3~" delete-char
 
-#
-bind editor \e[1\;5C forward-word
-bind editor \e[1\;5D backward-word
-bind editor \e[5C forward-word
-bind editor \e[5D backward-word
-bind editor \e\e[C forward-word
-bind editor \e\e[D backward-word
+# supported since v1.5.20 or earlier
+bind editor <C-Right> forward-word
+bind editor <C-Left> backward-word
+
 # -- PuTTY --
-bind editor \eOC forward-word
-bind editor \eOD backward-word
-bind editor \e[5~ eol	# make End jump to the end of the line
+bind editor "\eOC" forward-word
+bind editor "\eOD" backward-word
+bind editor "\e[5~" eol	# make End jump to the end of the line
