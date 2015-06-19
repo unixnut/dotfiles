@@ -182,7 +182,12 @@ map  <Space> <PageDown>
 
 " == Strings ==
 " Note that this makes a delay before the regular Ctrl-X options show up
-imap <C-X>% <C-R>=expand("%:t")<CR>
+"# imap <C-X>% <C-R>=expand("%:t")<CR>
+inoremap <expr> <C-X>% expand("%:t")
+
+" an argument could be made for using &tabstop here
+inoremap <expr> <S-Tab> repeat("\<BS>", &shiftwidth)
+
 
 " == other ==
 " Commands to delete a quoted message's signature and go into insert mode:
@@ -205,6 +210,9 @@ imap <C-F5> <C-O>n
 map  <C-S-F5> N
 imap <C-S-F5> <C-O>N
 nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
+" search for whitespace at EOL
+" FIXME: no match returns 0, which goes to EOF
+nmap <expr> <Nul> search('[ \t]$') . "G"
 
 " -- GUI commands --
 " open a new tab

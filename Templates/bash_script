@@ -1,11 +1,11 @@
 #! /bin/sh
 #  (BASH script) -- wrapper for useradd that manages SSH public key
 #
-# Version: 
+# Version:   
 # Copyright: (c)2015 Alastair Irvine <alastair@plug.org.au>
-# Keywords: 
-# Notice: 
-# Licence: This file is released under the GNU General Public License
+# Keywords:  
+# Notice:    
+# Licence:   This file is released under the GNU General Public License
 #
 # Description:
 #   

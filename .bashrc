@@ -90,10 +90,12 @@ fi
 # Only do this if running interactively
 if [ -n "$PS1" ] ; then
   # enable programmable completion features
-  # (TO-DO: don't enable this, if it's already enabled in /etc/bash.bashrc
-  # and /etc/profile sources /etc/bash.bashrc).
-  if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-      . /etc/bash_completion
+  # (This is done by /etc/profile.d/bash_completion.sh (which runs even under
+  # SSH) but of course it will still need to be done for subshells.)
+  if [ \( ! -f /etc/profile.d/bash_completion.sh -o $SHLVL -ne 1 \) -a \
+       -f /etc/bash_completion ] && ! shopt -oq posix
+  then
+    . /etc/bash_completion
   fi
 fi
 
