@@ -12,7 +12,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-. .init/setup.sh
+. ~/.init/setup.sh
 
 # if running bash, source stuff that will be skipped by a login shell
 # (Skip this if being sourced by /etc/gdm/Xsession or /etc/X11/Xsession.)

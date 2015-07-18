@@ -27,10 +27,10 @@ defscrollback 3000
 
 
 # == Keybindings ==
-# shifted left-arrow key
-bindkey -k \#4 prev
-# shifted right-arrow key
-bindkey -k %i  next
+# alt left-arrow key
+bindkey ^[[1;3D prev
+# alt right-arrow key
+bindkey ^[[1;3C next
 
 
 # == backticks ==
