@@ -3,7 +3,7 @@
 
 
 # == standard variables ==
-export ZONE=`. ~/bin/zone`
+export ZONE=`. ~/bin/zone || echo unknown`
 
 export HOST=`hostname --short`
 

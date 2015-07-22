@@ -3,7 +3,9 @@
 # for examples
 
 # *** My preparation ***
-if [ -z "$HOST" ] ; then
+# Older versions of SSH don't run the shell with the --login option,
+# so .profile might not have been sourced
+if [ -z "$OS" ] ; then
   # Assume there is an SSH connection, therefore not a login shell
   . ~/.init/setup.sh
 fi

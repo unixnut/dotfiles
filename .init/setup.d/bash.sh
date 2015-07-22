@@ -1,3 +1,6 @@
+# Force loading of .bashrc, even when non-interactive (see INVOCATION in bash(1))
+export BASH_ENV=$HOME/.bashrc
+
 # don't put duplicate lines in the history. See bash(1) for more options
 ## # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
 ## HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
