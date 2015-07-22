@@ -270,6 +270,15 @@ else
 endif
 
 
+" *** Functions and commands to use them ***
+if exists("*function")
+  " :Rename
+  runtime include/rename4.vim
+  " :BDE
+  runtime include/bde.vim
+endif
+
+
 " *** Settings ***
 set formatprg=
 set nobackup         " don't keep a backup file
@@ -319,7 +328,7 @@ nmap <silent> <S-F12> :set readonly!<CR>
 if exists("*function")
   nmap <C-S-F12> :call Mousetoggle()<CR>
   imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
-  function Mousetoggle()
+  function! Mousetoggle()
     if &mouse == ""
       set mouse=a
     else
