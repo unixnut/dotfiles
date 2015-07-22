@@ -1,4 +1,5 @@
 # when running a remote terminal emulator, run "setup_user_vars" first
+# (X_LOGIN is set in .gnomerc, etc. and is equivalent to '-n "$DISPLAY" -a -z "$TERM"')
 if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
   setup_user_vars()
   {
@@ -21,9 +22,14 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     # For GNU ls, see /usr/bin/dircolors test in .init/setup.d/bash.sh
 
     export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
+
+    # == stuff from other .init/setup.d files
+    setup_user_vars_less
   }
 
   # Only run it if not using non-interactive SSH
+  # (Don't use "-t 0" because this might be running during X Windows session
+  # initialisation.)
   if [ "$TERM" != dumb ] ; then
     setup_user_vars
   fi
