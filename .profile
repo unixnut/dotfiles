@@ -16,6 +16,7 @@
 
 # if running bash, source stuff that will be skipped by a login shell
 # (Skip this if being sourced by /etc/gdm/Xsession or /etc/X11/Xsession.)
+# TO-DO: test for X_LOGIN=y instead?
 if [ -n "$BASH_VERSION" -a ! "$PROGNAME" = Xsession ]; then
   # source /etc/bash.bashrc if necessary (/etc/profile doesn't source it
   # in releases prior to wheezy)
