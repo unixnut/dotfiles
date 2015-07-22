@@ -1,11 +1,32 @@
-# -- general setup --
-if [ -n "$(type -p vim)" ] ; then
-  export VISUAL=vim
-elif [ -n "$(type -p vi)" ] ; then
-  export VISUAL=vi
-fi
-if [ -d ~/lisp/Zones/$ZONE ] ; then
-  export EMACS_ZONEDIR=$HOME/lisp/Zones/$ZONE
+# when running a remote terminal emulator, run "setup_user_vars" first
+if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
+  setup_user_vars()
+  {
+    # -- general setup --
+    if [ -n "$(type -p vim)" ] ; then
+      export VISUAL=vim
+    elif [ -n "$(type -p vi)" ] ; then
+      export VISUAL=vi
+    fi
+    if [ -d ~/lisp/Zones/$ZONE ] ; then
+      export EMACS_ZONEDIR=$HOME/lisp/Zones/$ZONE
+    fi
+
+    # Midnight Commander needs this to run in color mode
+    export COLORTERM=1
+
+    # FreeBSD ls needs this to run in color mode
+    export CLICOLOR=y
+
+    # For GNU ls, see /usr/bin/dircolors test in .init/setup.d/bash.sh
+
+    export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
+  }
+
+  # Only run it if not using non-interactive SSH
+  if [ "$TERM" != dumb ] ; then
+    setup_user_vars
+  fi
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -29,16 +50,6 @@ export PYTHONPATH=$HOME/bin
 
 export CVS_RSH=`which ssh`
 
-# Midnight Commander needs this to run in color mode
-export COLORTERM=1
-
-# FreeBSD ls needs this to run in color mode
-export CLICOLOR=y
-
-# For GNU ls, see /usr/bin/dircolors test in .init/setup.d/bash.sh
-
-export MOZ_PLUGIN_PATH=/usr/local/lib/browser-plugins
-
 # -- cool grep options --
 # check version number (e.g. GNU grep 2.5.3)
 set_grep_vars()
@@ -61,7 +72,7 @@ unset ver
 unset -f set_grep_vars
 
 # -- X11 setup --
-if [ -d "$HOME/.app-defaults" ] ; then
+if [ -n "$DISPLAY" -a -d "$HOME/.app-defaults" ] ; then
   export XUSERFILESEARCHPATH="$HOME/.app-defaults/%N%C:$HOME/.app-defaults/%N"
 fi
 
