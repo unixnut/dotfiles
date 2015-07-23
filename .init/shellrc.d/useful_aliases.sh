@@ -2,7 +2,10 @@ function time_t
 {
   date --rfc-2822 --date=@$1
 }
+
+
 alias hexdump='od -tx1 '
+
 
 # changes the name of a file without moving it to a different directory
 function ren
@@ -11,22 +14,34 @@ function ren
   mv "$1" "$destdir/$2"
 }
 
+
 function ovpn
 {
   sudo openvpn --cd /etc/openvpn --config $1 --verb 5
 }
 
+
 alias .v="vim -i .viminfo"
+
+
 # Note that environment variables make grep use colour by default for a terminal
 function cgrep
 {
   grep -Rn --color=yes "$@" | less -R
 }
 
+
 function cls
+{
+  ls -FC --color=always "$@" | less -RS
+}
+
+
+function clls
 {
   ls -lF --color=always "$@" | less -RS
 }
+
 
 # Shows sar output for a given day; default yesterday
 function psar
@@ -39,6 +54,7 @@ function psar
   fi
 }
 
+
 alias plast='last -f /var/log/wtmp.1'
 
 # parallel compression tar aliases
@@ -46,12 +62,14 @@ alias pgtar='tar --use-compress-program=pigz'
 alias pbtar='tar --use-compress-program=pbzip2'
 alias pxtar='tar --use-compress-program=pixz'
 
+
 # Use the whole command line as a date description
 # (For %d/%m/%y run "date +%x")
 shortdate()
 {
   date -d "$*" +%d/%m/%Y
 }
+
 
 # avoid wrapping by removing text beyond the width of the screen
 alias chop='cut -c1-$COLUMNS'

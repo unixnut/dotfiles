@@ -6,7 +6,8 @@ alias ,v vim -i .viminfo
 # Note that environment variables make grep use colour by default for a terminal
 # Note: :q substitution in alias history references doesn't work
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
-alias cls ls -lF --color=always '\!:*' \| less -RS
+alias cls ls -FC --color=always '\!:*' \| less -RS
+alias clls ls -lF --color=always '\!:*' \| less -RS
 alias plast last -f /var/log/wtmp.1
 
 # parallel compression tar aliases

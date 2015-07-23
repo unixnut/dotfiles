@@ -209,8 +209,9 @@ map  <C-F5> n
 imap <C-F5> <C-O>n
 map  <C-S-F5> N
 imap <C-S-F5> <C-O>N
+" search for non-printing characters [Ctrl-/ (or ^_, i.e. Ctrl-shift--)]
 nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
-" search for whitespace at EOL
+" search for whitespace at EOL [Ctrl-space (or ^@, i.e. Ctrl-shift-2)]
 " FIXME: no match returns 0, which goes to EOF
 nmap <expr> <Nul> search('[ \t]$') . "G"
 
