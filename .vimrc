@@ -221,6 +221,39 @@ nmap g<C-T> :tabedit<CR>
 " C-S-F2: list tabs & buffers
 nmap <Esc>O1;6Q :tabs<CR>
 nmap <C-S-F2> :tabs<CR>
+nmap <Esc>1 1gt
+nmap <Esc>2 2gt
+nmap <Esc>3 3gt
+nmap <Esc>4 4gt
+nmap <Esc>5 5gt
+nmap <Esc>6 6gt
+nmap <Esc>7 7gt
+nmap <Esc>8 8gt
+nmap <Esc>9 9gt
+nmap <Esc>0 10gt
+
+if exists("*function")
+  " can't use <expr> because that can't handle a count
+  " have to use the <C-U> to avoid passing the count to :call
+  nmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
+
+  let g:previous_tab = 1
+  " When no count is supplied, switch to the previous tab where this function
+  " was called.  When a count is supplied, act like "gt".
+  " (Note that "gt" effectively forgets the current tab, so afterwards, this
+  " function without a count will go back to the previous-previous tab.)
+  function! JumpBetweenTabs(count)
+    if a:count > 0
+      let g:previous_tab = tabpagenr()
+      exe ":tabn" a:count
+    else
+      " have to figure things out first, because :exe must happen last
+      let l:new_tab = g:previous_tab
+      let g:previous_tab = tabpagenr()
+      exe ":tabn" l:new_tab
+    endif
+  endfunction
+endif
 
 
 " *** Features ***
