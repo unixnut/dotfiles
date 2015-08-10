@@ -63,7 +63,7 @@ while [ x"$1" != x-- ] ; do
     -h|--help) show_help ; exit ;;
     -1) echo "${self}: Warning: Blah blah blah feature unsupported" >&2 ;;
   esac
-  shift       # get rid of the option (or its arg if the inner shift already got rid it)
+  shift     # get rid of option (or if the inner shift already did, get rid of arg)
 done
 shift       # get rid of the "--"
 

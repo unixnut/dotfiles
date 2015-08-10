@@ -14,7 +14,9 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     fi
 
     # Midnight Commander needs this to run in color mode
-    export COLORTERM=1
+    if [ -z "$COLORTERM" ] ; then
+      export COLORTERM=1
+    fi
 
     # FreeBSD ls needs this to run in color mode
     export CLICOLOR=y
