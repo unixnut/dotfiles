@@ -4,9 +4,12 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
   setup_user_vars()
   {
     # -- general setup --
-    if [ -n "$(type -p vim)" ] ; then
+    # dash "type" doesn't support -p, so test exit code and throw away output
+    if type vim > /dev/null 2>&1
+    then
       export VISUAL=vim
-    elif [ -n "$(type -p vi)" ] ; then
+    elif type vi > /dev/null 2>&1
+    then
       export VISUAL=vi
     fi
     if [ -d ~/lisp/Zones/$ZONE ] ; then
