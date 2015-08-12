@@ -71,6 +71,7 @@ if ($?prompt) then
 
   # -- other --
   bindkey -s "\e[19~" "locate "     # F8
+  bindkey -s "\e[24~" "sudo -v\n"  # F12
 
   # == history ==
   # -- search based on starting contents of line --
