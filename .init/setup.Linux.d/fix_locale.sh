@@ -8,6 +8,6 @@ elif [ -r /etc/sysconfig/i18n ]; then
 fi
 
 # now hack it to remove the UTF-8 suffix if on a Linux console
-if [ $TERM = linux ] ; then
+if [ "$TERM" = linux ] ; then
   export LANG=${LANG%.UTF-8}
 fi
