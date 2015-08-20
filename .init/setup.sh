@@ -10,7 +10,8 @@ export HOST=`hostname --short`
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
 # also set DISTRO_CODENAME (only useful for Debian/Ubuntu)
 export OS=`uname`
-if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a -r /etc/lsb-release ] ; then
+if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a \
+     \( -r /etc/lsb-release -o -r /etc/dpkg/origins/default \) ] ; then
   export DISTRO=`lsb_release --id --short | sed 's/ LINUX//'`
   export DISTRO_CODENAME=`lsb_release --codename --short`
   export DISTRO_RELEASE=`lsb_release --release --short`
