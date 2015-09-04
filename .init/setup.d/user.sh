@@ -82,6 +82,10 @@ fi
 unset ver
 unset -f set_grep_vars
 
+# default for GNU ls --time-style option
+# (replaces ugly "Mar 31 01:52"/"Mar  3  2015" format with "2013-02-22 15:56")
+export TIME_STYLE=long-iso
+
 # -- X11 setup --
 if [ -n "$DISPLAY" -a -d "$HOME/.app-defaults" ] ; then
   export XUSERFILESEARCHPATH="$HOME/.app-defaults/%N%C:$HOME/.app-defaults/%N"
