@@ -15,9 +15,7 @@ if ($?prompt) then
   # but do add some extras
   bindkey '^X^I' complete-word-fwd            # cycles through file list
   bindkey '\311' complete-word-fwd            # so does M-i...
-  bindkey '^[i' complete-word-fwd
   bindkey '\351' complete-word-fwd            # ...and M-I
-  bindkey '^[I' complete-word-fwd
   bindkey '^[[Z' complete-word-back           # shift-Tab cycles backwards
   bindkey '^[[18~' complete-word-fwd          # F7 cycles forwards
   bindkey '^[[17~' complete-word-back         # F6 cycles backwards

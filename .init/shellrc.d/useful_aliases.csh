@@ -8,6 +8,7 @@ alias ,v vim -i .viminfo
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
 alias cls ls -FC --color=always '\!:*' \| less -RS
 alias clls ls -lF --color=always '\!:*' \| less -RS
+alias cllls ls -lF --color=always --time-style=full-iso '\!:*' \| less -RS
 alias plast last -f /var/log/wtmp.1
 
 # parallel compression tar aliases

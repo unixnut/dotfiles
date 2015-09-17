@@ -43,6 +43,12 @@ function clls
 }
 
 
+function cllls
+{
+  ls -lF --color=always --time-style=full-iso "$@" | less -RS
+}
+
+
 # Shows sar output for a given day; default yesterday
 function psar
 {
