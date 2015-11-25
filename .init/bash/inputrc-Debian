@@ -1,15 +1,29 @@
 $include ~/.init/bash/inputrc
+
 $if Bash
 "\ei":  "sudo aptitude install "
 "\eI":  "sudo aptitude install --without-recommends "
+
+# mnemonic: "eXpunge"
 "\ex":  "sudo aptitude remove "
 "\eX":  "sudo aptitude purge "
+
 "\es":  "apt-cache search "
 "\eS":  "apt-cache search -n "
+
+# mnemonic: "query"
 "\eq":  "apt-cache show "
 "\eQ":  "aptitude show "
-"\eR":  "sudo apt-get update"
+
+# mnemonic: "origin"
+"\eo":  "apt-cache policy "
+
+# mnemonic: "refresh"
+"\eR":  "sudo apt-get update\n"
+
 "\eU":  "sudo aptitude safe-upgrade"
 ## "\e":  ""
 $endif
+
+
 # vim: set filetype=readline :

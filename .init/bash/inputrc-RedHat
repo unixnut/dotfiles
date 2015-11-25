@@ -1,11 +1,23 @@
 $include ~/.init/bash/inputrc
+
 $if Bash
 "\ei":  "sudo yum install "
+
+# mnemonic: "eXpunge"
 "\ex":  "sudo yum erase "
+
 "\es":  "yum search "
 ## "\eS":  "apt-cache search -n "
+
+# mnemonic: "query"
 "\eq":  "yum info "
+
+# mnemonic: "origin"
+"\eo":  "yum list "
+
 "\eU":  "sudo yum update"
 ## "\e":  ""
 $endif
+
+
 # vim: set filetype=readline :

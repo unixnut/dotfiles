@@ -1,5 +1,6 @@
 " Rename4.vim  -  Rename a buffer within Vim and on disk.
 " Copyright July 2015 by Alastair Irvine <alastair@plug.org.au>
+" TO-DO: handle case where target is a directory
 "
 " based on Rename3.vim (which couldn't handle full paths, i.e. moving the file)
 " Copyright July 2013 by Alex Ehlke <alex.ehlke at gmail.com>

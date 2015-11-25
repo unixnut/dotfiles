@@ -2,7 +2,7 @@
 # NOTE: /etc/csh.cshrc is parsed first
 
 if ($tty != "") then
-  set implicitcd = verbose
+  ## set implicitcd = verbose
 
   # -- command history --
   # avoid re-entering the previous command to the history
