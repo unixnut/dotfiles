@@ -2,19 +2,20 @@
 # the component versions and prints them, e.g. "x y 0" or "x y z", respectively.
 ver_split()
 {
-  local spl major minor pl
+  local ver major minor pl
 
-  export major=${1%%.*}
+  # Chops characters off the end that don't match 0-9 or ".".
+  ver=${1%[^0-9.]*}
+
+  major=${ver%%.*}
+  pl=0
+
   # minor version and patchlevel
-  spl=${1#*.}
-  export minor=${spl%%.*}
-  # If there's no patch level, the remaining string will be the same as the
-  # extracted minor version only. 
-  if [ $spl = $minor ] ; then
-    export pl=0
-  else
-    export pl=${spl#*.}
-  fi
+  case $ver in
+    *.*.*) minor=$(echo "$ver" | sed 's/.*\.\([^.]*\)\..*/\1/') ; pl=${ver##*.} ;;
+    *.*)   minor=${ver#*.} ;;
+    *)     minor=0 ;;
+  esac
 
   echo $major $minor $pl
 }
