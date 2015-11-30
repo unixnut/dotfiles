@@ -15,6 +15,15 @@ if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a \
   export DISTRO=`lsb_release --id --short | sed 's/ LINUX//'`
   export DISTRO_CODENAME=`lsb_release --codename --short`
   export DISTRO_RELEASE=`lsb_release --release --short`
+
+  if [ -n "$DISTRO" ] ; then
+    # Fix Ubuntu flavours
+    case "$DISTRO" in
+      LinuxMint) . ~/.init/mint_setup.sh ;;
+    esac
+  else
+    DISTRO=unknown DISTRO_RELEASE=0
+  fi
 else
   case $OS in
     Linux)
@@ -27,10 +36,11 @@ else
           5.0*) export DISTRO_CODENAME=lenny ;;
           6.0*) export DISTRO_CODENAME=squeeze ;;
           7.*) export DISTRO_CODENAME=wheezy ;;
+          8.*) export DISTRO_CODENAME=jessie ;;
           *)  # anything else is assumed to be a codename
               # (e.g. /etc/debian_version contents is "blah/sid")
               export DISTRO_CODENAME=$DISTRO_RELEASE
-              export DISTRO_RELEASE=8.0.beta 
+              export DISTRO_RELEASE=9.0.beta 
               ;;
         esac
       elif [ -f /etc/redhat-release ] ; then
