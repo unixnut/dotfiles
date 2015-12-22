@@ -1,3 +1,8 @@
+# TO-DO:
+#   + use /etc/os-release
+#   + For Oracle Enterprise Linux, if lsb_release isn't installed check /etc/enterprise-release
+
+
 # == preparation ==
 . .init/lib/functions.sh
 
@@ -10,8 +15,12 @@ export HOST=`hostname --short`
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
 # also set DISTRO_CODENAME (only useful for Debian/Ubuntu)
 export OS=`uname`
+# Before running lsb_release, ensure LSB config files are present to avoid
+# botched output.
+# TO-DO: check whether this is only needed under Debian
 if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a \
-     \( -r /etc/lsb-release -o -r /etc/dpkg/origins/default \) ] ; then
+     \( -r /etc/lsb-release -o -d /etc/lsb-release.d/ -o \
+        -r /etc/dpkg/origins/default \) ] ; then
   export DISTRO=`lsb_release --id --short | sed 's/ LINUX//'`
   export DISTRO_CODENAME=`lsb_release --codename --short`
   export DISTRO_RELEASE=`lsb_release --release --short`
@@ -49,6 +58,7 @@ else
         #   CentOS release 5.8 (Final)
         #   Red Hat Enterprise Linux Server release 5 (Final)
         #   Red Hat Enterprise Linux Server release 5.7 Beta (Tikanga)
+        #   VirtuozzoLinux release 7.0                     -- NOT SUPPORTED!!
         export DISTRO=`awk 'NR==1 { if (/^Red Hat Enterprise Linux Server/) print "RHEL"; else print $1 }' /etc/redhat-release`
         export DISTRO_RELEASE=`awk 'NR==1 { if ($(NF) ~ /^\(/) { if ($(NF-1) == "Beta") print $(NF-2); else print $(NF-1); } else print "b0rk"; }' /etc/redhat-release`
       elif [ -f /etc/system-release ] ; then
@@ -72,16 +82,24 @@ else
 fi
 
 # -- DISTRO_BASE --
-if [ $DISTRO = CentOS -o $DISTRO = RHEL -o $DISTRO = Fedora -o $DISTRO = Amazon ] ; then
-  export DISTRO_BASE=RedHat
-  export DISTRO_CODENAME=unknown
-elif [ $DISTRO = Ubuntu ] ; then
-  export DISTRO_BASE=Debian
-else
-  export DISTRO_BASE=$DISTRO
-fi
+case $DISTRO in
+  # EnterpriseEnterpriseServer is Oracle Enterprise Linux (now called Oracle Linux)
+  CentOS|RHEL|Fedora|Amazon|VirtuozzoLinux|EnterpriseEnterpriseServer|\
+  Scientific*|XenServer|cloudlinux)
+    export DISTRO_BASE=RedHat
+    ## export DISTRO_CODENAME=unknown
+    ;;
 
-if [ -z "$DISTRO_CODENAME" ] ; then
+  Ubuntu)
+    export DISTRO_BASE=Debian
+    ;;
+
+  *)
+    export DISTRO_BASE=$DISTRO
+    ;;
+esac
+
+if [ -z "$DISTRO_CODENAME" -o "$DISTRO_CODENAME" = "n/a" ] ; then
   export DISTRO_CODENAME=unknown
 fi
 
