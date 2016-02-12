@@ -76,6 +76,8 @@ shortdate()
   date -d "$*" +%d/%m/%Y
 }
 
+alias mycal='ncal -bM'
+alias qcal='ncal -bM -3'
 
 # avoid wrapping by removing text beyond the width of the screen
 alias chop='cut -c1-$COLUMNS'
