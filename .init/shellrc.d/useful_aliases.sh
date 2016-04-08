@@ -82,6 +82,11 @@ alias qcal='ncal -bM -3'
 # avoid wrapping by removing text beyond the width of the screen
 alias chop='cut -c1-$COLUMNS'
 
+# delete previous command, one before that, etc.
+alias ,X='history -d $((HISTCMD - 1))'
+alias ,XX='history -d $((HISTCMD - 2))'
+alias ,XXX='history -d $((HISTCMD - 3))'
+
 
 # == tcsh equivalents ==
 alias ls-F='ls -F'
