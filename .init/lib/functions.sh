@@ -5,7 +5,7 @@ ver_split()
   local ver major minor pl
 
   # Chops characters off the end that don't match 0-9 or ".".
-  ver=${1%[^0-9.]*}
+  ver=${1%%[!0-9.]*}
 
   major=${ver%%.*}
   pl=0
