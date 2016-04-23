@@ -78,6 +78,8 @@ shortdate()
 
 alias mycal='ncal -bM'
 alias qcal='ncal -bM -3'
+# vertical display; includes week number
+alias vcal='ncal -wM'
 
 # avoid wrapping by removing text beyond the width of the screen
 alias chop='cut -c1-$COLUMNS'
