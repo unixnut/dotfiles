@@ -66,9 +66,12 @@ export CVS_RSH=`which ssh`
 set_grep_vars()
 {
   # v2.5+
-  if [ $1 -gt 2 -o $1 = 2 -a $2 -ge 5 ] ; then
+  if [ $1 -gt 2 -o \
+       $1 -eq 2 -a $2 -ge 5 ] ; then
     # if the version is >= 2.5.3, use dir exclusions
-    if [ $1 -gt 2 -o $1 = 2 -a $2 -gt 5 -o $1 = 2 -a $2 = 5 -a $3 -ge 3 ] ; then
+    if [ $1 -gt 2 -o \
+         $1 -eq 2 -a $2 -gt 5 -o \
+         $1 -eq 2 -a $2 -eq 5 -a $3 -ge 3 ] ; then
       export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
     fi
 

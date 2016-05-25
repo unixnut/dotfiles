@@ -321,6 +321,7 @@ set nobackup         " don't keep a backup file
 set nowrap sidescroll=1
 set ruler hidden laststatus=2 showcmd
 "# set confirm   " unknown in Vim 5.0
+set foldclose=             " Automatic foldclosing is irritating too
 
 set shortmess=filtoOrmw
 

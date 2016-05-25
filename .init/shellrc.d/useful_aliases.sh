@@ -81,6 +81,8 @@ alias qcal='ncal -bM -3'
 # vertical display; includes week number
 alias vcal='ncal -wM'
 
+alias t=todo.sh
+
 # avoid wrapping by removing text beyond the width of the screen
 alias chop='cut -c1-$COLUMNS'
 
