@@ -1,8 +1,6 @@
 "# setlocal formatoptions-=c formatoptions-=o formatoptions-=r
-setlocal comments-=mb:*
-setlocal comments+=m:\ 
-"# setlocal comments-=s1:/*
-"# setlocal comments+=s2:/*
+" This differs from the default in that the middle lines don't have the extra indent
+setlocal comments=s:/*,mb:*,ex:*/
 
 setlocal shiftwidth=2
 setlocal tabstop=2

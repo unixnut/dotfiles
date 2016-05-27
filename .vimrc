@@ -185,6 +185,7 @@ map  <Space> <PageDown>
 "# imap <C-X>% <C-R>=expand("%:t")<CR>
 inoremap <expr> <C-X>% expand("%:t")
 
+" Does the same as the default ^D
 " an argument could be made for using &tabstop here
 inoremap <expr> <S-Tab> repeat("\<BS>", &shiftwidth)
 
@@ -195,7 +196,15 @@ nmap gr }?^>\ *.<CR>?^>\ *$<CR>?^>\ *.<CR>jc}<CR>
 nmap gR }c?^>\ -- $?<CR><C-U><C-U><CR>
 nmap gz v/^-- <CR>dzbO<CR><CR><Up>
 
-" Useful searching commands:
+" Like o or O, but suppresses auto commend insertion
+" Too complicated to impolement, because:-
+"   1) :normal dumps out of insert mode at completion, which is forced
+"   2) indent from 'autoindent' is virtual and is cleared when leaving insert mode
+"   3) would need to calculate indent for a new line from the previous line
+"   4) have to honour 'smartindent' or 'cindent' (overrides 3)
+"# nmap <silent> go :let saved_fo=&formatoptions \| setlocal formatoptions-=o\|:normal o<C-O>:exe "setlocal formatoptions=" . saved_fo<CR>
+
+" -- Useful searching commands --
 map  <F5> /
 imap <F5> <C-O>/
 if $TERM == 'linux'
