@@ -159,9 +159,9 @@ imap <silent> <C-F10> <C-O>:if &diff \| :diffoff \| :else \| :diffthis \| :endif
 nmap <silent> <C-F10> :if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
 
 " -- Explore --
-nmap <silent> <C-W>e <C-O>:Sexplore<CR>
-nmap <silent> <C-W>E <C-O>:Texplore<CR>
-nmap <silent> g<C-O> <C-O>:Rexplore<CR>
+nmap <silent> <C-W>e :Sexplore<CR>
+nmap <silent> <C-W>E :Texplore<CR>
+nmap <silent> g<C-O> :Rexplore<CR>
 
 
 " -- other --
