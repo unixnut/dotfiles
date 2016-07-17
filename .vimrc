@@ -22,6 +22,7 @@ imap <F10> <C-O>:
 
 nmap <Esc><C-Z> <C-Z>
 
+
 " == Command shortcut keys ==
 " (note: <C-F1> doesn't work in gnome-terminal!)
 " <C-F1> through to <C-F4> (and <S-F1> through to <S-F4>)
@@ -156,6 +157,12 @@ nmap <silent> <S-F10> :set number!<CR>
 
 imap <silent> <C-F10> <C-O>:if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
 nmap <silent> <C-F10> :if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
+
+" -- Explore --
+nmap <silent> <C-W>e <C-O>:Sexplore<CR>
+nmap <silent> <C-W>E <C-O>:Texplore<CR>
+nmap <silent> g<C-O> <C-O>:Rexplore<CR>
+
 
 " -- other --
 " normal-mode shortcuts for various build-related commands
