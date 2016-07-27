@@ -11,6 +11,8 @@ vbell off
 msgwait 2
 defscrollback 3000
 
+term screen-256color
+
 
 # == Command bindings ==
 # -- from RedHat --
