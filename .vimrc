@@ -6,21 +6,24 @@
 " *** Mappings ***
 " == Fixes ==
 " don't make it easy to quit without checking for changes
-nmap ZQ \
+nmap ZQ <nop>
 
 " == Random ==
 map Q gq
 imap <C-Z> <C-O><C-Z>
 imap <C-L> <C-O><C-L>
 nmap <silent> g/ :nohlsearch<CR>
+vmap <silent> g/ :<C-U>nohlsearch<CR>gv
 " not useful
 "# nmap <silent> g<C-L> :redrawstatus<CR>
 
 " Make the Do key bring up the ex command prompt:
-map  <F10> :
+nmap <F10> :
+vmap <F10> :
 imap <F10> <C-O>:
 
 nmap <Esc><C-Z> <C-Z>
+vmap <Esc><C-Z> <C-Z>
 
 
 " == Command shortcut keys ==
@@ -33,83 +36,120 @@ nmap <Esc><C-Z> <C-Z>
 " <C-F2>
 imap <Esc>O1;5Q <C-O>:ls<CR>
 nmap <Esc>O1;5Q :ls<CR>
+vmap <Esc>O1;5Q :<C-U>ls<CR>gv
 
 " -- previous buffer --
 nmap <silent> [b :bprevious<CR>
+vmap <silent> [b :<C-U>bprevious<CR>
 imap <silent> <F1> <C-O>:bprevious<CR>
 nmap <silent> <F1> :bprevious<CR>
+vmap <silent> <F1> :<C-U>bprevious<CR>
 " <S-F1> splits the window
 if $TERM == 'linux'
   imap <silent> <Esc>[25~ <C-O>:sbprevious<CR>
   nmap <silent> <Esc>[25~ :sbprevious<CR>
+  vmap <silent> <Esc>[25~ :<C-U>sbprevious<CR>
 elseif $TERM == 'putty'
   imap <silent> <Esc>[23~ <C-O>:sbprevious<CR>
-  map <silent>  <Esc>[23~ :sbprevious<CR>
+  nmap <silent> <Esc>[23~ :sbprevious<CR>
+  vmap <silent> <Esc>[23~ :<C-U>sbprevious<CR>
 else
   imap <silent> <Esc>O1;2P <C-O>:sbprevious<CR>
   nmap <silent> <Esc>O1;2P :sbprevious<CR>
+  vmap <silent> <Esc>O1;2P :<C-U>sbprevious<CR>
 endif
 " -- next buffer --
 nmap <silent> ]b :bnext<CR>
+vmap <silent> ]b :<C-U>bnext<CR>
 imap <silent> <F2> <C-O>:bnext<CR>
 nmap <silent> <F2> :bnext<CR>
+vmap <silent> <F2> :<C-U>bnext<CR>
 " <S-F2> splits the window
 if $TERM == 'linux'
   imap <silent> <Esc>[26~ <C-O>:sbnext<CR>
   nmap <silent> <Esc>[26~ :sbnext<CR>
+  vmap <silent> <Esc>[26~ :<C-U>sbnext<CR>
 elseif $TERM == 'putty'
   imap <silent> <Esc>[24~ <C-O>:sbnext<CR>
-  map <silent>  <Esc>[24~ :sbnext<CR>
+  nmap <silent> <Esc>[24~ :sbnext<CR>
+  vmap <silent> <Esc>[24~ :<C-U>sbnext<CR>
 else
   imap <silent> <Esc>O1;2Q <C-O>:sbnext<CR>
   nmap <silent> <Esc>O1;2Q :sbnext<CR>
+  vmap <silent> <Esc>O1;2Q :<C-U>sbnext<CR>
 endif
+" -- this buffer --
+" <C-S-F1> splits the window
+nmap <silent> <Esc>O1;6P :split<CR>
+vmap <silent> <Esc>O1;6P :<C-U>split<CR>gv
+imap <silent> <Esc>O1;6P <C-O>:split<CR>
+nmap <silent> <C-S-F1> :split<CR>
+vmap <silent> <C-S-F1> :gvsplit<CR>gv
+imap <silent> <C-S-F1> <C-O>:split<CR>
+
 
 " -- window switching --
 imap <F3> <C-O><C-W>k
+nmap <F3> <C-W>k
+vmap <F3> <C-W>k
 imap <F4> <C-O><C-W>j
-map  <F3> <C-W>k
-map  <F4> <C-W>j
+nmap <F4> <C-W>j
+vmap <F4> <C-W>j
 
 " -- window resizing --
 " <S-F3>
 if $TERM == 'linux'
   imap <Esc>[28~ <C-O><C-W>-
-  map  <Esc>[28~ <C-W>-
+  nmap <Esc>[28~ <C-W>-
+  vmap <Esc>[28~ <C-W>-
 elseif $TERM == 'putty'
   imap <Esc>[25~ <C-O><C-W>-
-  map  <Esc>[25~ <C-W>-
+  nmap <Esc>[25~ <C-W>-
+  vmap <Esc>[25~ <C-W>-
 else
   imap <Esc>O1;2R <C-O><C-W>-
-  map  <Esc>O1;2R <C-W>-
+  nmap <Esc>O1;2R <C-W>-
+  vmap <Esc>O1;2R <C-W>-
 endif
 
 " <S-F4>
 if $TERM == 'linux'
   imap <Esc>[29~ <C-O><C-W>+
-  map  <Esc>[29~ <C-W>+
+  nmap <Esc>[29~ <C-W>+
+  vmap <Esc>[29~ <C-W>+
 elseif $TERM == 'putty'
   imap <Esc>[26~ <C-O><C-W>+
-  map  <Esc>[26~ <C-W>+
+  nmap <Esc>[26~ <C-W>+
+  vmap <Esc>[26~ <C-W>+
 else
   imap <Esc>O1;2S <C-O><C-W>+
-  map <Esc>O1;2S <C-W>+
+  nmap <Esc>O1;2S <C-W>+
+  vmap <Esc>O1;2S <C-W>+
 endif
 
 " -- window closing --
 " <C-F3> -- close all other windows
+imap <C-F3> <C-O><C-W>o
+nmap <C-F3> <C-W>o
+vmap <C-F3> <C-W>ogv
 imap <Esc>O1;5R <C-O><C-W>o
-map  <Esc>O1;5R <C-W>o
+nmap <Esc>O1;5R <C-W>o
+vmap <Esc>O1;5R <C-W>ogv
 " (PuTTY has no key code)
 
 " <C-F4> -- close this window
+imap <C-F4> <C-O><C-W>c
+nmap <C-F4> <C-W>c
+vmap <C-F4> <C-W>c
 imap <Esc>O1;5S <C-O><C-W>c
-map  <Esc>O1;5S <C-W>c
+nmap <Esc>O1;5S <C-W>c
+vmap <Esc>O1;5S <C-W>c
 " (PuTTY has no key code)
 
 " <C-S-F4>
 imap <Esc>O1;6S <C-O>:bunload<CR>
 nmap <Esc>O1;6S :bunload<CR>
+vmap <Esc>O1;6S :<C-U>bunload<CR>gv
 
 " -- file operations --
 nmap <silent> ZE :edit<CR>
@@ -118,39 +158,50 @@ nmap ZN :wnext<CR>
 
 " QuickFix commands (mostly error-jumps)
 nmap [e :cprevious<CR>
+vmap [e :<C-U>cprevious<CR>gv
 nmap <F6> :cprevious<CR>
+vmap <F6> :<C-U>cprevious<CR>gv
 imap <F6> <C-O>:cprevious<CR>
 nmap [E :cpfile<CR>
 nmap <C-S-F6> :cpfile<CR>
 
 nmap ]e :cnext<CR>
+vmap ]e :<C-U>cnext<CR>gv
 nmap <F7> :cnext<CR>
+vmap <F7> :<C-U>cnext<CR>gv
 imap <F7> <C-O>:cnext<CR>
 nmap ]E :cnfile<CR>
 nmap <C-S-F7> :cnfile<CR>
 
 " -- tab switching --
 nmap <M-PageUp>   gT
-nmap <M-PageDown> gt
-imap <M-PageDown> <C-O>gt
+vmap <M-PageUp>   gT
 imap <M-PageUp>   <C-O>gT
+nmap <M-PageDown> gt
+vmap <M-PageDown> gt
+imap <M-PageDown> <C-O>gt
 
 " -- toggles --
 imap <silent> <F8> <C-O>:set wrap!<CR>
 nmap <silent> <F8> :set wrap!<CR>
+vmap <silent> <F8> :<C-U>set wrap!<CR>gv
 
 if $TERM == 'linux'
   imap <Esc>[34~ <C-O>:setlocal spell!<CR>
   nmap <Esc>[34~ :setlocal spell!<CR>
+  vmap <Esc>[34~ :<C-U>setlocal spell!<CR>gv
 else
   imap <S-F8> <C-O>:setlocal spell!<CR>
   nmap <S-F8> :setlocal spell!<CR>
+  vmap <S-F8> :<C-U>setlocal spell!<CR>gv
 endif
 
 imap <C-F8> <C-O>:set ignorecase!<CR>
 nmap <C-F8> :set ignorecase!<CR>
+vmap <C-F8> :<C-U>set ignorecase!<CR>gv
 imap <C-S-F8> <C-O>:set hlsearch!<CR>
 nmap <C-S-F8> :set hlsearch!<CR>
+vmap <C-S-F8> :<C-U>set hlsearch!<CR>gv
 
 imap <silent> <S-F10> <C-O>:set number!<CR>
 nmap <silent> <S-F10> :set number!<CR>
@@ -215,15 +266,15 @@ nmap gz v/^-- <CR>dzbO<CR><CR><Up>
 map  <F5> /
 imap <F5> <C-O>/
 if $TERM == 'linux'
-  map  <Esc>[31~ ?
+  nmap  <Esc>[31~ ?
   imap <Esc>[31~ <C-O>?
 else
-  map  <S-F5> ?
+  nmap  <S-F5> ?
   imap <S-F5> <C-O>?
 endif
-map  <C-F5> n
+nmap <C-F5> n
 imap <C-F5> <C-O>n
-map  <C-S-F5> N
+nmap <C-S-F5> N
 imap <C-S-F5> <C-O>N
 " search for non-printing characters [Ctrl-/ (or ^_, i.e. Ctrl-shift--)]
 nmap  /[^][{};:'",.<>/?a-zA-Z!@#$%^&*()_+\|0-9\\\-=`~ 	]<CR>
@@ -236,7 +287,11 @@ nmap <expr> <Nul> search('[ \t]$') . "G"
 nmap g<C-T> :tabedit<CR>
 " C-S-F2: list tabs & buffers
 nmap <Esc>O1;6Q :tabs<CR>
+vmap <Esc>O1;6Q :<C-U>tabs<CR>gv
+imap <Esc>O1;6Q <C-O>:tabs<CR>
 nmap <C-S-F2> :tabs<CR>
+vmap <C-S-F2> :<C-U>tabs<CR>gv
+imap <C-S-F2> <C-O>:tabs<CR>
 nmap <Esc>1 1gt
 nmap <Esc>2 2gt
 nmap <Esc>3 3gt
@@ -252,6 +307,7 @@ if exists("*function")
   " can't use <expr> because that can't handle a count
   " have to use the <C-U> to avoid passing the count to :call
   nmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
+  vmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
 
   let g:previous_tab = 1
   " When no count is supplied, switch to the previous tab where this function
@@ -301,22 +357,28 @@ if has("spell")
 endif
 
 " == diff ==
-map  <C-F6> [c
+nmap <C-F6> [c
+vmap <C-F6> [c
 imap <C-F6> <C-O>[c
-map  <C-F7> ]c
+nmap <C-F7> ]c
+vmap <C-F7> ]c
 imap <C-F7> <C-O>]c
 
 " == spell ==
 if $TERM == 'linux'
-  map  <Esc>[32~ <C-O>[s
-  map  <Esc>[32~ [s
-  map  <Esc>[33~ <C-O>]s
-  map  <Esc>[33~ ]s
+  imap <Esc>[32~ <C-O>[s
+  nmap <Esc>[32~ [s
+  vmap <Esc>[32~ [s
+  imap <Esc>[33~ <C-O>]s
+  nmap <Esc>[33~ ]s
+  vmap <Esc>[33~ ]s
 else
   imap <S-F6> <C-O>[s
-  map  <S-F6> [s
+  nmap <S-F6> [s
+  vmap <S-F6> [s
   imap <S-F7> <C-O>]s
-  map  <S-F7> ]s
+  nmap <S-F7> ]s
+  vmap <S-F7> ]s
 endif
 
 
@@ -367,17 +429,23 @@ set pastetoggle=<F11>
 " <C-F11> doesn't exist due to the above
 " <S-F9> and above don't exist when $TERM == 'linux'
 nmap <S-F11> :set textwidth=
+vmap <S-F11> :<C-U>set textwidth=
 imap <S-F11> <C-O>:set textwidth=
 nmap <C-S-F11> :set textwidth=0<CR>
+vmap <C-S-F11> :<C-U>set textwidth=0<CR>gv
 imap <C-S-F11> <C-O>:set textwidth=0<CR>
 imap <F12> <C-O>:set expandtab!<CR>
 nmap <F12> :set expandtab!<CR>
+vmap <F12> :<C-U>set expandtab!<CR>gv
 imap <C-F12> <C-O>:set autoindent!<CR>
 nmap <C-F12> :set autoindent!<CR>
+vmap <C-F12> :<C-U>set autoindent!<CR>gv
 imap <silent> <S-F12> <C-O>:set readonly!<CR>
 nmap <silent> <S-F12> :set readonly!<CR>
+vmap <silent> <S-F12> :<C-U>set readonly!<CR>gv
 if exists("*function")
   nmap <C-S-F12> :call Mousetoggle()<CR>
+  vmap <C-S-F12> :<C-U>call Mousetoggle()<CR>gv
   imap <C-S-F12> <C-O>:call Mousetoggle()<CR>
   function! Mousetoggle()
     if &mouse == ""
