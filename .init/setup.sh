@@ -10,7 +10,8 @@
 # == standard variables ==
 export ZONE=`. ~/bin/zone || echo unknown`
 
-export HOST=`hostname --short`
+# --short not supported by Mac OS X
+export HOST=`hostname -s`
 
 # set OS, DISTRO, DISTRO_BASE and DISTRO_RELEASE{,_MAJOR,_MINOR,_PL}
 # also set DISTRO_CODENAME (only useful for Debian/Ubuntu)

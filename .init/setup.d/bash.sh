@@ -37,6 +37,8 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     else
       if [ -s ~/.init/bash/inputrc-$DISTRO_BASE ]; then
         export INPUTRC=~/.init/bash/inputrc-$DISTRO_BASE
+      elif [ -s ~/.init/bash/inputrc-$OS ]; then
+        export INPUTRC=~/.init/bash/inputrc-$OS
       else
         export INPUTRC=~/.init/bash/inputrc
       fi

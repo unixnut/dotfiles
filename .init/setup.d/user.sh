@@ -69,18 +69,22 @@ set_grep_vars()
   if [ $1 -gt 2 -o \
        $1 -eq 2 -a $2 -ge 5 ] ; then
     # if the version is >= 2.5.3, use dir exclusions
+    # For FreeBSD grep, if the version is >= 2.5, use dir exclusions
     if [ $1 -gt 2 -o \
          $1 -eq 2 -a $2 -gt 5 -o \
-         $1 -eq 2 -a $2 -eq 5 -a $3 -ge 3 ] ; then
+         $1 -eq 2 -a $2 -eq 5 -a \( $3 -ge 3 -o "$4" = bsd \) ] ; then
       export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
     fi
 
     export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=*.bak --exclude=*.o --exclude=*.so --exclude=*.class --exclude=*.pyc $GREP_OPTIONS"
   fi
 }
-ver=`grep -V | sed -n -e 's/[-A-Za-z]*$//' -e '/GNU grep/ s/.* //p'`
+# Examples:
+#   grep (BSD grep) 2.5.1-FreeBSD
+#   GNU grep 2.6.3
+ver=`grep -V | sed -n -e 's/[-A-Za-z]*$//' -e '/\(GNU\|BSD\) grep/ s/.* //p'`
 if [ -n "$ver" ] ; then
-  set_grep_vars $(ver_split $ver)
+  set_grep_vars $(ver_split $ver) $([ $OS != Linux ] && echo bsd)
 fi
 unset ver
 unset -f set_grep_vars
