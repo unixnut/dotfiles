@@ -61,6 +61,11 @@ export PYTHONPATH=$HOME/bin
 
 export CVS_RSH=`which ssh`
 
+if [ $OS = Linux ] ; then
+  export SED_ERE_OPT=--regexp-extended
+else
+  export SED_ERE_OPT=-E
+fi
 # -- cool grep options --
 # check version number (e.g. GNU grep 2.5.3)
 set_grep_vars()
@@ -82,11 +87,11 @@ set_grep_vars()
 # Examples:
 #   grep (BSD grep) 2.5.1-FreeBSD
 #   GNU grep 2.6.3
-ver=`grep -V | sed -n -e 's/[-A-Za-z]*$//' -e '/\(GNU\|BSD\) grep/ s/.* //p'`
+ver=`grep -V | sed $SED_ERE_OPT -n -e 's/[-A-Za-z]*$//' -e '/(GNU|BSD) grep/ s/.* //p'`
 if [ -n "$ver" ] ; then
   set_grep_vars $(ver_split $ver) $([ $OS != Linux ] && echo bsd)
 fi
-unset ver
+unset ver 
 unset -f set_grep_vars
 
 # default for GNU ls --time-style option
