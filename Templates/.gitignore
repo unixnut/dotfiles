@@ -6,3 +6,5 @@
 ## *.desktop
 *.old
 *.bak
+# dirs
+.virtualenv
