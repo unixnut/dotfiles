@@ -1,0 +1,7 @@
+# Thanks to  Jamie Flournoy <http://stackoverflow.com/users/115218/jamie-flournoy>
+# http://stackoverflow.com/a/932982/2067682 
+
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

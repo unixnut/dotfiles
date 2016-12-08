@@ -7,3 +7,6 @@ c_dump()
 {
   openssl x509 -text -noout -in "$@" | ${PAGER:-less}
 }
+
+alias c_fprint='openssl x509 -fingerprint -noout -in'
+alias c_fp='openssl x509 -fingerprint -noout -in'

@@ -177,9 +177,13 @@ nmap <C-S-F7> :cnfile<CR>
 nmap <M-PageUp>   gT
 vmap <M-PageUp>   gT
 imap <M-PageUp>   <C-O>gT
+nmap <S-Tab> gT
+vmap <S-Tab> <C-O>gT
 nmap <M-PageDown> gt
 vmap <M-PageDown> gt
 imap <M-PageDown> <C-O>gt
+nmap <Tab> gt
+vmap <Tab> <C-O>gt
 
 " -- toggles --
 imap <silent> <F8> <C-O>:set wrap!<CR>

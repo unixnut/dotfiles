@@ -115,8 +115,8 @@ macro attach w "^E^Utext/plain; charset=cp1251^M"
 # Breaks under earlier versions (treated as text)
 # TO-DO: put these in bindings-new and conditionally include that instead of bindings
 #        (don't forget to include the latter in the former)
-## bind editor <C-Right> forward-word
-## bind editor <C-Left>  backward-word
+bind editor <C-Right> forward-word
+bind editor <C-Left>  backward-word
 
 # Escape sequences for C-Left/Right don't work under v1.5.20 or earlier, so
 # there's no point having them here
