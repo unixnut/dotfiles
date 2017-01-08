@@ -17,10 +17,11 @@ fi
 if [ -n "$PS1" ] ; then
   # set a fancy prompt (non-color, unless we know we "want" color)
   case "$TERM" in
-    xterm-*color) color_prompt=yes;;
+    xterm-*color) color_prompt=yes ;;
+    screen*)      color_prompt=yes ;;
   esac
 
-  if [ -n "$force_color_prompt" ]; then
+  if [ -z "$color_prompt" -a -n "$force_color_prompt" ]; then
       # ensure that this terminal supports the "set foreground" sequence in
       # terminfo or termcap respectively
       if [ -x /usr/bin/tput ] && { tput setaf 1 || tput AF 1 ; } >&/dev/null; then
