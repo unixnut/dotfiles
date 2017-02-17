@@ -29,3 +29,5 @@ alias vcal ncal -wM
 
 # avoid wrapping by removing text beyond the width of the screen
 alias chop 'cut -c1-$COLUMNS'
+
+alias ,D "mount -l | column -t | sed -e 's/\(on\|type\)  //g' -e 's/(\([^[:space:]]*\))"\$"/\1/'"

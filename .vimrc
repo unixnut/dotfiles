@@ -480,6 +480,10 @@ if has("digraphs")
 endif
 
 
+" -- netrw --
+let g:netrw_sort_sequence='[\/]$,\<core\%(\.\d\+\)\=\>,README,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,\.info$,\.sw.$,\.bak$,\~$'
+
+
 " *** Extensibility ***
 if exists("*filereadable") && exists("$ZONE")
   " source the zone-specific rc file, if it exists
