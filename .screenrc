@@ -16,10 +16,12 @@ term screen-256color
 
 # == Command bindings ==
 # -- from RedHat --
-## bind = resize =
-## bind + resize +1
-## bind - resize -1
-## bind _ resize max
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+# (Note: "bind -" overrides the default binding that switches to the internal blank window)
+#        "bind =" overrides the default binding for 'removebuf'
 
 # -- from Debian --
 # An example of a "screen scraper" which will launch urlview on the current
@@ -33,6 +35,11 @@ term screen-256color
 bindkey ^[[1;3D prev
 # alt right-arrow key
 bindkey ^[[1;3C next
+
+# Clear scrollback and screen of the current window.  Finally, presses Ctrl-C
+# for you, which abandons whatever was typed at the previous prompt and gives
+# you a new one
+bind ~ eval "clear" "scrollback 0" "scrollback 3000" "stuff \03"
 
 
 # == backticks ==
