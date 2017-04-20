@@ -53,7 +53,9 @@ hardstatus on
 
 # Derived from Red Hat's normal status line.
 # includes session name thanks to backtick 10
-hardstatus string "[screen %n%?: %t%? (%10`)%?%P *** Hacker's treasure zoo ***%?] %h"
+hardstatus string "[screen %n%?: %t%? (%10`)] %h"
+# %P doesn't work
+## hardstatus string "[screen %n%?: %t%? (%10`)%?%P *** Hacker's treasure zoo ***%?] %h"
 # %S is session name on version 4.1.0 (squeeze has v4.0.3)
 ## hardstatus string "[screen %n%?: %t%? (%S)] %h"
 # %f is supposed to show flags of the window, but doesn't work on squeeze
