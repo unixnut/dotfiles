@@ -11,6 +11,34 @@ c_dump()
 alias c_fprint='openssl x509 -fingerprint -noout -in'
 alias c_fp='openssl x509 -fingerprint -noout -in'
 
+s_dump_http()
+{
+  openssl s_client -connect $1:443 -servername $1:443 -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+    openssl x509 -text -noout |
+    ${PAGER:-less}
+}
+
+s_dump_smtp()
+{
+  openssl s_client -connect $1:587 -starttls smtp -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+   openssl x509 -text -noout |
+   ${PAGER:-less}
+}
+
+s_dump_imaps()
+{
+  openssl s_client -connect $1:993 -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+    openssl x509 -text -noout |
+    ${PAGER:-less}
+}
+
+s_dump_imap()
+{
+  openssl s_client -connect $1:143 -starttls smtp -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+    openssl x509 -text -noout |
+    ${PAGER:-less}
+}
+
 s_verify_smtp()
 {
   openssl s_client -connect $1:587 -starttls smtp -${2:-tls1} -verify 20 -CApath $SSL_PATH/certs/ < /dev/null |
