@@ -6,8 +6,8 @@ $if Bash
 # mnemonic: "eXpunge"
 "\ex":  "sudo yum erase "
 
-"\es":  "yum search "
-## "\eS":  "apt-cache search -n "
+"\es":  "yum search all "
+"\eS":  "yum search "
 
 # mnemonic: "query"
 "\eq":  "yum info "
