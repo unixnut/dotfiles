@@ -91,7 +91,5 @@ alias ,X='history -d $((HISTCMD - 1))'
 alias ,XX='history -d $((HISTCMD - 2))'
 alias ,XXX='history -d $((HISTCMD - 3))'
 
-alias ,D="mount -l | column -t | sed -e 's/\\(on\\|type\\)  //g' -e 's/(\\([^[:space:]]*\\))$/\\1/'"
-
 # == tcsh equivalents ==
 alias ls-F='ls -F'
