@@ -4,7 +4,10 @@ function time_t
 }
 
 
-alias hexdump='od -tx1 '
+function hexdump
+{
+  od -t cx1 "$@" | ${PAGER}
+}
 
 
 # changes the name of a file without moving it to a different directory
