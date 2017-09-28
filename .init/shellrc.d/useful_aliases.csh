@@ -29,3 +29,5 @@ alias vcal ncal -wM
 
 # avoid wrapping by removing text beyond the width of the screen
 alias chop 'cut -c1-$COLUMNS'
+
+alias binary "python -c 'import sys ; print "\""{0:08b}"\"".format(int(sys.argv[1]))'"

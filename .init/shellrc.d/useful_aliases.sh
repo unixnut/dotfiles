@@ -6,7 +6,7 @@ function time_t
 
 function hexdump
 {
-  od -t cx1 "$@" | ${PAGER}
+  od -t cx1 "$@" | ${PAGER:-less}
 }
 
 
@@ -93,6 +93,8 @@ alias chop='cut -c1-$COLUMNS'
 alias ,X='history -d $((HISTCMD - 1))'
 alias ,XX='history -d $((HISTCMD - 2))'
 alias ,XXX='history -d $((HISTCMD - 3))'
+
+alias binary="python -c 'import sys ; print \"{0:08b}\".format(int(sys.argv[1]))'"
 
 # == tcsh equivalents ==
 alias ls-F='ls -F'
