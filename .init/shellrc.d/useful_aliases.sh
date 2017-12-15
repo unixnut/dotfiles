@@ -36,19 +36,19 @@ function cgrep
 
 function cls
 {
-  ls -FC --color=always "$@" | less -RS
+  ls -FC --group-directories-first --color=always "$@" | less -RS
 }
 
 
 function clls
 {
-  ls -lF --color=always "$@" | less -RS
+  ls -lF --group-directories-first --color=always "$@" | less -RS
 }
 
 
 function cllls
 {
-  ls -lF --color=always --time-style=full-iso "$@" | less -RS
+  ls -lF --group-directories-first --color=always --time-style=full-iso "$@" | less -RS
 }
 
 
