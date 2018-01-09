@@ -66,6 +66,7 @@ if [ $OS = Linux ] ; then
 else
   export SED_ERE_OPT=-E
 fi
+
 # -- cool grep options --
 # check version number (e.g. GNU grep 2.5.3)
 set_grep_vars()
@@ -82,6 +83,13 @@ set_grep_vars()
     fi
 
     export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=*.bak --exclude=*.o --exclude=*.so --exclude=*.class --exclude=*.pyc $GREP_OPTIONS"
+
+    # $GREP_OPTIONS is deprecated as of v2.21, so use my own method instead
+    if [ $1 -gt 2 -o \
+         $1 -eq 2 -a $2 -ge 21 ] ; then
+      export MY_GREP_OPTIONS=$GREP_OPTIONS
+      unset GREP_OPTIONS
+    fi
   fi
 }
 # Examples:

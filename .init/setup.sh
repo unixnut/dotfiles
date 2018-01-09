@@ -43,14 +43,16 @@ else
         case $DISTRO_RELEASE in
           3.1)  export DISTRO_CODENAME=sarge ;;
           4.0)  export DISTRO_CODENAME=etch ;;
-          5.0*) export DISTRO_CODENAME=lenny ;;
-          6.0*) export DISTRO_CODENAME=squeeze ;;
+          5.*) export DISTRO_CODENAME=lenny ;;
+          6.*) export DISTRO_CODENAME=squeeze ;;
           7.*) export DISTRO_CODENAME=wheezy ;;
           8.*) export DISTRO_CODENAME=jessie ;;
+          9.*) export DISTRO_CODENAME=stretch ;;
+          ## 10.*) export DISTRO_CODENAME=buster ;;
           *)  # anything else is assumed to be a codename
               # (e.g. /etc/debian_version contents is "blah/sid")
               export DISTRO_CODENAME=$DISTRO_RELEASE
-              export DISTRO_RELEASE=9.0.beta 
+              export DISTRO_RELEASE=10.0.beta 
               ;;
         esac
       elif [ -f /etc/redhat-release ] ; then

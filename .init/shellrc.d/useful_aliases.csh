@@ -4,8 +4,14 @@ alias ren mv \!:1 \!:1:h/\!:2
 alias ovpn sudo openvpn --cd /etc/openvpn --config \!:1 --verb 5
 alias ,v vim -i .viminfo
 # Note that environment variables make grep use colour by default for a terminal
+# See also 'mygrep' script in github.com/unixnut/scripts
 # Note: :q substitution in alias history references doesn't work
-alias cgrep grep -Rn --color=yes '\!:*' \| less -R
+if ($?MY_GREP_OPTIONS) then
+  alias grep grep '$MY_GREP_OPTIONS:x' '\!:*'
+  alias cgrep grep -Rn --color=yes '$MY_GREP_OPTIONS:x' '\!:*' \| less -R
+else
+  alias cgrep grep -Rn --color=yes '\!:*' \| less -R
+endif
 alias cls ls -FC --group-directories-first --color=always '\!:*' \| less -RS
 alias clls ls -lF ---group-directories-first -color=always '\!:*' \| less -RS
 alias cllls ls -lF --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
