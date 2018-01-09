@@ -26,15 +26,17 @@ function ovpn
 
 alias ,v="vim -i .viminfo"
 
-if [ -n "$MY_GREP_OPTIONS" ] ; then
-  alias grep='grep $MY_GREP_OPTIONS'
-fi
-
 # Note that environment variables make grep use colour by default for a terminal
 function cgrep
 {
+  # When run, this will use the actual grep because alias parsing happens at
+  # function defintion time
   grep -Rn --color=yes $MY_GREP_OPTIONS "$@" | less -R
 }
+
+if [ -n "$MY_GREP_OPTIONS" ] ; then
+  alias grep='grep $MY_GREP_OPTIONS'
+fi
 
 
 function cls
