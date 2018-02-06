@@ -13,7 +13,7 @@ alias c_fp='openssl x509 -fingerprint -noout -in'
 
 s_dump_http()
 {
-  openssl s_client -connect $1:443 -servername $1:443 -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+  openssl s_client -connect $1:443 -servername $1 -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
     openssl x509 -text -noout |
     ${PAGER:-less}
 }
