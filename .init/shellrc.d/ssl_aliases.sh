@@ -13,7 +13,7 @@ alias c_fp='openssl x509 -fingerprint -noout -in'
 
 s_dump_http()
 {
-  openssl s_client -connect $1:443 -servername $1 -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
+  openssl s_client -connect $1:443 -servername ${2:-$1} -tls1 -CApath $SSL_PATH/certs/ < /dev/null |
     openssl x509 -text -noout |
     ${PAGER:-less}
 }
@@ -49,7 +49,7 @@ s_verify_smtp()
 # Verifies the chain but won't actually compare the CN of the returned cert agains the server name
 s_verify_http()
 {
-  openssl s_client -connect $1:443 -servername $1 -${2:-tls1} -verify 20 -CApath $SSL_PATH/certs/ < /dev/null |
+  openssl s_client -connect $1:443 -servername ${2:-$1} -${3:-tls1} -verify 20 -CApath $SSL_PATH/certs/ < /dev/null |
    sed "/^-----BEGIN CERTIFICATE-----/,/^-----END CERTIFICATE-----/d" |
    ${PAGER:-less}
 }

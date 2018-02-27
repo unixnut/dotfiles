@@ -9,7 +9,7 @@ if ($?MY_GREP_OPTIONS) alias grep grep '$MY_GREP_OPTIONS:x' '\!:*'
 # Note: :q substitution in alias history references doesn't work
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
 alias cls ls -FC --group-directories-first --color=always '\!:*' \| less -RS
-alias clls ls -lF ---group-directories-first -color=always '\!:*' \| less -RS
+alias clls ls -lF --group-directories-first --color=always '\!:*' \| less -RS
 alias cllls ls -lF --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
 alias plast last -f /var/log/wtmp.1
 
