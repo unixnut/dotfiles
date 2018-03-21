@@ -5,5 +5,3 @@ if [ -z "$GENERICUSER" ] ; then
   export DEBEMAIL=alastair@plug.org.au
   export DEBFULLNAME="Alastair Irvine"
 fi
-
-export PATH=/usr/lib/ssl/misc/:$PATH
