@@ -8,9 +8,20 @@ alias ,v vim -i .viminfo
 if ($?MY_GREP_OPTIONS) alias grep grep '$MY_GREP_OPTIONS:x' '\!:*'
 # Note: :q substitution in alias history references doesn't work
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
-alias cls ls -FC --group-directories-first --color=always '\!:*' \| less -RS
-alias clls ls -lF --group-directories-first --color=always '\!:*' \| less -RS
-alias cllls ls -lF --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
+
+alias cls     ls -FC  --group-directories-first --color=always '\!:*' \| less -RS
+alias clls    ls -lF  --group-directories-first --color=always '\!:*' \| less -RS
+alias cllls   ls -lF  --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
+alias cals    ls -FCA --group-directories-first --color=always '\!:*' \| less -RS
+alias calls   ls -lFA --group-directories-first --color=always '\!:*' \| less -RS
+alias callls  ls -lFA --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
+alias csls    sudo ls -FC --group-directories-first --color=always '\!:*' \| less -RS
+alias cslls   sudo ls -lF --group-directories-first --color=always '\!:*' \| less -RS
+alias csllls  sudo ls -lF --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
+alias csals   sudo ls -FCA --group-directories-first --color=always '\!:*' \| less -RS
+alias csalls  sudo ls -lFA --group-directories-first --color=always '\!:*' \| less -RS
+alias csallls sudo ls -lFA --group-directories-first --color=always --time-style=full-iso '\!:*' \| less -RS
+
 alias plast last -f /var/log/wtmp.1
 
 # parallel compression tar aliases

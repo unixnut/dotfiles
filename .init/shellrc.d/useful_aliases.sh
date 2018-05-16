@@ -57,6 +57,68 @@ function cllls
 }
 
 
+function cals
+{
+  ls -FCA --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function calls
+{
+  ls -lFA --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function callls
+{
+  ls -lFA --group-directories-first --color=always --time-style=full-iso "$@" | less -RS
+}
+
+
+
+function csls
+{
+  sudo ls -FC --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function cslls
+{
+  sudo ls -lF --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function csllls
+{
+  sudo ls -lF --group-directories-first --color=always --time-style=full-iso "$@" | less -RS
+}
+
+
+
+function csals
+{
+  sudo ls -FCA --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function csalls
+{
+  sudo ls -lFA --group-directories-first --color=always "$@" | less -RS
+}
+
+
+
+function csallls
+{
+  sudo ls -lFA --group-directories-first --color=always --time-style=full-iso "$@" | less -RS
+}
+
+
 # Shows sar output for a given day; default yesterday
 function psar
 {
