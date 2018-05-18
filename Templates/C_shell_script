@@ -4,4 +4,67 @@
 # Options
 #   -u  
 
+set self = "`basename '$0:q'`"
+set allowed_options = vh
+set allowed_long_options = help,verbose
+
+
+# *** FUNCTIONS ***
+alias print_error 'sh -c "echo `basename $0`: \!* >&2"'
+
+
+# *** MAINLINE ***
+# == command-line parsing ==
+# -- defaults --
+set debug=0
+set v=0
+
+# -- option handling --
+set orthogonal_opts = (`getopt --shell=csh --name=$self \
+  --options=+$allowed_options --longoptions=$allowed_long_options -- $*:q`)
+if ($status != 0) exit $status
+eval set argv=\($orthogonal_opts\)
+
+while (x"$1" != x--)
+  switch ("$1")
+    case -d:
+      @ debug++
+      breaksw
+
+    case -v:
+    case --verbose:
+      @ v++
+      breaksw
+
+    case -h:
+    case --help:
+      show_help
+      exit
+      breaksw
+
+    case -1:
+      echo "${self}: Warning: Blah blah blah feature unsupported" >&2 ;;
+      breaksw
+  endsw
+  shift     # get rid of option (or if the inner shift already did, get rid of arg)
+end
+shift       # get rid of the "--"
+
+# -- argument checking --
+## if ($#argv != 2 || $#argv != 3) then
+##   ## echo "Usage: $self ..."
+##   show_help
+##   exit 1
+## endif
+
+# -- argument handling --
+
+
+# == sanity checking ==
+
+
+# == preparation ==
+
+
+# == processing ==
 
