@@ -34,6 +34,11 @@ function cgrep
   grep -Rn --color=yes $MY_GREP_OPTIONS "$@" | less -R
 }
 
+function cgrep
+{
+  sudo grep -Rn --color=yes $GREP_OPTIONS $MY_GREP_OPTIONS "$@" | less -R
+}
+
 if [ -n "$MY_GREP_OPTIONS" ] ; then
   alias grep='grep $MY_GREP_OPTIONS'
 fi
@@ -80,14 +85,14 @@ function callls
 
 function csls
 {
-  sudo ls -FC --group-directories-first --color=always "$@" | less -RS
+  sudo ls -FC --group-directories-first --color=always --time-style=long-iso "$@" | less -RS
 }
 
 
 
 function cslls
 {
-  sudo ls -lF --group-directories-first --color=always "$@" | less -RS
+  sudo ls -lF --group-directories-first --color=always --time-style=long-iso "$@" | less -RS
 }
 
 
@@ -101,14 +106,14 @@ function csllls
 
 function csals
 {
-  sudo ls -FCA --group-directories-first --color=always "$@" | less -RS
+  sudo ls -FCA --group-directories-first --color=always --time-style=long-iso "$@" | less -RS
 }
 
 
 
 function csalls
 {
-  sudo ls -lFA --group-directories-first --color=always "$@" | less -RS
+  sudo ls -lFA --group-directories-first --color=always --time-style=long-iso "$@" | less -RS
 }
 
 
