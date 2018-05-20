@@ -138,7 +138,7 @@ export BINARY_TYPE=$MACHTYPE-$OS
 
 
 # == other ==
-PATH="$HOME/.init/lib:$PATH"
+PATH="$HOME/.init/lib:$HOME/.local/bin:$PATH"
 
 for file in .init/setup.d/*.sh ; do
   . $file
