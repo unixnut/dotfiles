@@ -34,7 +34,7 @@ function cgrep
   grep -Rn --color=yes $MY_GREP_OPTIONS "$@" | less -R
 }
 
-function cgrep
+function csgrep
 {
   sudo grep -Rn --color=yes $GREP_OPTIONS $MY_GREP_OPTIONS "$@" | less -R
 }
