@@ -6,12 +6,13 @@ alias ,v vim -i .viminfo
 # Note that environment variables make grep use colour by default for a terminal
 # See also 'mygrep' script in github.com/unixnut/scripts
 if ($?MY_GREP_OPTIONS) then
-  alias grep grep '$MY_GREP_OPTIONS:x' '\!:*'
+  alias grep 'grep $MY_GREP_OPTIONS:x \!:*'
   # Note: :q substitution in alias history references doesn't work
-  alias csgrep sudo grep -Rn --color=yes $MY_GREP_OPTIONS '\!:*' \| less -R
+  alias csgrep 'sudo grep -Rn --color=yes $MY_GREP_OPTIONS:x \!:* | less -R'
 else
-  alias csgrep sudo grep -Rn --color=yes $GREP_OPTIONS '\!:*' \| less -R
+  alias csgrep 'sudo grep -Rn --color=yes $GREP_OPTIONS:x \!:* | less -R'
 endif
+# In either case, the env var or the grep alias will apply to cgrep
 alias cgrep grep -Rn --color=yes '\!:*' \| less -R
 
 alias cls     ls -FC  --group-directories-first --color=always '\!:*' \| less -RS

@@ -16,7 +16,7 @@ $endif
 
 
 # == completion ==
-"\C-x\C-i": menu-complete
+"\C-x\C-i": complete-into-braces
 "\ei":      menu-complete
 "\e[Z":     menu-complete-backward            # shift-Tab cycles backwards
 "\e[18~":   menu-complete                     # F7 cycles forwards
