@@ -31,12 +31,12 @@ function cgrep
 {
   # When run, this will use the actual grep because alias parsing happens at
   # function defintion time
-  grep -Rn --color=yes $MY_GREP_OPTIONS "$@" | less -R
+  grep $MY_GREP_OPTIONS -Rn --color=yes "$@" | less -R
 }
 
 function csgrep
 {
-  sudo grep -Rn --color=yes $GREP_OPTIONS $MY_GREP_OPTIONS "$@" | less -R
+  sudo grep $GREP_OPTIONS $MY_GREP_OPTIONS -Rn --color=yes "$@" | less -R
 }
 
 if [ -n "$MY_GREP_OPTIONS" ] ; then

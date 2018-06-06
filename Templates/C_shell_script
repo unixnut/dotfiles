@@ -21,7 +21,7 @@ set v=0
 
 # -- option handling --
 set orthogonal_opts = (`getopt --shell=csh --name=$self \
-  --options=+$allowed_options --longoptions=$allowed_long_options -- $*:q`)
+  --options=+$allowed_options --longoptions=$allowed_long_options -- $argv:q`)
 if ($status != 0) exit $status
 eval set argv=\($orthogonal_opts\)
 

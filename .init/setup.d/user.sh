@@ -82,7 +82,7 @@ set_grep_vars()
       export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
     fi
 
-    export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.*.sw? --exclude=*.bak --exclude=*.o --exclude=*.so --exclude=*.class --exclude=*.pyc $GREP_OPTIONS"
+    export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.sw? --exclude=.*.sw? --exclude=*.bak --exclude=*.o --exclude=*.so --exclude=*.class --exclude=*.pyc $GREP_OPTIONS"
 
     # $GREP_OPTIONS is deprecated as of v2.21, so use my own method instead
     if [ $1 -gt 2 -o \
