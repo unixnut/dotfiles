@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# vim: set fileencoding=utf-8 :
+# vim: set fileencoding=utf-8 tabstop=4 shiftwidth=4 :
 # XXXXXXXX (Python script) -- 
 #
 # Version:   
@@ -45,15 +45,15 @@ def show_help(dest=sys.stdout):
     print >> dest, __doc__,
 
 
-def report_error(*msg):
+def report_error(msg):
     print >> sys.stderr, self + ": Error:", msg
 
 
-def report_warning(*msg):
+def report_warning(msg):
     print >> sys.stderr, self + ": Warning:", msg
 
 
-def report_notice(*msg):
+def report_notice(msg):
     print >> sys.stderr, self + ": Notice:", msg
 
 
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     # -- option handling --
     try:
         optlist, args = getopt.getopt(sys.argv[1:], allowed_options, allowed_long_options)
-    except getopt.GetoptError, e:
+    except getopt.GetoptError as e:
         report_error(e)
         sys.exit(1)
 
@@ -86,6 +86,7 @@ if __name__ == '__main__':
     # -- argument checking --
     ## if len(args) not in (2, 3):
     ##     report_error("Invalid command-line parameters.")
+    ##     print >> sys.stderr
     ##     show_help(sys.stderr)
     ##     sys.exit(1)
 
