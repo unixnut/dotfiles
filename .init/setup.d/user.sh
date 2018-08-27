@@ -67,6 +67,8 @@ else
   export SED_ERE_OPT=-E
 fi
 
+export COOKIECUTTER_CONFIG=/home/alastair/.config/cookiecutter.yaml
+
 # -- cool grep options --
 # check version number (e.g. GNU grep 2.5.3)
 set_grep_vars()
