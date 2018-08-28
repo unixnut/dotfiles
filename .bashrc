@@ -39,7 +39,7 @@ if [ -n "$PS1" ] ; then
   if [ "$color_prompt" = yes ]; then
     case $DISTRO_BASE in
       Debian)
-        PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
+        PS1="${debian_chroot:+($debian_chroot)}"'\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
         ;;
       RedHat)
         # like the default one ('[\u@\h \W]\$ ') but with Debian-style colour
@@ -51,6 +51,11 @@ if [ -n "$PS1" ] ; then
     esac
   fi
   unset color_prompt
+
+  # Custom dynamic prompt prefix for Python virtualenvs
+  if [ -n "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
+    PS1='${VIRTUAL_ENV+[$(basename "${VIRTUAL_ENV%.v*env}")] }'"$PS1"
+  fi
 
   # If this is an xterm, etc. set the title to user@host:dir
   # (by adding prefixing the prompt with a string surrounded by terminal-specific
