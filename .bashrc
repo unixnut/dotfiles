@@ -97,13 +97,20 @@ fi
 
 # Only do this if running interactively
 if [ -n "$PS1" ] ; then
-  # enable programmable completion features
-  # (This is done by /etc/profile.d/bash_completion.sh (which runs even under
-  # SSH) but of course it will still need to be done for subshells.)
-  if [ \( ! -f /etc/profile.d/bash_completion.sh -o $SHLVL -ne 1 \) -a \
-       -f /etc/bash_completion ] && ! shopt -oq posix
+  # Enable programmable completion features
+  # (Only do this if not already done by /etc/profile.d/bash_completion.sh *
+  # (which runs even under SSH) but of course it will still need to be done for subshells.)
+  # (This might also have already been done by /etc/bash.bashrc)
+  # (* pre-sources "${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion".
+  # All cases (which use /usr/share/bash-completion/bash_completion)
+  # post-sources ~/.bash_completion .)
+  if ! shopt -oq posix && [ -z "$(complete)" ]
   then
-    . /etc/bash_completion
+    if [ -f /etc/bash_completion ] ; then
+      . /etc/bash_completion
+    elif [ -f /usr/share/bash-completion/bash_completion ] ; then
+      . /usr/share/bash-completion/bash_completion
+    fi
   fi
 fi
 

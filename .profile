@@ -13,7 +13,10 @@
 #umask 022
 
 # Do stuff here that is needed early, because .gnomerc is sourced later
-if [ "$PROGNAME" = Xsession ] ; then
+# XDG_SESSION_ID
+# DESKTOP_SESSION=mate
+# XDG_CURRENT_DESKTOP=MATE
+if [ "$PROGNAME" = Xsession -o -n "$DESKTOP_SESSION" ] ; then
   export X_LOGIN=y
 fi
 
@@ -21,8 +24,7 @@ fi
 
 # if running bash, source stuff that will be skipped by a login shell
 # (Skip this if being sourced by /etc/gdm/Xsession or /etc/X11/Xsession.)
-# TO-DO: test for X_LOGIN=y instead?
-if [ -n "$BASH_VERSION" -a "$PROGNAME" != Xsession ]; then
+if [ -n "$BASH_VERSION" -a "$X_LOGIN" != y ]; then
   # source /etc/bash.bashrc if necessary (/etc/profile doesn't source it
   # in releases prior to wheezy)
   if [ $DISTRO = Debian -a $DISTRO_RELEASE_MAJOR -le 6 ]; then

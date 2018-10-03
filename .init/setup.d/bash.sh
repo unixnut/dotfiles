@@ -1,12 +1,14 @@
 # Force loading of .bashrc, even when non-interactive (see INVOCATION in bash(1))
 export BASH_ENV=$HOME/.bashrc
 
-# check whether the shell needs to set vars for a future interactive subshell
+# Check whether the shell needs to set vars for a future interactive subshell
 # or is completely non-interactive, e.g. running from cron (i.e. TERM="")
-# (Note: under SSH, with no terminal allocated, TERM=dumb)
+# (Note: under SSH, with no terminal allocated, TERM=dumb.
+# However, bash(?) sets TERM=dumb when it's not set, so override this when
+# $X_LOGIN is set.)
 if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
   # stuff that will be useful in a subshell where $PS1 is set
-  if [ "$TERM" != dumb ] ; then 
+  if [ "$TERM" != dumb -o "$X_LOGIN" = y ] ; then 
     # don't put duplicate lines in the history. See bash(1) for more options
     ## # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
     ## HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
@@ -45,6 +47,8 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     fi
 
     # == tweaks for .bashrc ==
+    # This is needed because .init/shellrc.d/term_fix.sh is run AFTER .bashrc
+    # checks $TERM
     export force_color_prompt=yes
   fi
 
