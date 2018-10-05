@@ -39,8 +39,6 @@ alias pxtar tar --use-compress-program=pixz
 # (For %d/%m/%y run "date +%x")
 alias shortdate "date -d '\!:*' +%d/%m/%Y"
 
-alias t todo.sh
-
 alias mycal ncal -bM
 alias qcal ncal -bM -3
 # vertical display; includes week number
