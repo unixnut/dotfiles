@@ -50,6 +50,9 @@ $else
 "\eOP":   " fg\n"                 # F1 goes to the current buffer
 "\eO1;2P": " %-\n"                # S-F1 goes to the previous buffer
 "\eOQ":   " jobs\n"               # F2 shows the jobs list
+"\e[P":   " fg\n"                 # F1 goes to the current buffer
+"\e[1;2P": " %-\n"                # S-F1 goes to the previous buffer
+"\e[Q":   " jobs\n"               # F2 shows the jobs list
 $endif
 $endif
 "\C-x1": " %1\n"
@@ -106,6 +109,8 @@ $else
 # (for gterm)
 "\eOR":    history-search-backward
 "\eOS":    history-search-forward
+"\e[R":    history-search-backward
+"\e[S":    history-search-forward
 $endif
 $endif
 

@@ -37,6 +37,9 @@ vmap <Esc><C-Z> <C-Z>
 imap <Esc>O1;5Q <C-O>:ls<CR>
 nmap <Esc>O1;5Q :ls<CR>
 vmap <Esc>O1;5Q :<C-U>ls<CR>gv
+imap <Esc>[1;5Q <C-O>:ls<CR>
+nmap <Esc>[1;5Q :ls<CR>
+vmap <Esc>[1;5Q :<C-U>ls<CR>gv
 
 " -- previous buffer --
 nmap <silent> [b :bprevious<CR>
@@ -57,6 +60,9 @@ else
   imap <silent> <Esc>O1;2P <C-O>:sbprevious<CR>
   nmap <silent> <Esc>O1;2P :sbprevious<CR>
   vmap <silent> <Esc>O1;2P :<C-U>sbprevious<CR>
+  imap <silent> <Esc>[1;2P <C-O>:sbprevious<CR>
+  nmap <silent> <Esc>[1;2P :sbprevious<CR>
+  vmap <silent> <Esc>[1;2P :<C-U>sbprevious<CR>
 endif
 " -- next buffer --
 nmap <silent> ]b :bnext<CR>
@@ -77,12 +83,18 @@ else
   imap <silent> <Esc>O1;2Q <C-O>:sbnext<CR>
   nmap <silent> <Esc>O1;2Q :sbnext<CR>
   vmap <silent> <Esc>O1;2Q :<C-U>sbnext<CR>
+  imap <silent> <Esc>[1;2Q <C-O>:sbnext<CR>
+  nmap <silent> <Esc>[1;2Q :sbnext<CR>
+  vmap <silent> <Esc>[1;2Q :<C-U>sbnext<CR>
 endif
 " -- this buffer --
 " <C-S-F1> splits the window
 nmap <silent> <Esc>O1;6P :split<CR>
 vmap <silent> <Esc>O1;6P :<C-U>split<CR>gv
 imap <silent> <Esc>O1;6P <C-O>:split<CR>
+nmap <silent> <Esc>[1;6P :split<CR>
+vmap <silent> <Esc>[1;6P :<C-U>split<CR>gv
+imap <silent> <Esc>[1;6P <C-O>:split<CR>
 nmap <silent> <C-S-F1> :split<CR>
 vmap <silent> <C-S-F1> :gvsplit<CR>gv
 imap <silent> <C-S-F1> <C-O>:split<CR>
@@ -110,6 +122,9 @@ else
   imap <Esc>O1;2R <C-O><C-W>-
   nmap <Esc>O1;2R <C-W>-
   vmap <Esc>O1;2R <C-W>-
+  imap <Esc>[1;2R <C-O><C-W>-
+  nmap <Esc>[1;2R <C-W>-
+  vmap <Esc>[1;2R <C-W>-
 endif
 
 " <S-F4>
@@ -125,6 +140,9 @@ else
   imap <Esc>O1;2S <C-O><C-W>+
   nmap <Esc>O1;2S <C-W>+
   vmap <Esc>O1;2S <C-W>+
+  imap <Esc>[1;2S <C-O><C-W>+
+  nmap <Esc>[1;2S <C-W>+
+  vmap <Esc>[1;2S <C-W>+
 endif
 
 " -- window closing --
@@ -135,6 +153,9 @@ vmap <C-F3> <C-W>ogv
 imap <Esc>O1;5R <C-O><C-W>o
 nmap <Esc>O1;5R <C-W>o
 vmap <Esc>O1;5R <C-W>ogv
+imap <Esc>[1;5R <C-O><C-W>o
+nmap <Esc>[1;5R <C-W>o
+vmap <Esc>[1;5R <C-W>ogv
 " (PuTTY has no key code)
 
 " <C-F4> -- close this window
@@ -144,12 +165,18 @@ vmap <C-F4> <C-W>c
 imap <Esc>O1;5S <C-O><C-W>c
 nmap <Esc>O1;5S <C-W>c
 vmap <Esc>O1;5S <C-W>c
+imap <Esc>[1;5S <C-O><C-W>c
+nmap <Esc>[1;5S <C-W>c
+vmap <Esc>[1;5S <C-W>c
 " (PuTTY has no key code)
 
 " <C-S-F4>
 imap <Esc>O1;6S <C-O>:bunload<CR>
 nmap <Esc>O1;6S :bunload<CR>
 vmap <Esc>O1;6S :<C-U>bunload<CR>gv
+imap <Esc>[1;6S <C-O>:bunload<CR>
+nmap <Esc>[1;6S :bunload<CR>
+vmap <Esc>[1;6S :<C-U>bunload<CR>gv
 
 " -- file operations --
 nmap <silent> ZE :edit<CR>
@@ -291,6 +318,9 @@ nmap g<C-T> :tabedit<CR>
 nmap <Esc>O1;6Q :tabs<CR>
 vmap <Esc>O1;6Q :<C-U>tabs<CR>gv
 imap <Esc>O1;6Q <C-O>:tabs<CR>
+nmap <Esc>[1;6Q :tabs<CR>
+vmap <Esc>[1;6Q :<C-U>tabs<CR>gv
+imap <Esc>[1;6Q <C-O>:tabs<CR>
 nmap <C-S-F2> :tabs<CR>
 vmap <C-S-F2> :<C-U>tabs<CR>gv
 imap <C-S-F2> <C-O>:tabs<CR>

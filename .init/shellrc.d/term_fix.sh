@@ -4,7 +4,9 @@ if [ -n "$DISPLAY" -a -t 0 -a "$TERM" = xterm ] ; then
   #   xterm: "XTERM_LOCALE=en_AU.utf8"; "XTERM_VERSION=XTerm(261)"
   #   Konsole: "KONSOLE_DBUS_SERVICE=:1.4633"; "KONSOLE_DBUS_SESSION=/Sessions/1"
   #   gnome-terminal: "COLORTERM=gnome-terminal"
+  #   MATE: "COLORTERM=truecolor"
   if [ "$COLORTERM" = gnome-terminal -o "$COLORTERM" = mate-terminal -o \
+       "$COLORTERM" = truecolor -o \
        "${XTERM_LOCALE#*.}" = utf8 -o \
        -n "$KONSOLE_DBUS_SESSION" ] ; then
     export TERM=xterm-256color
