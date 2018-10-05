@@ -35,7 +35,7 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
   # Only run it if not using non-interactive SSH
   # (Don't use "-t 0" because this might be running during X Windows session
   # initialisation.)
-  if [ "$TERM" != dumb ] ; then
+  if [ "$TERM" != dumb -o "$X_LOGIN" = y ] ; then
     setup_user_vars
   fi
 fi
