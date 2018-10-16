@@ -128,11 +128,11 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]2;:fs=\007:ds=\E]2;\007
 #     - 80 Column Mode (DECCOLM) [default]
 #     - Normal Cursor Mode (DECOM) -- this causes cursor reposition to [1,1] on screen v4.1
 #   + Normal Keypad (DECPNM) [default]
-termcapinfo xterm* is=\E[r\E[m\E[?7h\E[?1;4;66l\E[4l
+termcapinfo xterm is=\E[r\E[m\E[?7h\E[?1;4;66l\E[4l
 # terminfo default:
-## termcapinfo xterm* is=\E[!p\E[?3;4l\E[4l\E>
+## termcapinfo xterm is=\E[!p\E[?3;4l\E[4l\E>
 # jw, i.e. Debian:
-## termcapinfo xterm* is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
+## termcapinfo xterm is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
 
 
 # -- from RedHat --
