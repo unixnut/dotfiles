@@ -53,7 +53,7 @@ if [ -n "$PS1" ] ; then
       # Set the window and icon titles respectively
       PS1="\\[\\e]1;$wintitle\\a\\]\\[\\e]2;$wintitle_tty$wintitle\\a\\]$PS1"
       ;;
-    screen)
+    screen*)
       # use octal 134 for backslash otherwise bash gets confused and conflates
       # \\ with the following backslash somehow
       PS1="\\[\\e_$wintitle_tty$wintitle\\e\134\\]$PS1"
