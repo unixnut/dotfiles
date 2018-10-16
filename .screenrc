@@ -45,6 +45,7 @@ bind ~ eval "clear" "scrollback 0" "scrollback 3000" "stuff \03"
 # == backticks ==
 # Generates equivalent of $STY followed by "on $HOST" if $STY is non-standard.
 # (Checks only the first word of $HOST, in case it's a FQDN.)
+# TO-DO: chop out the ".pts-NN"
 backtick 10 60 60 sh -c 'sty=$(screen -ls | grep --color=no -o "$PPID[^[:space:]]*") ; if [ ${sty##*.} = ${HOST%%.*} ] ; then echo $sty ; else echo "$sty on ${HOST%%.*}" ; fi'
 
 
