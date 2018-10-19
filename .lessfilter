@@ -1,0 +1,57 @@
+#! /bin/sh
+# .lessfilter (Bourne shell script) -- Used by Debian's lesspipe script
+
+## set -x
+## exec 2>> ~/.local/log/lessfilter.log
+
+case `echo "$1" | tr '[:upper:]' '[:lower:]'` in
+  *.lz4)
+    if [ -x "`which lz4`" ]; then
+      lz4 -dc "$1"
+    else
+      echo "No lz4 available"
+    fi
+    exit 0
+    ;;
+
+  *.docx)
+    if [ -x "`which docx2txt`" ]; then
+      docx2txt < "$1"
+    else
+      echo "No docx2txt available"
+    fi
+    exit 0
+    ;;
+
+  *.odt) # OpenDocument Text Document (application/vnd.oasis.opendocument.text)
+    # odt2txt can be provided by multiple packages (odt2txt or unoconv)
+    # so figure out which package it comes from in order to figure out how to run it.
+    if [ -x "`which odt2txt`" ] &&
+       ! odt2txt -V >/dev/null 2>&1    # Only unoconv version supports -V
+    then
+      odt2txt "$1"
+    elif [ -x "`which unoconv`" ]; then
+      # Requires a running instance of soffice
+      unoconv --no-launch --format=txt --stdout "$1"
+    else
+      echo "No odt2txt or unoconv available"
+    fi
+    exit 0
+    ;;
+
+  *.ods) # OpenDocument Spreadsheet (application/vnd.oasis.opendocument.spreadsheet)
+    if [ -x "`which unoconv`" ]; then
+      # Requires a running instance of soffice
+      unoconv --no-launch --format=csv --stdout "$1"
+    elif [ -x "`which odt2txt`" ]; then
+      # This just provides the text, but is better than nothing
+      odt2txt  "$1"
+    else
+      echo "No odt2txt or unoconv available"
+    fi
+    exit 0
+    ;;
+esac
+
+# Signal to lesspipe/lessfile that we couldn't handle the file
+exit 1
