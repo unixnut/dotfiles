@@ -1,5 +1,5 @@
 # See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=682031
-if [ -z "$(complete -p unison)" -a \
+if [ -z "$(complete -p unison 2>/dev/null)" -a \
      -f /usr/share/bash-completion/completions/unison/unison.completion.bash ] ; then
   . /usr/share/bash-completion/completions/unison/unison.completion.bash
   # Find which versioned function to use
