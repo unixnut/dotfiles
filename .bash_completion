@@ -1,0 +1,8 @@
+# See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=682031
+if [ -z "$(complete -p unison)" -a \
+     -f /usr/share/bash-completion/completions/unison/unison.completion.bash ] ; then
+  . /usr/share/bash-completion/completions/unison/unison.completion.bash
+  # Find which versioned function to use
+  complete -o plusdirs -F $(declare -F | sed -n 's/.* \(_unison.*\)/\1/p') \
+    unison
+fi
