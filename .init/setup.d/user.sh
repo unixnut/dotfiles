@@ -89,7 +89,7 @@ set_grep_vars()
     # $GREP_OPTIONS is deprecated as of v2.21, so use my own method instead
     if [ $1 -gt 2 -o \
          $1 -eq 2 -a $2 -ge 21 ] ; then
-      export MY_GREP_OPTIONS=$GREP_OPTIONS
+      export MY_GREP_OPTIONS="$GREP_OPTIONS"
       unset GREP_OPTIONS
     fi
   fi
