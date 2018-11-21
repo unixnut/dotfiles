@@ -426,7 +426,7 @@ endif
 " *** Settings ***
 set formatprg=
 set nobackup         " don't keep a backup file
-"# set viminfo=
+set viminfo='100,<900,s10,h
 
 set nowrap sidescroll=1
 set ruler hidden laststatus=2 showcmd
