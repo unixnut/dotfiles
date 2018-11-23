@@ -440,10 +440,14 @@ set selection=exclusive   " unknown in Vim 5.0; used to work in ???; back in 6.x
 set nohlsearch
 set smartcase    " Override the 'ignorecase' option if the search pattern contains upper case characters
 
+" Help buffers and hit-enter and more-prompt prompts only
 "# set mouse=a
-set mouse=
+set mouse=hr
 set mousemodel=popup_setpos
 set mousetime=180
+
+" Disable default: autoselect,exclude:cons\|linux
+set clipboard=
 
 " -- editing --
 set bs=2             " allow backspacing over everything in insert mode
