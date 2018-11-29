@@ -11,13 +11,14 @@ if [ -n "$DISPLAY" -o -t 0 ] ; then
 
     less_setup()
     {
-      eval `SHELL=/bin/sh $my_lesspipe_dir/lesspipe`
+      eval `SHELL=/bin/sh sh $my_lesspipe_dir/lesspipe`
       # for sless
       export LESSOPEN_PROG=$my_lesspipe_dir/lessfile
       export LESSCLOSE_PROG=$my_lesspipe_dir/lessfile
     }
 
     if [ $my_lesspipe_ver -gt $lessver ] ; then
+      ## -x $my_lesspipe_dir/lesspipe
       less_setup
     else
       if [ $DISTRO_BASE = Debian ] ; then
