@@ -8,7 +8,7 @@ if ($?prompt) then
     # *** Fixes for variables used by completions ***
     # /etc/complete.tcsh sets $hosts from ~/.ssh/known_hosts but doesn't trim
     # entries with commas, so replace the contents
-    set hosts=(`sed -n 's/^Host \([^*][^ \t#]*\).*/\1/p' ~/.ssh/config`)
+    set hosts=("`sed -n 's/^Host \([^*][^ \t#]*\).*/\1/p' ~/.ssh/config`")
   endif
 
 
