@@ -54,7 +54,6 @@ fi
 
 # == apps ==
 export MANPATH=`manpath`
-export PYTHONPATH=$HOME/bin
 
 # works as long as the use-agent option appears in ~/.gnupg/gpg.conf
 ## eval `gpg-agent -s --daemon`
@@ -81,7 +80,7 @@ set_grep_vars()
     if [ $1 -gt 2 -o \
          $1 -eq 2 -a $2 -gt 5 -o \
          $1 -eq 2 -a $2 -eq 5 -a \( $3 -ge 3 -o "$4" = bsd \) ] ; then
-      export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc"
+      export GREP_OPTIONS="--exclude-dir=.svn --exclude-dir=.hg --exclude-dir=.git --exclude-dir=.pc --exclude-dir=.virtualenv"
     fi
 
     export GREP_OPTIONS="--color=auto --exclude=*~ --exclude=#*# --exclude=.sw? --exclude=.*.sw? --exclude=*.bak --exclude=*.o --exclude=*.so --exclude=*.class --exclude=*.pyc $GREP_OPTIONS"

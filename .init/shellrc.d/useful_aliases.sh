@@ -166,5 +166,7 @@ alias ,XXX='history -d $((HISTCMD - 3))'
 
 alias binary="python -c 'import sys ; print \"{0:08b}\".format(int(sys.argv[1]))'"
 
+alias rot13="tr n-za-mN-ZA-M a-zA-Z"
+
 # == tcsh equivalents ==
 alias ls-F='ls -F'
