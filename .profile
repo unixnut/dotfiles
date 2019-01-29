@@ -14,9 +14,9 @@
 
 # Do stuff here that is needed early, because .gnomerc is sourced later
 # XDG_SESSION_ID
-# DESKTOP_SESSION=mate
+# DESKTOP_SESSION=mate (gdm and lightdm only)
 # XDG_CURRENT_DESKTOP=MATE
-if [ "$PROGNAME" = Xsession -o -n "$DESKTOP_SESSION" ] ; then
+if [ "$PROGNAME" = Xsession -o -n "$XDG_CURRENT_DESKTOP" -o -n "$DESKTOP_SESSION" ] ; then
   export X_LOGIN=y
 fi
 

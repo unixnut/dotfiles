@@ -101,6 +101,8 @@ $endif
 $if term=linux
 "\e[[C":   history-search-backward
 "\e[[D":   history-search-forward
+"\e[[[C":   history-search-backward
+"\e[[[D":   history-search-forward
 $else
 $if term=putty
 "\e[13~":  history-search-backward

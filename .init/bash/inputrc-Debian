@@ -21,7 +21,7 @@ $if Bash
 # mnemonic: "refresh"
 "\eR":  "sudo apt-get update\n"
 
-"\eU":  "sudo aptitude safe-upgrade"
+"\eU":  "sudo apt-get upgrade\n"
 ## "\e":  ""
 $endif
 
