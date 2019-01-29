@@ -31,10 +31,11 @@ if [ \( -x /usr/bin/lsb_release -o -x /bin/lsb_release \) -a \
     case "$DISTRO" in
       LinuxMint) . ~/.init/mint_setup.sh ;;
     esac
-  else
-    DISTRO=unknown DISTRO_RELEASE=0
   fi
-else
+fi
+
+if [ -z "$DISTRO" -o \
+     "$DISTRO" = Debian -a "$DISTRO_RELEASE" = stable-updates ] ; then
   case $OS in
     Linux)
       if [ -f /etc/debian_version ] ; then
