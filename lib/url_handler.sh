@@ -31,7 +31,8 @@
 # VT: Launch in the same terminal
 
 # The lists of programs to be executed are
-http_prgs=/usr/bin/w3m:VT
+http_prgs="/usr/bin/w3m:VT /usr/bin/sensible-browser:VT /usr/bin/links:VT /usr/bin/lynx:VT"
+## /usr/bin/www-browser
 https_prgs=$http_prgs
 mailto_prgs="/usr/bin/mutt:VT /usr/bin/elm:VT /usr/bin/alpine:VT /usr/bin/pine:VT /usr/bin/mail:VT"
 gopher_prgs="/usr/bin/gopher:XT /usr/bin/lynx:XT"

@@ -19,10 +19,10 @@ if [ -n "$PS1" ] ; then
       fi
   fi
 
-  # override the one from /etc/bash.bashrc if using colour
+  # override the one from /etc/bash.bashrc if using colour and not running under mc
   # (Debian default is '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ')
   # TO-DO: use tput
-  if [ "$color_prompt" = yes ]; then
+  if [ "$color_prompt" = yes -a -z "$MC_SID" ]; then
     case $DISTRO_BASE in
       Debian)
         PS1="${debian_chroot:+($debian_chroot)}"'\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
@@ -38,30 +38,33 @@ if [ -n "$PS1" ] ; then
   fi
   unset color_prompt
 
-  # If this is an xterm, etc. set the title to {tty:NN} ($debian_chroot) user@host:dir
-  # (by adding prefixing the prompt with a string surrounded by terminal-specific
-  # escape sequences, unlike older configs which set PROMPT_COMMAND)
-  # For xterm specifically, set the window and icon titles separately.
-  # TO-DO: use tput
-  wintitle="${debian_chroot:+($debian_chroot)}\\u@\\h: \\w"
-  if [ -z "$SSH_CONNECTION" ] ; then
-    # For local connections, add the pty number to the window title
-    wintitle_tty='{tty:\l} '
+  # Don't try to use hardstatus under mc as it manages its own
+  if [ -z "$MC_SID" ]; then
+    # If this is an xterm, etc. set the title to {tty:NN} ($debian_chroot) user@host:dir
+    # (by adding prefixing the prompt with a string surrounded by terminal-specific
+    # escape sequences, unlike older configs which set PROMPT_COMMAND)
+    # For xterm specifically, set the window and icon titles separately.
+    # TO-DO: use tput
+    wintitle="${debian_chroot:+($debian_chroot)}\\u@\\h: \\w"
+    if [ -z "$SSH_CONNECTION" ] ; then
+      # For local connections, add the pty number to the window title
+      wintitle_tty='{tty:\l} '
+    fi
+    case "$TERM" in
+      xterm*|rxvt*)
+        # Set the window and icon titles respectively
+        PS1="\\[\\e]1;$wintitle\\a\\]\\[\\e]2;$wintitle_tty$wintitle\\a\\]$PS1"
+        ;;
+      screen*)
+        # use octal 134 for backslash otherwise bash gets confused and conflates
+        # \\ with the following backslash somehow
+        PS1="\\[\\e_$wintitle_tty$wintitle\\e\134\\]$PS1"
+        ;;
+      *)
+        ;;
+    esac
+    unset wintitle wintitle_tty
   fi
-  case "$TERM" in
-    xterm*|rxvt*)
-      # Set the window and icon titles respectively
-      PS1="\\[\\e]1;$wintitle\\a\\]\\[\\e]2;$wintitle_tty$wintitle\\a\\]$PS1"
-      ;;
-    screen*)
-      # use octal 134 for backslash otherwise bash gets confused and conflates
-      # \\ with the following backslash somehow
-      PS1="\\[\\e_$wintitle_tty$wintitle\\e\134\\]$PS1"
-      ;;
-    *)
-      ;;
-  esac
-  unset wintitle wintitle_tty
 
   # -- extra stuff that shouldn't appear in the wintitle --
   # Custom dynamic prompt prefix for Python virtualenvs
