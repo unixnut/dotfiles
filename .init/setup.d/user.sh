@@ -107,6 +107,10 @@ unset -f set_grep_vars
 # (replaces ugly "Mar 31 01:52"/"Mar  3  2015" format with "2013-02-22 15:56")
 export TIME_STYLE=long-iso
 
+# Restore original behaviour for ls
+## export QUOTING_STYLE=escape
+export QUOTING_STYLE=literal
+
 # -- X11 setup --
 if [ -n "$DISPLAY" -a -d "$HOME/.app-defaults" ] ; then
   export XUSERFILESEARCHPATH="$HOME/.app-defaults/%N%C:$HOME/.app-defaults/%N"
