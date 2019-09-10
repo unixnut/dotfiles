@@ -103,13 +103,24 @@ fi
 unset ver 
 unset -f set_grep_vars
 
+# -- other GNU tools --
 # default for GNU ls --time-style option
 # (replaces ugly "Mar 31 01:52"/"Mar  3  2015" format with "2013-02-22 15:56")
 export TIME_STYLE=long-iso
 
-# Restore original behaviour for ls
+# Restore original behaviour for GNU ls
 ## export QUOTING_STYLE=escape
 export QUOTING_STYLE=literal
+
+# -- stuff for my functions/aliases --
+if type ip >/dev/null 2>&1
+then
+  # Enable colour for recent versions of `ip`
+  if [ $(ip -V | sed 's/ip utility, iproute2-ss//') -ge 190107 ] ; then
+    export IP_FORCE_COLOUR_OPT="-c=always"
+  fi
+fi
+
 
 # -- X11 setup --
 if [ -n "$DISPLAY" -a -d "$HOME/.app-defaults" ] ; then

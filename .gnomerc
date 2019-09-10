@@ -8,6 +8,9 @@ if [ -z "$GDMSESSION" ] ; then
   . .init/setup.sh
 fi
 
+xmodmap -e 'keysym Super_L = Insert' -e 'clear mod4'
+
+
 # vim: set filetype=sh :
 ### Local Variables:
 ### mode: shell-script
