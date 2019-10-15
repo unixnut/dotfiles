@@ -16,3 +16,6 @@ highlight Ignore ctermfg=238 guifg=Grey27
 highlight Function term=underline cterm=bold ctermfg=14
 "# highlight Identifier term=bold ctermfg=150 guifg=DarkSeaGreen3
 highlight Identifier term=bold ctermfg=156 guifg=PaleGreen1
+
+
+highlight PmenuSel ctermbg=156 guibg=PaleGreen1
