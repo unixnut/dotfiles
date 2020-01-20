@@ -49,11 +49,11 @@ if [ -z "$DISTRO" -o \
           7.*) export DISTRO_CODENAME=wheezy ;;
           8.*) export DISTRO_CODENAME=jessie ;;
           9.*) export DISTRO_CODENAME=stretch ;;
-          ## 10.*) export DISTRO_CODENAME=buster ;;
+          10.*) export DISTRO_CODENAME=buster ;;
           *)  # anything else is assumed to be a codename
               # (e.g. /etc/debian_version contents is "blah/sid")
               export DISTRO_CODENAME=$DISTRO_RELEASE
-              export DISTRO_RELEASE=10.0.beta 
+              export DISTRO_RELEASE=11.0.beta 
               ;;
         esac
       elif [ -f /etc/redhat-release ] ; then
@@ -78,6 +78,29 @@ if [ -z "$DISTRO" -o \
     *BSD)
       # remove the suffix, e.g. -STABLE
       export DISTRO=non-linux DISTRO_RELEASE=$(uname -r | sed -e s/-.*//)
+      ;;
+
+    Darwin)
+      export DISTRO=non-linux DISTRO_RELEASE=$(sw_vers -productVersion)
+      case $DISTRO_RELEASE in
+        10.0.*)  export DISTRO_CODENAME=Cheetah ;;
+        10.1.*)  export DISTRO_CODENAME=Puma ;;
+        10.2.*)  export DISTRO_CODENAME=Jaguar ;;
+        10.3.*)  export DISTRO_CODENAME=Panther ;;
+        10.4.*)  export DISTRO_CODENAME=Tiger ;;
+        10.5.*)  export DISTRO_CODENAME=Leopard ;;
+        10.6.*)  export DISTRO_CODENAME=Snow_Leopard ;;
+        10.7.*)  export DISTRO_CODENAME=Lion ;;
+        10.8.*)  export DISTRO_CODENAME=Mountain_Lion ;;
+        10.9.*)  export DISTRO_CODENAME=Mavericks ;;
+        10.10.*) export DISTRO_CODENAME=Yosemite ;;
+        10.11.*) export DISTRO_CODENAME=El_Capitan ;;
+        10.12.*) export DISTRO_CODENAME=Sierra ;;
+        10.13.*) export DISTRO_CODENAME=High_Sierra ;;
+        10.14.*) export DISTRO_CODENAME=Mojave ;;
+        10.15.*) export DISTRO_CODENAME=Catalina ;;
+        *)  export DISTRO_CODENAME=unknown ;;
+      esac
       ;;
 
     *)

@@ -211,32 +211,36 @@ vmap <M-PageDown> gt
 imap <M-PageDown> <C-O>gt
 
 " -- toggles --
-imap <silent> <F8> <C-O>:set wrap!<CR>
-nmap <silent> <F8> :set wrap!<CR>
-vmap <silent> <F8> :<C-U>set wrap!<CR>gv
+imap <silent> <F8> <C-O>:silent set wrap!<CR>
+nmap <silent> <F8> :silent set wrap!<CR>
+vmap <silent> <F8> :<C-U>silent set wrap!<CR>gv
 
 if $TERM == 'linux'
-  imap <Esc>[34~ <C-O>:setlocal spell!<CR>
-  nmap <Esc>[34~ :setlocal spell!<CR>
-  vmap <Esc>[34~ :<C-U>setlocal spell!<CR>gv
+  imap <Esc>[34~ <C-O>:silent setlocal spell!\|setlocal spell?<CR>
+  nmap <Esc>[34~ :silent setlocal spell!\|setlocal spell?<CR>
+  vmap <Esc>[34~ :<C-U>silent setlocal spell!\|setlocal spell?<CR>gv
 else
-  imap <S-F8> <C-O>:setlocal spell!<CR>
-  nmap <S-F8> :setlocal spell!<CR>
-  vmap <S-F8> :<C-U>setlocal spell!<CR>gv
+  imap <S-F8> <C-O>:silent setlocal spell!\|setlocal spell?<CR>
+  nmap <S-F8> :silent setlocal spell!\|setlocal spell?<CR>
+  vmap <S-F8> :<C-U>silent setlocal spell!\|setlocal spell?<CR>gv
 endif
 
-imap <C-F8> <C-O>:set ignorecase!<CR>
-nmap <C-F8> :set ignorecase!<CR>
-vmap <C-F8> :<C-U>set ignorecase!<CR>gv
-imap <C-S-F8> <C-O>:set hlsearch!<CR>
-nmap <C-S-F8> :set hlsearch!<CR>
-vmap <C-S-F8> :<C-U>set hlsearch!<CR>gv
+imap <C-F8> <C-O>:silent set ignorecase!\|set ignorecase?<CR>
+nmap <C-F8> :silent set ignorecase!\|set ignorecase?<CR>
+vmap <C-F8> :<C-U>silent set ignorecase!\|set ignorecase?<CR>gv
+imap <C-S-F8> <C-O>:silent set hlsearch!\|set hlsearch?<CR>
+nmap <C-S-F8> :silent set hlsearch!\|set hlsearch?<CR>
+vmap <C-S-F8> :<C-U>silent set hlsearch!\|set hlsearch?<CR>gv
 
 imap <silent> <S-F10> <C-O>:set number!<CR>
 nmap <silent> <S-F10> :set number!<CR>
 
 imap <silent> <C-F10> <C-O>:if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
 nmap <silent> <C-F10> :if &diff \| :diffoff \| :else \| :diffthis \| :endif<CR>
+
+imap <silent> <C-S-F10> <C-O>:set list!<CR>
+nmap <silent> <C-S-F10> :set list!<CR>
+vmap <silent> <C-S-F10> :<C-U>set list!<CR>
 
 " -- Explore --
 nmap <silent> <C-W>e :Sexplore<CR>
@@ -470,12 +474,12 @@ imap <S-F11> <C-O>:set textwidth=
 nmap <C-S-F11> :set textwidth=0<CR>
 vmap <C-S-F11> :<C-U>set textwidth=0<CR>gv
 imap <C-S-F11> <C-O>:set textwidth=0<CR>
-imap <F12> <C-O>:set expandtab!<CR>
-nmap <F12> :set expandtab!<CR>
-vmap <F12> :<C-U>set expandtab!<CR>gv
-imap <C-F12> <C-O>:set autoindent!<CR>
-nmap <C-F12> :set autoindent!<CR>
-vmap <C-F12> :<C-U>set autoindent!<CR>gv
+imap <F12> <C-O>:silent set expandtab!\|set expandtab?<CR>
+nmap <F12> :silent set expandtab!\|set expandtab?<CR>
+vmap <F12> :<C-U>silent set expandtab!\|set expandtab?<CR>gv
+imap <C-F12> <C-O>:silent set autoindent!\|set autoindent?<CR>
+nmap <C-F12> :silent set autoindent!\|set autoindent?<CR>
+vmap <C-F12> :<C-U>silent set autoindent!\|set autoindent?<CR>gv
 imap <silent> <S-F12> <C-O>:set readonly!<CR>
 nmap <silent> <S-F12> :set readonly!<CR>
 vmap <silent> <S-F12> :<C-U>set readonly!<CR>gv
