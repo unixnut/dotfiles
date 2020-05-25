@@ -83,10 +83,18 @@ alias chop='cut -c1-$COLUMNS'
 alias ,X='history -d $((HISTCMD - 1))'
 alias ,XX='history -d $((HISTCMD - 2))'
 alias ,XXX='history -d $((HISTCMD - 3))'
+# Other history stuff
+alias ,A='history -a'
+alias ,N='history -n'
+alias ,H='awk '\''{ if (/^#/) { system("date -R -d @" substr($0, 2)); } else print }'\'' .bash_history |less'
 
 alias binary="python -c 'import sys ; print \"{0:08b}\".format(int(sys.argv[1]))'"
 
 alias rot13="tr n-za-mN-ZA-M a-zA-Z"
+
+# -- shell stuff --
+alias bindingsbyseq="{ bind -p ; bind -s ; } |LC_COLLATE=C sort|less"
+alias showkeys="{ bind -p ; bind -s ; } |LC_COLLATE=C sort|less"
 
 # -- network stuff --
 # Columns, colours, pager, and don't show IPv6 link-local addrs

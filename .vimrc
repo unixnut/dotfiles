@@ -210,6 +210,43 @@ nmap <M-PageDown> gt
 vmap <M-PageDown> gt
 imap <M-PageDown> <C-O>gt
 
+nmap <Esc>1 1gt
+nmap <Esc>2 2gt
+nmap <Esc>3 3gt
+nmap <Esc>4 4gt
+nmap <Esc>5 5gt
+nmap <Esc>6 6gt
+nmap <Esc>7 7gt
+nmap <Esc>8 8gt
+nmap <Esc>9 9gt
+nmap <Esc>0 10gt
+nmap <M-Home> :tabfirst<CR>
+nmap <M-End> :tablast<CR>
+
+if exists("*function")
+  " can't use <expr> because that can't handle a count
+  " have to use the <C-U> to avoid passing the count to :call
+  nmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
+  vmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
+
+  let g:previous_tab = 1
+  " When no count is supplied, switch to the previous tab where this function
+  " was called.  When a count is supplied, act like "gt".
+  " (Note that "gt" effectively forgets the current tab, so afterwards, this
+  " function without a count will go back to the previous-previous tab.)
+  function! JumpBetweenTabs(count)
+    if a:count > 0
+      let g:previous_tab = tabpagenr()
+      exe ":tabn" a:count
+    else
+      " have to figure things out first, because :exe must happen last
+      let l:new_tab = g:previous_tab
+      let g:previous_tab = tabpagenr()
+      exe ":tabn" l:new_tab
+    endif
+  endfunction
+endif
+
 " -- toggles --
 imap <silent> <F8> <C-O>:silent set wrap!<CR>
 nmap <silent> <F8> :silent set wrap!<CR>
@@ -244,6 +281,7 @@ vmap <silent> <C-S-F10> :<C-U>set list!<CR>
 
 " -- Explore --
 nmap <silent> <C-W>e :Sexplore<CR>
+nmap <silent> <C-W>V :Vexplore<CR>
 nmap <silent> <C-W>E :Texplore<CR>
 nmap <silent> g<C-O> :Rexplore<CR>
 
@@ -279,6 +317,8 @@ inoremap <expr> <C-X>% expand("%:t")
 " Does the same as the default ^D
 " an argument could be made for using &tabstop here
 inoremap <expr> <S-Tab> repeat("\<BS>", &shiftwidth)
+
+" -- Abbreviations --
 
 
 " == other ==
@@ -328,40 +368,9 @@ imap <Esc>[1;6Q <C-O>:tabs<CR>
 nmap <C-S-F2> :tabs<CR>
 vmap <C-S-F2> :<C-U>tabs<CR>gv
 imap <C-S-F2> <C-O>:tabs<CR>
-nmap <Esc>1 1gt
-nmap <Esc>2 2gt
-nmap <Esc>3 3gt
-nmap <Esc>4 4gt
-nmap <Esc>5 5gt
-nmap <Esc>6 6gt
-nmap <Esc>7 7gt
-nmap <Esc>8 8gt
-nmap <Esc>9 9gt
-nmap <Esc>0 10gt
 
-if exists("*function")
-  " can't use <expr> because that can't handle a count
-  " have to use the <C-U> to avoid passing the count to :call
-  nmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
-  vmap <silent> g<Tab> :<C-U>call JumpBetweenTabs(v:count)<CR>
-
-  let g:previous_tab = 1
-  " When no count is supplied, switch to the previous tab where this function
-  " was called.  When a count is supplied, act like "gt".
-  " (Note that "gt" effectively forgets the current tab, so afterwards, this
-  " function without a count will go back to the previous-previous tab.)
-  function! JumpBetweenTabs(count)
-    if a:count > 0
-      let g:previous_tab = tabpagenr()
-      exe ":tabn" a:count
-    else
-      " have to figure things out first, because :exe must happen last
-      let l:new_tab = g:previous_tab
-      let g:previous_tab = tabpagenr()
-      exe ":tabn" l:new_tab
-    endif
-  endfunction
-endif
+" terminal window running a shell
+map g<C-S> :terminal<CR>
 
 
 " *** Features ***
@@ -521,6 +530,27 @@ endif
 " -- netrw --
 let g:netrw_sort_sequence='[\/]$,\<core\%(\.\d\+\)\=\>,README,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,\.info$,\.sw.$,\.bak$,\~$'
 
+
+" *** Fixups ***
+" == Terminal ==
+if $TERM =~ "screen*"
+  map  <Esc>[5;3~ <M-PageUp>
+  map! <Esc>[5;3~ <M-PageUp>
+  map  <Esc>[6;3~ <M-PageDown>
+  map! <Esc>[6;3~ <M-PageDown>
+  map  <Esc>[1;3H <M-Home>
+  map! <Esc>[1;3H <M-Home>
+  map  <Esc>[1;3F <M-End>
+  map! <Esc>[1;3F <M-End>
+  map  <Esc>[1;5A <C-Up>
+  map! <Esc>[1;5A <C-Up>
+  map  <Esc>[1;5B <C-Down>
+  map! <Esc>[1;5B <C-Down>
+  map  <Esc>[1;5D <C-Left>
+  map! <Esc>[1;5D <C-Left>
+  map  <Esc>[1;5C <C-Right>
+  map! <Esc>[1;5C <C-Right>
+endif
 
 " *** Extensibility ***
 if exists("*filereadable") && exists("$ZONE")

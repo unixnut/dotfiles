@@ -23,7 +23,7 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     # ... %H:%M:%S
     ## export FCEDIT vim
 
-    export FIGNORE="~:.o:.class:.pyc:.bak"
+    export FIGNORE="~:.o:.class:.pyc:.bak:.swp:.swo:.swn:.swm:.swl"
 
     # to-do: update this file (see .init/shellrc.d/completions.tcsh)
     export HOSTFILE=~/tmp/hosts

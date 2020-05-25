@@ -53,7 +53,9 @@ fi
 
 
 # == apps ==
-export MANPATH=`manpath`
+if [ -t 0 ] ; then
+  export MANPATH=`manpath`
+fi
 
 # works as long as the use-agent option appears in ~/.gnupg/gpg.conf
 ## eval `gpg-agent -s --daemon`

@@ -1,10 +1,13 @@
 $include /etc/inputrc
 
+# If the backslash binding gets screwed up, run: bind '"\134": self-insert'
+
 set expand-tilde on
 
 # makes escape sequences fail sensibly if they don't have a mapping
-"\e":      skip-csi-sequence
+"\e":       skip-csi-sequence
 
+"\e,":      redraw-current-line
 
 # == movement ==
 "\eB":      shell-backward-word
@@ -16,8 +19,10 @@ $endif
 
 
 # == completion ==
+"\e%":      complete-filename
+
 "\C-x\C-i": complete-into-braces
-"\ei":      menu-complete
+## "\ei":      menu-complete
 "\e[Z":     menu-complete-backward            # shift-Tab cycles backwards
 "\e[18~":   menu-complete                     # F7 cycles forwards
 "\e[17~":   menu-complete-backward            # F6 cycles backwards
@@ -35,6 +40,8 @@ $endif
 # == strings ==
 # to insert Unicode characters, just insert the corresponding bytes
 "\e[E": "\xc2\xb7"               # The 5 key with numlock off inserts ·
+# Can't specify a quoted backslash so have to use octal
+"\e\134": " | less"
 
 # -- jobs --
 $if term=linux
@@ -151,4 +158,3 @@ $endif
 
 
 # *** TO-DO ***
-## : redraw-current-line
