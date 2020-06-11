@@ -1,9 +1,20 @@
 [user]
-	name = Alastair Irvine
-	email = alastair@plug.org.au
+  name = Alastair Irvine
+  email = alastair@plug.org.au
 [core]
         pager = less -R
+        excludesfile = /home/alastair/.gitignore_global
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+        diff = auto
+        status = auto
+        branch = auto
+[advice]
+        pushNonFastForward = false
+        statusHints = false
+[diff]
+        renames = copies
+        mnemonicprefix = true
+[merge]
+        stat = true
+[pager]
+        branch = false
