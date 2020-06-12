@@ -5,4 +5,8 @@ setlocal shiftwidth=4
 setlocal tabstop=4
 
 " my abbreviations
-iabbrev <buffer> __main if __name__ == "__main__":
+iabbr <buffer>          __main  if __name__ == "__main__":<C-R>
+iabbr <buffer> <silent> _h1     # ***  ***<Left><Left><Left><Left><C-R>=Eatchar('[\r[:space:]]')<CR>
+iabbr <buffer> <silent> _h2     # ==  ==<Left><Left><Left><C-R>=Eatchar('[\r[:space:]]')<CR>
+iabbr <buffer> <silent> _h3     # --  --<Left><Left><Left><C-R>=Eatchar('[\r[:space:]]')<CR>
+iabbr <buffer>          ctor    def __init__(self):
