@@ -290,7 +290,12 @@ nmap <silent> g<C-O> :Rexplore<CR>
 " normal-mode shortcuts for various build-related commands
 nmap ZM :make<CR>
 nmap <F9> :make<CR>
-nmap <C-F9> ZC
+nmap <C-F9> :clist<CR>
+imap <C-F9> <C-O>:clist<CR>
+nmap <S-F9> :setlocal makeprg=
+imap <S-F9> <C-O>:setlocal makeprg=
+nmap <C-S-F9> :colder<CR>
+imap <C-S-F9> <C-O>:colder<CR>
 
 
 " == customisations ==
@@ -318,22 +323,16 @@ inoremap <expr> <C-X>% expand("%:t")
 " an argument could be made for using &tabstop here
 inoremap <expr> <S-Tab> repeat("\<BS>", &shiftwidth)
 
-" -- Abbreviations --
-
 
 " == other ==
+" -- ex command prompt --
+cmap <F6> <S-Tab>
+cmap <F7> <Tab>
+
 " Commands to delete a quoted message's signature and go into insert mode:
 nmap gr }?^>\ *.<CR>?^>\ *$<CR>?^>\ *.<CR>jc}<CR>
 nmap gR }c?^>\ -- $?<CR><C-U><C-U><CR>
 nmap gz v/^-- <CR>dzbO<CR><CR><Up>
-
-" Like o or O, but suppresses auto commend insertion
-" Too complicated to impolement, because:-
-"   1) :normal dumps out of insert mode at completion, which is forced
-"   2) indent from 'autoindent' is virtual and is cleared when leaving insert mode
-"   3) would need to calculate indent for a new line from the previous line
-"   4) have to honour 'smartindent' or 'cindent' (overrides 3)
-"# nmap <silent> go :let saved_fo=&formatoptions \| setlocal formatoptions-=o\|:normal o<C-O>:exe "setlocal formatoptions=" . saved_fo<CR>
 
 " -- Useful searching commands --
 map  <F5> /
@@ -369,8 +368,12 @@ nmap <C-S-F2> :tabs<CR>
 vmap <C-S-F2> :<C-U>tabs<CR>gv
 imap <C-S-F2> <C-O>:tabs<CR>
 
-" terminal window running a shell
-map g<C-S> :terminal<CR>
+" == terminal window running a shell ==
+map g<C-S> :tab terminal<CR>
+map gS :terminal<CR>
+" -- :term mappings --
+tmap <M-PageUp> <C-W>NgT
+tmap <M-PageDown> <C-W>Ngt
 
 
 " *** Features ***
@@ -426,6 +429,16 @@ else
   vmap <S-F7> ]s
 endif
 
+" == netrw ==
+let g:netrw_sort_sequence='[\/]$,\<core\%(\.\d\+\)\=\>,README,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,\.info$,\.sw.$,\.bak$,\~$'
+
+" == Packages ==
+if has('packages')
+  packadd! matchit
+else
+  runtime! macros/matchit.vim
+endif
+
 
 " *** Functions and commands to use them ***
 if exists("*function")
@@ -433,6 +446,14 @@ if exists("*function")
   runtime include/rename4.vim
   " :BDE
   runtime include/bde.vim
+
+  " Eat one character matching the given regex from the input stream, e.g. at
+  " the end of an abbr expansion.
+  " E.g. `:iabbr <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>`
+  func Eatchar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+  endfunc
 endif
 
 
@@ -459,12 +480,16 @@ set mouse=hr
 set mousemodel=popup_setpos
 set mousetime=180
 
+" Selection (<S-Left> etc. starts type-to-replace selection mode)
+set selectmode=key
+set keymodel=startsel   " Don't use "stopsel" because that breaks Visual mode
+
 " Disable default: autoselect,exclude:cons\|linux
 set clipboard=
 
 " -- editing --
 set bs=2             " allow backspacing over everything in insert mode
-set ai               " always set autoindenting on
+set autoindent
 
 set textwidth=0
 
@@ -511,7 +536,8 @@ set iskeyword=-,@,48-57,_,192-255
 set isfname-==
 
 " -- file --
-"# set formatoptions-=c formatoptions-=o formatoptions-=r
+" See 'fo-table'
+set formatoptions-=o formatoptions+=np
 set modeline
 
 set fileformats=unix,dos,mac
@@ -521,36 +547,20 @@ set titleold=Terminal
 
 
 " *** Misc ***
+runtime include/abbrevs.vim
+
 " -- digraphs --
 if has("digraphs")
   digraphs a` 224
 endif
 
-
-" -- netrw --
-let g:netrw_sort_sequence='[\/]$,\<core\%(\.\d\+\)\=\>,README,\.h$,\.c$,\.cpp$,*,\.o$,\.obj$,\.info$,\.sw.$,\.bak$,\~$'
+" -- Git support --
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 
 " *** Fixups ***
 " == Terminal ==
-if $TERM =~ "screen*"
-  map  <Esc>[5;3~ <M-PageUp>
-  map! <Esc>[5;3~ <M-PageUp>
-  map  <Esc>[6;3~ <M-PageDown>
-  map! <Esc>[6;3~ <M-PageDown>
-  map  <Esc>[1;3H <M-Home>
-  map! <Esc>[1;3H <M-Home>
-  map  <Esc>[1;3F <M-End>
-  map! <Esc>[1;3F <M-End>
-  map  <Esc>[1;5A <C-Up>
-  map! <Esc>[1;5A <C-Up>
-  map  <Esc>[1;5B <C-Down>
-  map! <Esc>[1;5B <C-Down>
-  map  <Esc>[1;5D <C-Left>
-  map! <Esc>[1;5D <C-Left>
-  map  <Esc>[1;5C <C-Right>
-  map! <Esc>[1;5C <C-Right>
-endif
+
 
 " *** Extensibility ***
 if exists("*filereadable") && exists("$ZONE")
