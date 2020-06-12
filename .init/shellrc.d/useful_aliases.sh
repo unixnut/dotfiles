@@ -93,8 +93,9 @@ alias binary="python -c 'import sys ; print \"{0:08b}\".format(int(sys.argv[1]))
 alias rot13="tr n-za-mN-ZA-M a-zA-Z"
 
 # -- shell stuff --
-alias bindingsbyseq="{ bind -p ; bind -s ; } |LC_COLLATE=C sort|less"
-alias showkeys="{ bind -p ; bind -s ; } |LC_COLLATE=C sort|less"
+alias bindingsbyname="bind -P | ${PAGER:-less}"
+alias bindingsbyseq="{ bind -p ; bind -s ; } | LC_COLLATE=C sort | ${PAGER:-less}"
+alias showkeys="{ bind -p ; bind -s ; } | LC_COLLATE=C sort | ${PAGER:-less}"
 
 # -- network stuff --
 # Columns, colours, pager, and don't show IPv6 link-local addrs
@@ -104,32 +105,6 @@ function ipaddr
     sed 's/ \(\x1b[^a-z]*.\)\?fe80:[^[:space:]]*//'|
     less -R
 }
-
-function _iproute_filter
-{
-  sed -e '/ \(\x1b[^a-z]*.\)\?via/ !s/ \(\x1b[^a-z]*.\)\?dev /\t&/' \
-      -e '/ \(\x1b[^a-z]*.\)\?proto/ !s/ \(\x1b[^a-z]*.\)\?scope /\t&/' \
-      -e 's/ \(\x1b[^a-z]*.\)\?\(dev\|via\) /\t/g' \
-      -e '/ \(\x1b[^a-z]*.\)\?metric/ !s/ \(\x1b[^a-z]*.\)\?linkdown /\t&/' \
-      -e 's/[[:space:]]\(\x1b[^a-z]*.\)\?\(proto\|scope\|link\|src\|metric\)\>//g'
-}
-
-# Columns, colours, pager, headings
-function iproute
-{
-  local WHITE=$(setterm -bold on)
-  local NORMAL=$(setterm -default)
-
-  { echo ${WHITE}Dest Via Dev Proto Src Metric Flags${NORMAL}
-    ip $IP_FORCE_COLOUR_OPT route |
-      sed -e '/ \(\x1b[^a-z]*.\)\?src/ !s/ \(\x1b[^a-z]*.\)\?metric /\t&/' |
-      _iproute_filter
-    echo
-    echo ${WHITE}Dest Via Dev Proto Metric Flags${NORMAL}
-    ip -6 $IP_FORCE_COLOUR_OPT route | _iproute_filter
-  } | column -tn -e | less -R
-}
-
 
 # == tcsh equivalents ==
 alias ls-F='ls -F'

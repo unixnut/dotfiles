@@ -41,7 +41,8 @@ $endif
 # to insert Unicode characters, just insert the corresponding bytes
 "\e[E": "\xc2\xb7"               # The 5 key with numlock off inserts ·
 # Can't specify a quoted backslash so have to use octal
-"\e\134": " | less"
+"\e\134": " | less -S"
+"\e|": " | less -R"
 
 # -- jobs --
 $if term=linux
