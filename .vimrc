@@ -369,11 +369,14 @@ vmap <C-S-F2> :<C-U>tabs<CR>gv
 imap <C-S-F2> <C-O>:tabs<CR>
 
 " == terminal window running a shell ==
-map g<C-S> :tab terminal<CR>
-map gS :terminal<CR>
-" -- :term mappings --
-tmap <M-PageUp> <C-W>NgT
-tmap <M-PageDown> <C-W>Ngt
+if has("terminal")
+  map g<C-S> :tab terminal<CR>
+  map gS :terminal<CR>
+
+  " -- :term mappings --
+  tmap <M-PageUp> <C-W>NgT
+  tmap <M-PageDown> <C-W>Ngt
+endif
 
 
 " *** Features ***
@@ -537,7 +540,10 @@ set isfname-==
 
 " -- file --
 " See 'fo-table'
-set formatoptions-=o formatoptions+=np
+set formatoptions-=o formatoptions+=n
+if v:version >= 801
+  set formatoptions+=p
+endif
 set modeline
 
 set fileformats=unix,dos,mac
