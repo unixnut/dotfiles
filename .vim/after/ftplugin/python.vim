@@ -10,3 +10,8 @@ iabbr <buffer> <silent> _h1     # ***  ***<Left><Left><Left><Left><C-R>=Eatchar(
 iabbr <buffer> <silent> _h2     # ==  ==<Left><Left><Left><C-R>=Eatchar('[\r[:space:]]')<CR>
 iabbr <buffer> <silent> _h3     # --  --<Left><Left><Left><C-R>=Eatchar('[\r[:space:]]')<CR>
 iabbr <buffer>          ctor    def __init__(self):
+iabbr <buffer> <silent> _c      logger.critical("")<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr <buffer> <silent> _e      logger.error("")<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr <buffer> <silent> _w      logger.warning("")<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr <buffer> <silent> _i      logger.info("")<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr <buffer> <silent> _d      logger.debug("")<Left><Left><C-R>=Eatchar('\s')<CR>

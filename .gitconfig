@@ -1,6 +1,6 @@
 [user]
-  name = Alastair Irvine
-  email = alastair@plug.org.au
+        name = Alastair Irvine
+        email = alastair@plug.org.au
 [core]
         pager = less -R
         excludesfile = /home/alastair/.gitignore_global
