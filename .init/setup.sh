@@ -4,7 +4,7 @@
 
 
 # == preparation ==
-. .init/lib/functions.sh
+. ~/.init/lib/functions.sh
 
 
 # == standard variables ==
@@ -158,17 +158,17 @@ export BINARY_TYPE=$MACHTYPE-$OS
 
 
 # == platform-specific ==
-. .init/$OS.sh
+. ~/.init/$OS.sh
 
 
 # == other ==
 for file in .init/setup.d/*.sh ; do
-  . $file
+  . ~/$file
 done
 
 if [ -r .init/Zones/$ZONE/setup.sh ]; then
-  . .init/Zones/$ZONE/setup.sh
+  . ~/.init/Zones/$ZONE/setup.sh
 fi
 if [ -r .init/Zones/$ZONE/${HOST}_setup.sh ]; then
-  . .init/Zones/$ZONE/${HOST}_setup.sh
+  . ~/.init/Zones/$ZONE/${HOST}_setup.sh
 fi

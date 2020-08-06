@@ -23,6 +23,7 @@ if [ "$X_LOGIN" = y -o -n "$TERM" ] ; then
     # ... %H:%M:%S
     ## export FCEDIT vim
 
+    # See `shopt -u force_fignore` in .init/shellrc.d/options.sh
     export FIGNORE="~:.o:.class:.pyc:.bak:.swp:.swo:.swn:.swm:.swl"
 
     # to-do: update this file (see .init/shellrc.d/completions.tcsh)

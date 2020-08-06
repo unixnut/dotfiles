@@ -86,7 +86,8 @@ alias ,XXX='history -d $((HISTCMD - 3))'
 # Other history stuff
 alias ,A='history -a'
 alias ,N='history -n'
-alias ,H='awk '\''{ if (/^#/) { system("date -R -d @" substr($0, 2)); } else print }'\'' .bash_history |less'
+# Show formatted dates for any lines that have a timestamp, e.g. "#123456789"
+alias ,H='awk '\''{ if (/^#[0-9]+$/) { system("date -R -d @" substr($0, 2)); } else print }'\'' "${HISTFILE:-~/.bash_history}" |less'
 
 alias binary="python -c 'import sys ; print \"{0:08b}\".format(int(sys.argv[1]))'"
 
